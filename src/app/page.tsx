@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type View = "welcome" | "dashboard" | "profile" | "grants" | "applications" | "assistant";
+type View = "welcome" | "login" | "dashboard" | "profile" | "grants" | "applications" | "assistant";
 
 type Grant = {
   id: string;
@@ -69,6 +69,7 @@ const grants: Grant[] = [
 
 const navItems: Array<{ id: View; label: string }> = [
   { id: "welcome", label: "Welcome" },
+  { id: "login", label: "Log In" },
   { id: "dashboard", label: "Dashboard" },
   { id: "profile", label: "Farm Profile" },
   { id: "grants", label: "Grant Finder" },
@@ -153,8 +154,12 @@ export default function Home() {
               <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">New York farmer portal</span>
               <h1 className="mt-1 text-4xl font-bold tracking-tight max-sm:text-3xl">{currentTitle}</h1>
             </div>
-            <button className="rounded-lg border border-[#d5d4c8] bg-white px-4 py-3 font-semibold" type="button">
-              Settings
+            <button
+              className="rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] px-5 py-3 font-semibold text-white shadow-[0_12px_24px_rgba(23,51,40,0.18)]"
+              onClick={() => setActiveView("login")}
+              type="button"
+            >
+              Log in
             </button>
           </header>
 
@@ -163,6 +168,16 @@ export default function Home() {
               enterDashboard={enterDashboard}
               login={login}
               loginError={loginError}
+              setLogin={setLogin}
+              setLoginError={setLoginError}
+            />
+          )}
+          {activeView === "login" && (
+            <LoginView
+              enterDashboard={enterDashboard}
+              login={login}
+              loginError={loginError}
+              setActiveView={setActiveView}
               setLogin={setLogin}
               setLoginError={setLoginError}
             />
@@ -177,6 +192,103 @@ export default function Home() {
         </main>
       </div>
     </div>
+  );
+}
+
+function LoginView({
+  enterDashboard,
+  login,
+  loginError,
+  setActiveView,
+  setLogin,
+  setLoginError,
+}: {
+  enterDashboard: () => void;
+  login: { email: string; password: string };
+  loginError: string;
+  setActiveView: (view: View) => void;
+  setLogin: (login: { email: string; password: string }) => void;
+  setLoginError: (message: string) => void;
+}) {
+  return (
+    <section className="grid min-h-[680px] grid-cols-[minmax(0,1fr)_minmax(360px,460px)] overflow-hidden rounded-lg border border-[#ded9cb] bg-[#fffdf8] shadow-[0_30px_70px_rgba(49,68,51,0.18)] max-lg:grid-cols-1">
+      <div className="flex items-center bg-[linear-gradient(115deg,rgba(23,51,40,0.94),rgba(49,95,78,0.72)),url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center p-12 text-white max-sm:p-6">
+        <div className="max-w-2xl">
+          <span className="rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-extrabold">
+            Farmer account access
+          </span>
+          <h2 className="mt-5 text-6xl font-bold leading-none tracking-tight max-sm:text-4xl">
+            Sign in to continue your grant work.
+          </h2>
+          <p className="mt-5 text-lg leading-8 text-[#eef4e8]">
+            This separate login page is a deployment test and the future location for Supabase Auth.
+            When this appears on the live domain, GitHub to Vercel auto-deploy is working.
+          </p>
+          <button
+            className="mt-8 rounded-lg border border-white/25 bg-white/15 px-5 py-3 font-bold"
+            onClick={() => setActiveView("welcome")}
+            type="button"
+          >
+            Back to program overview
+          </button>
+        </div>
+      </div>
+
+      <form className="flex flex-col justify-center gap-4 p-8 max-sm:p-6">
+        <div>
+          <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Separate login page</span>
+          <h3 className="mt-2 text-3xl font-bold">Log in to AgriGrant NY</h3>
+          <p className="mt-2 leading-7 text-[#526257]">
+            Enter any email and password for this prototype. Real account validation comes next with Supabase.
+          </p>
+        </div>
+
+        <label className="grid gap-2 text-sm font-bold text-[#4c5d51]">
+          Email address
+          <input
+            className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3 text-[#17201a]"
+            onChange={(event) => {
+              setLogin({ ...login, email: event.target.value });
+              setLoginError("");
+            }}
+            placeholder="farmer@example.com"
+            type="email"
+            value={login.email}
+          />
+        </label>
+
+        <label className="grid gap-2 text-sm font-bold text-[#4c5d51]">
+          Password
+          <input
+            className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3 text-[#17201a]"
+            onChange={(event) => {
+              setLogin({ ...login, password: event.target.value });
+              setLoginError("");
+            }}
+            placeholder="Enter password"
+            type="password"
+            value={login.password}
+          />
+        </label>
+
+        {loginError && (
+          <p className="rounded-lg border border-[#e2a080] bg-[#fff1e8] px-3 py-2 text-sm text-[#8a2f18]" role="alert">
+            {loginError}
+          </p>
+        )}
+
+        <button
+          className="min-h-12 rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] px-4 font-bold text-white shadow-[0_12px_24px_rgba(23,51,40,0.22)]"
+          onClick={enterDashboard}
+          type="button"
+        >
+          Log in and open dashboard
+        </button>
+        <button className="min-h-12 rounded-lg border border-[#d5d4c8] bg-white px-4 font-bold" type="button">
+          Create farmer account
+        </button>
+      </form>
+    </section>
   );
 }
 
