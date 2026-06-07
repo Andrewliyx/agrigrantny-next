@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4efe5;
-  --foreground: #1f241d;
-  --surface: #fbf7ef;
-  --surface-strong: #efe5d6;
-  --border: #d7c9b4;
-  --forest: #23392d;
-  --moss: #556a47;
-  --sage: #8ba075;
-  --clay: #a8603a;
-  --grain: #f0e7d7;
+  --background: #f7f6f1;
+  --foreground: #1e2b23;
+  --surface: #ffffff;
+  --surface-muted: #f0f4ee;
+  --surface-strong: #e5ece5;
+  --border: #cfd8cf;
+  --forest: #234233;
+  --moss: #4f6b56;
+  --sage: #7d9580;
+  --clay: #8b684b;
+  --ink-soft: #52635a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-body);
-  --font-mono: var(--font-mono);
+  --font-sans: "Times New Roman", Times, serif;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
 * {
@@ -30,12 +31,9 @@ html {
 }
 
 body {
-  background:
-    radial-gradient(circle at top left, rgba(139, 160, 117, 0.16), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0)),
-    var(--background);
+  background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), sans-serif;
+  font-family: "Times New Roman", Times, serif;
   letter-spacing: 0;
 }
 
@@ -50,10 +48,11 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-display), serif;
-  letter-spacing: -0.02em;
+  font-family: "Times New Roman", Times, serif;
+  letter-spacing: 0;
+  font-weight: 700;
 }
 
 ::selection {
-  background: rgba(139, 160, 117, 0.35);
+  background: rgba(125, 149, 128, 0.28);
 }

@@ -111,15 +111,23 @@ export default function Home() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen p-6 text-[var(--foreground)] max-sm:p-4">
-        <header className="mx-auto mb-6 flex max-w-7xl items-center justify-between gap-5 rounded-[1.5rem] border border-[var(--border)]/80 bg-[var(--surface)]/90 px-5 py-4 shadow-[0_20px_45px_rgba(40,44,34,0.06)] backdrop-blur">
-          <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] font-mono text-sm font-bold text-[var(--forest)]">
+      <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <div className="border-b border-[var(--border)] bg-[var(--forest)] px-6 py-2 text-sm text-white">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 max-sm:block">
+            <span>AgriGrant NY is a prototype public-service initiative for farm grant access.</span>
+            <span className="text-white/80">New York agriculture · sustainability · business support</span>
+          </div>
+        </div>
+
+        <header className="border-b border-[var(--border)] bg-[var(--surface)]">
+          <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-5 max-sm:px-4">
+            <div className="flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-muted)] font-mono text-sm font-bold text-[var(--forest)]">
               {siteContent.brand.logoText}
             </span>
             <div>
-              <strong className="block text-lg font-semibold">{siteContent.brand.name}</strong>
-              <span className="block text-sm text-[color:rgba(31,36,29,0.64)]">{siteContent.brand.tagline}</span>
+              <strong className="block text-lg font-semibold text-[var(--forest)]">{siteContent.brand.name}</strong>
+              <span className="block text-sm text-[var(--ink-soft)]">{siteContent.brand.tagline}</span>
             </div>
           </div>
           <a
@@ -128,9 +136,10 @@ export default function Home() {
           >
             {siteContent.publicHeader.loginCta}
           </a>
+          </div>
         </header>
 
-        <main className="mx-auto max-w-7xl">
+        <main className="mx-auto max-w-7xl px-6 py-8 max-sm:px-4">
           <Welcome
             enterDashboard={enterDashboard}
             login={login}
@@ -146,7 +155,7 @@ export default function Home() {
   return (
     <div className="min-h-screen text-[var(--foreground)]">
       <div className="grid min-h-screen grid-cols-[280px_minmax(0,1fr)] max-lg:grid-cols-1">
-        <aside className="sticky top-0 flex h-screen flex-col gap-7 overflow-hidden bg-[var(--forest)] p-6 text-[var(--surface)] max-lg:static max-lg:h-auto">
+        <aside className="sticky top-0 flex h-screen flex-col gap-7 overflow-hidden border-r border-[#183126] bg-[var(--forest)] p-6 text-[var(--surface)] max-lg:static max-lg:h-auto max-lg:border-r-0 max-lg:border-b">
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[rgba(255,255,255,0.08)] font-mono text-sm font-bold text-[var(--surface)]">
               {siteContent.brand.logoText}
@@ -183,7 +192,7 @@ export default function Home() {
         </aside>
 
         <main className="min-w-0 p-7 max-sm:p-4">
-          <header className="mb-7 flex items-center justify-between gap-5 rounded-[1.5rem] border border-[var(--border)]/80 bg-[var(--surface)]/88 p-4 shadow-[0_16px_36px_rgba(49,68,51,0.08)] backdrop-blur">
+          <header className="mb-7 flex items-center justify-between gap-5 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_16px_36px_rgba(49,68,51,0.06)]">
             <div>
               <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">New York farmer portal</span>
               <h1 className="mt-1 text-4xl font-bold tracking-tight max-sm:text-3xl">{currentTitle}</h1>
@@ -229,24 +238,21 @@ function Welcome({
 }) {
   return (
     <div className="grid gap-6">
-      <section className="grid min-h-[720px] grid-cols-[minmax(0,1.15fr)_320px] gap-6 overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_30px_70px_rgba(49,68,51,0.12)] max-xl:grid-cols-1 max-sm:p-4">
-        <div className="relative overflow-hidden rounded-[1.6rem] bg-[linear-gradient(180deg,#ede3d2_0%,#f6f0e5_52%,#d8e1c8_100%)] p-10 max-sm:p-6">
-          <div className="absolute inset-x-0 bottom-0 top-[52%] bg-[repeating-linear-gradient(0deg,rgba(85,106,71,0.06),rgba(85,106,71,0.06)_1px,transparent_1px,transparent_26px)]" />
-          <div className="absolute -left-12 top-12 h-52 w-52 rounded-full bg-[rgba(168,96,58,0.16)] blur-3xl" />
-          <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-[rgba(139,160,117,0.2)] blur-3xl" />
-          <div className="relative z-10 max-w-3xl">
-            <span className="inline-flex rounded-full border border-[var(--border)] bg-[rgba(251,247,239,0.88)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
+      <section className="grid grid-cols-[minmax(0,1.25fr)_340px] gap-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_20px_48px_rgba(49,68,51,0.06)] max-xl:grid-cols-1 max-sm:p-4">
+        <div className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-10 max-sm:p-6">
+          <div className="max-w-3xl">
+            <span className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
             {siteContent.hero.eyebrow}
           </span>
-          <h2 className="mt-6 max-w-4xl text-[clamp(3rem,7vw,6.3rem)] leading-[0.92] text-[var(--forest)]">
+          <h2 className="mt-6 max-w-4xl text-[clamp(3rem,6.5vw,5.8rem)] leading-[0.95] text-[var(--forest)]">
             {siteContent.hero.title}
           </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[rgba(31,36,29,0.78)]">
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ink-soft)]">
             {siteContent.hero.body}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             {siteContent.hero.highlights.map((item) => (
-              <span className="rounded-full border border-[rgba(35,57,45,0.14)] bg-[rgba(251,247,239,0.84)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
+              <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
                 {item}
               </span>
             ))}
@@ -260,7 +266,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)] max-sm:p-6">
+      <section className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6">
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
           {siteContent.platformOverview.eyebrow}
         </span>
@@ -279,7 +285,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(180deg,var(--surface)_0%,#f2e8da_100%)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)] max-sm:p-6">
+      <section className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6">
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
         <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
           {siteContent.about.title}
@@ -305,7 +311,7 @@ function Welcome({
       </section>
 
       <section
-        className="grid grid-cols-[minmax(0,1fr)_minmax(340px,440px)] items-center gap-10 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_22px_48px_rgba(49,68,51,0.12)] max-lg:grid-cols-1 max-sm:p-6"
+        className="grid grid-cols-[minmax(0,1fr)_minmax(340px,440px)] items-center gap-10 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_22px_48px_rgba(49,68,51,0.07)] max-lg:grid-cols-1 max-sm:p-6"
         id="login"
       >
         <div>
@@ -316,7 +322,7 @@ function Welcome({
           </p>
         </div>
 
-        <form className="grid gap-4 rounded-[1.5rem] border border-[var(--border)] bg-[linear-gradient(180deg,#f8f2e8_0%,#efe5d6_100%)] p-6 shadow-[0_22px_46px_rgba(49,68,51,0.10)]">
+        <form className="grid gap-4 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface-muted)] p-6 shadow-[0_22px_46px_rgba(49,68,51,0.06)]">
           <div>
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
               {siteContent.login.panelEyebrow}
@@ -376,8 +382,8 @@ function Welcome({
 
 function ProgramCard({ number, title, text }: { number: string; title: string; text: string }) {
   return (
-    <article className="min-h-56 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[0_10px_24px_rgba(40,44,34,0.04)]">
-      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] font-mono text-sm font-bold text-[var(--forest)]">
+    <article className="min-h-56 rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-5">
+      <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-muted)] font-mono text-sm font-bold text-[var(--forest)]">
         {number}
       </span>
       <h4 className="mt-5 text-2xl leading-tight text-[var(--forest)]">{title}</h4>
@@ -388,8 +394,8 @@ function ProgramCard({ number, title, text }: { number: string; title: string; t
 
 function FounderCard({ initials, name, text }: { initials: string; name: string; text: string }) {
   return (
-    <article className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-[1.5rem] border border-[var(--border)] bg-[rgba(251,247,239,0.74)] p-5 max-sm:grid-cols-1">
-      <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-strong)] font-mono text-2xl font-bold text-[var(--forest)]">
+    <article className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5 max-sm:grid-cols-1">
+      <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] font-mono text-2xl font-bold text-[var(--forest)]">
         {initials}
       </div>
       <div>
@@ -417,7 +423,7 @@ function MetricCard({
       : "bg-[rgba(139,160,117,0.16)] text-[var(--moss)]";
 
   return (
-    <article className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[0_12px_30px_rgba(40,44,34,0.05)]">
+    <article className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-5">
       <span className={`inline-flex rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] ${accentClass}`}>
         {label}
       </span>
@@ -516,15 +522,15 @@ function Profile() {
           ["Annual revenue range", "$50k-$250k"],
           ["Primary goal", "Improve soil health"],
         ].map(([label, value]) => (
-          <label className="grid gap-2 text-sm font-bold text-[#4c5d51]" key={label}>
+          <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]" key={label}>
             {label}
-            <input className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3" defaultValue={value} />
+            <input className="min-h-12 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4" defaultValue={value} />
           </label>
         ))}
-        <label className="col-span-2 grid gap-2 text-sm font-bold text-[#4c5d51] max-lg:col-span-1">
+        <label className="col-span-2 grid gap-2 text-sm font-semibold text-[var(--forest)] max-lg:col-span-1">
           Notes for future AI assistant
           <textarea
-            className="min-h-28 rounded-lg border border-[#cdc9bd] bg-white p-3"
+            className="min-h-28 rounded-[1rem] border border-[var(--border)] bg-[var(--surface)] p-4"
             defaultValue="Interested in cover cropping, irrigation improvements, and cold storage funding."
           />
         </label>
@@ -544,9 +550,9 @@ function GrantFinder({
 }) {
   return (
     <div className="grid gap-5">
-      <section className="rounded-lg border border-[#ded9cb] bg-[#fffdf8]/95 p-4 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
+      <section className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
         <input
-          className="min-h-12 w-full rounded-lg border border-[#cdc9bd] bg-white px-4"
+          className="min-h-12 w-full rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4"
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search by agency, project type, or keyword"
           type="search"
@@ -564,22 +570,22 @@ function GrantFinder({
 
 function GrantCard({ grant, compact = false }: { grant: Grant; compact?: boolean }) {
   return (
-    <article className="grid gap-3 rounded-lg border border-[#ded9cb] bg-[#fffdf8]/95 p-5 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
+    <article className="grid gap-3 rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
       <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full bg-[linear-gradient(135deg,#e7efd1,#fff0b8)] px-3 py-1 text-xs font-extrabold text-[#315f4e]">
+        <span className="rounded-full bg-[var(--surface-muted)] px-3 py-1 text-xs font-extrabold text-[var(--moss)]">
           {grant.level}
         </span>
-        <strong className="text-[#b45232]">{grant.fitScore}% fit</strong>
+        <strong className="text-[var(--clay)]">{grant.fitScore}% fit</strong>
       </div>
-      <h4 className="text-xl font-bold">{grant.name}</h4>
-      <p className="leading-7 text-[#526257]">{grant.summary}</p>
-      <div className="flex flex-wrap gap-3 text-sm text-[#697467]">
+      <h4 className="text-3xl leading-tight text-[var(--forest)]">{grant.name}</h4>
+      <p className="leading-7 text-[var(--ink-soft)]">{grant.summary}</p>
+      <div className="flex flex-wrap gap-3 text-sm text-[rgba(31,36,29,0.58)]">
         <span>{grant.agency}</span>
         <span>{grant.deadline}</span>
       </div>
       <div className="flex flex-wrap gap-2">
         {grant.tags.map((tag) => (
-          <span className="rounded-full border border-[#e3d1b5] bg-[#f2ebda] px-3 py-1 text-xs font-bold text-[#5e4b2b]" key={tag}>
+          <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1 text-xs font-bold text-[var(--forest)]" key={tag}>
             {tag}
           </span>
         ))}
@@ -587,7 +593,7 @@ function GrantCard({ grant, compact = false }: { grant: Grant; compact?: boolean
       {!compact && (
         <div>
           <strong className="text-sm">Next steps</strong>
-          <ul className="mt-2 list-disc pl-5 leading-7 text-[#526257]">
+          <ul className="mt-2 list-disc pl-5 leading-7 text-[var(--ink-soft)]">
             {grant.nextSteps.map((step) => (
               <li key={step}>{step}</li>
             ))}
@@ -626,18 +632,18 @@ function Applications() {
 function Assistant() {
   return (
     <section className="grid grid-cols-[minmax(0,1fr)_360px] gap-5 max-lg:grid-cols-1">
-      <div className="min-h-[520px] rounded-lg border border-[#ded9cb] bg-[#fffdf8]/95 p-6 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
-        <div className="rounded-lg bg-[linear-gradient(135deg,#e7efd1,#fff4c7)] p-4">
+      <div className="min-h-[520px] rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
+        <div className="rounded-[1rem] bg-[var(--surface-muted)] p-4">
           <strong>Grant assistant workspace</strong>
-          <p className="mt-2 leading-7 text-[#526257]">
+          <p className="mt-2 leading-7 text-[var(--ink-soft)]">
             The future AI agent will use the farm profile, selected grants, application stage, and
             verified source data to guide each farmer.
           </p>
         </div>
-        <div className="ml-auto mt-4 max-w-xl rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] p-4 text-white">
+        <div className="ml-auto mt-4 max-w-xl rounded-[1rem] bg-[var(--forest)] p-4 text-white">
           Which grants fit my soil health and cold storage goals?
         </div>
-        <div className="mt-4 max-w-2xl rounded-lg bg-[linear-gradient(135deg,#f2ebda,#fff9e8)] p-4 leading-7">
+        <div className="mt-4 max-w-2xl rounded-[1rem] bg-[var(--surface-muted)] p-4 leading-7 text-[var(--foreground)]">
           Based on the sample profile, I would compare SARE, specialty crop funding, and energy
           efficiency programs, then ask for project cost, crop type, and timeline before ranking options.
         </div>
@@ -667,7 +673,7 @@ function Panel({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
+    <section className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
       <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{eyebrow}</span>
       <h3 className="mt-2 text-3xl leading-tight text-[var(--forest)]">{title}</h3>
       <div className="mt-5">{children}</div>
@@ -682,12 +688,12 @@ function Checklist({ items }: { items: Array<[string, boolean]> }) {
         <li className="flex items-center gap-3" key={label}>
           <span
             className={`flex h-6 w-6 items-center justify-center rounded-md border text-sm font-black ${
-              done ? "border-[#ceda5e] bg-[linear-gradient(135deg,#e5f075,#f2c35b)]" : "border-[#b9b8ac]"
+              done ? "border-[var(--border)] bg-[var(--surface-strong)] text-[var(--forest)]" : "border-[var(--border)]"
             }`}
           >
             {done ? "✓" : ""}
           </span>
-          <p className="text-[#526257]">{label}</p>
+          <p className="text-[var(--ink-soft)]">{label}</p>
         </li>
       ))}
     </ul>
