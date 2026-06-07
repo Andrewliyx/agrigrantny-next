@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { siteContent } from "@/content/siteContent";
 
 type View = "dashboard" | "profile" | "grants" | "applications" | "assistant";
 
@@ -99,7 +100,7 @@ export default function Home() {
 
   function enterDashboard() {
     if (!login.email.trim() || !login.password.trim()) {
-      setLoginError("Enter your email and password to open the dashboard preview.");
+      setLoginError(siteContent.login.missingFieldsError);
       return;
     }
 
@@ -114,18 +115,18 @@ export default function Home() {
         <header className="mx-auto mb-7 flex max-w-7xl items-center justify-between gap-5 rounded-lg border border-[#ded9cb]/80 bg-[#fffdf8]/80 p-4 shadow-[0_16px_36px_rgba(49,68,51,0.08)] backdrop-blur">
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#e5f075,#f2c35b)] text-xl font-black text-[#173328]">
-              AG
+              {siteContent.brand.logoText}
             </span>
             <div>
-              <strong className="block text-lg">AgriGrant NY</strong>
-              <span className="block text-sm text-[#697467]">Grant navigation for New York farms</span>
+              <strong className="block text-lg">{siteContent.brand.name}</strong>
+              <span className="block text-sm text-[#697467]">{siteContent.brand.tagline}</span>
             </div>
           </div>
           <a
             className="rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] px-5 py-3 font-semibold text-white shadow-[0_12px_24px_rgba(23,51,40,0.18)]"
             href="#login"
           >
-            Log in
+            {siteContent.publicHeader.loginCta}
           </a>
         </header>
 
@@ -148,10 +149,10 @@ export default function Home() {
         <aside className="sticky top-0 flex h-screen flex-col gap-7 overflow-hidden bg-[linear-gradient(180deg,rgba(24,61,49,0.96),rgba(13,39,31,0.98))] p-6 text-[#f9f4e8] max-lg:static max-lg:h-auto">
           <div className="flex items-center gap-3">
             <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#e5f075,#f2c35b)] text-xl font-black text-[#173328]">
-              AG
+              {siteContent.brand.logoText}
             </span>
             <div>
-              <strong className="block text-lg">AgriGrant NY</strong>
+              <strong className="block text-lg">{siteContent.brand.name}</strong>
               <span className="block text-sm text-[#cce3d0]">Grant navigation for farms</span>
             </div>
           </div>
@@ -232,17 +233,16 @@ function Welcome({
       <section className="flex min-h-[620px] items-center overflow-hidden rounded-lg bg-[linear-gradient(105deg,rgba(15,44,35,0.94),rgba(42,89,72,0.7)_45%,rgba(247,234,220,0.12)),url('https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center p-14 text-white shadow-[0_30px_70px_rgba(49,68,51,0.24)] max-sm:min-h-0 max-sm:p-6">
         <div className="max-w-3xl">
           <span className="inline-flex rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-extrabold">
-            Built for New York farms
+            {siteContent.hero.eyebrow}
           </span>
           <h2 className="mt-5 max-w-4xl text-7xl font-bold leading-[0.98] tracking-tight max-xl:text-6xl max-sm:text-4xl">
-            Grant support for farmers who would rather be in the field than buried in forms.
+            {siteContent.hero.title}
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-[#edf4e9]">
-            AgriGrant NY helps farmers understand funding opportunities, organize application materials,
-            and prepare stronger submissions for sustainability and business-growth grants.
+            {siteContent.hero.body}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            {["Grant matching", "Application tracking", "AI-ready guidance"].map((item) => (
+            {siteContent.hero.highlights.map((item) => (
               <span className="rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-bold" key={item}>
                 {item}
               </span>
@@ -252,70 +252,46 @@ function Welcome({
       </section>
 
       <section className="rounded-lg border border-[#ded9cb] bg-[#fffdf8]/90 p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
-        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Platform overview</span>
+        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">
+          {siteContent.platformOverview.eyebrow}
+        </span>
         <h3 className="mt-2 max-w-4xl text-4xl font-bold leading-tight">
-          A practical grant workspace for New York farmers.
+          {siteContent.platformOverview.title}
         </h3>
-        <p className="mt-3 max-w-3xl leading-7 text-[#526257]">
-          AgriGrant NY is being built to reduce the time farmers spend searching through complex
-          government pages and grant requirements. The goal is to organize relevant opportunities,
-          explain eligibility in plain language, and help farmers move from interest to application.
-        </p>
-        <p className="mt-3 max-w-3xl leading-7 text-[#526257]">
-          The platform will focus on sustainable agriculture, energy improvements, conservation,
-          equipment needs, market expansion, and business support. The current version is a prototype;
-          the next version will connect real accounts and database-backed grant records.
-        </p>
+        {siteContent.platformOverview.paragraphs.map((paragraph) => (
+          <p className="mt-3 max-w-3xl leading-7 text-[#526257]" key={paragraph}>
+            {paragraph}
+          </p>
+        ))}
         <div className="mt-6 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
-          <ProgramCard
-            number="1"
-            text="Capture county, farm type, business stage, sustainability goals, and project needs."
-            title="Build your farm profile"
-          />
-          <ProgramCard
-            number="2"
-            text="Compare state, federal, and regional funding opportunities by project type."
-            title="Find relevant grants"
-          />
-          <ProgramCard
-            number="3"
-            text="Track documents, budgets, deadlines, narratives, and missing requirements."
-            title="Prepare application materials"
-          />
-          <ProgramCard
-            number="4"
-            text="Use verified grant context to explain eligibility and guide next steps."
-            title="Use future AI guidance"
-          />
+          {siteContent.platformOverview.cards.map((card) => (
+            <ProgramCard key={card.number} number={card.number} text={card.text} title={card.title} />
+          ))}
         </div>
       </section>
 
       <section className="rounded-lg border border-[#ded9cb] bg-[#fffdf8]/90 p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
-        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">About us</span>
+        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">{siteContent.about.eyebrow}</span>
         <h3 className="mt-2 max-w-4xl text-4xl font-bold leading-tight">
-          Built by students focused on practical service and agricultural access.
+          {siteContent.about.title}
         </h3>
         <p className="mt-3 max-w-3xl leading-7 text-[#526257]">
-          AgriGrant NY is a student-led project designed to make agricultural grant discovery and
-          application preparation easier for farmers across New York.
+          {siteContent.about.body}
         </p>
 
         <div className="mt-7 grid grid-cols-2 gap-5 max-lg:grid-cols-1">
-          <FounderCard
-            initials="AL"
-            name="Andrew Li"
-            text="Co-founder focused on product development, farmer workflow design, and building the platform into a practical grant-navigation tool."
-          />
-          <FounderCard
-            initials="TW"
-            name="Thijs Wittink"
-            text="Co-founder focused on program strategy, outreach, and shaping AgriGrant NY around accessible support for farmers and agricultural communities."
-          />
+          {siteContent.about.founders.map((founder) => (
+            <FounderCard
+              initials={founder.initials}
+              key={founder.name}
+              name={founder.name}
+              text={founder.text}
+            />
+          ))}
         </div>
 
         <p className="mt-7 border-t border-[#ded9cb] pt-5 text-sm font-semibold leading-6 text-[#526257]">
-          Made possible with funding from the Workman Comm Svc Speakers &amp; Awards and the Center
-          for Service and Global Citizenship of Deerfield Academy.
+          {siteContent.about.funding}
         </p>
       </section>
 
@@ -324,41 +300,42 @@ function Welcome({
         id="login"
       >
         <div>
-          <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Farmer access</span>
-          <h3 className="mt-2 text-4xl font-bold leading-tight">Sign in to view your dashboard.</h3>
+          <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">{siteContent.login.eyebrow}</span>
+          <h3 className="mt-2 text-4xl font-bold leading-tight">{siteContent.login.title}</h3>
           <p className="mt-3 max-w-2xl leading-7 text-[#526257]">
-            This is a prototype login gate. Enter any email and password to continue. Supabase Auth will
-            replace this local behavior in the next build step.
+            {siteContent.login.body}
           </p>
         </div>
 
         <form className="grid gap-4 rounded-lg border border-[#ded9cb] bg-[#fffdf8]/95 p-6 shadow-[0_22px_46px_rgba(49,68,51,0.14)]">
           <div>
-            <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Farmer portal</span>
-            <h3 className="mt-1 text-2xl font-bold">Sign in to AgriGrant NY</h3>
+            <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">
+              {siteContent.login.panelEyebrow}
+            </span>
+            <h3 className="mt-1 text-2xl font-bold">{siteContent.login.panelTitle}</h3>
           </div>
           <label className="grid gap-2 text-sm font-bold text-[#4c5d51]">
-            Email address
+            {siteContent.login.emailLabel}
             <input
               className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3 text-[#17201a]"
               onChange={(event) => {
                 setLogin({ ...login, email: event.target.value });
                 setLoginError("");
               }}
-              placeholder="farmer@example.com"
+              placeholder={siteContent.login.emailPlaceholder}
               type="email"
               value={login.email}
             />
           </label>
           <label className="grid gap-2 text-sm font-bold text-[#4c5d51]">
-            Password
+            {siteContent.login.passwordLabel}
             <input
               className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3 text-[#17201a]"
               onChange={(event) => {
                 setLogin({ ...login, password: event.target.value });
                 setLoginError("");
               }}
-              placeholder="Enter password"
+              placeholder={siteContent.login.passwordPlaceholder}
               type="password"
               value={login.password}
             />
@@ -373,14 +350,14 @@ function Welcome({
             onClick={enterDashboard}
             type="button"
           >
-            Sign in and open dashboard
+            {siteContent.login.signInCta}
           </button>
           <button
             className="min-h-12 rounded-lg border border-[#d5d4c8] bg-white px-4 font-bold"
             onClick={enterDashboard}
             type="button"
           >
-            Create farmer account
+            {siteContent.login.signUpCta}
           </button>
         </form>
       </section>
