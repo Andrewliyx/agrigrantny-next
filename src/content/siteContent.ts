@@ -10,7 +10,7 @@ export const siteContent = {
   hero: {
     eyebrow: "Built for New York farms",
     title: "Grant support for farmers who would rather be in the field than buried in forms.",
-    body: "AgriGrant NY helps farmers understand funding opportunities, organize application materials, and prepare stronger submissions for sustainability and business-growth grants.",
+    body: "AgriGrant NY helps farmers understand federal and state funding opportunities, organize application materials, and prepare stronger submissions for sustainability and business-growth grants.",
     highlights: ["Grant matching", "Application tracking", "AI-ready guidance"],
   },
   platformOverview: {
@@ -51,7 +51,7 @@ export const siteContent = {
       {
         initials: "AL",
         name: "Andrew Li",
-        text: "Co-founder focused on product development, farmer workflow design, and building the platform into a practical grant-navigation tool.",
+        text: "Co-founder focused on product development, design of the workflow, and building the platform into a practical grant-navigation tool.",
       },
       {
         initials: "TW",
