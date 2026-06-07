@@ -122,20 +122,29 @@ export default function Home() {
         <header className="border-b border-[var(--border)] bg-[var(--surface)]">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-6 py-5 max-sm:px-4">
             <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-muted)] font-mono text-sm font-bold text-[var(--forest)]">
-              {siteContent.brand.logoText}
-            </span>
-            <div>
-              <strong className="block text-lg font-semibold text-[var(--forest)]">{siteContent.brand.name}</strong>
-              <span className="block text-sm text-[var(--ink-soft)]">{siteContent.brand.tagline}</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] font-mono text-sm font-bold text-[var(--forest)]">
+                {siteContent.brand.logoText}
+              </span>
+              <div>
+                <strong className="block text-lg font-semibold text-[var(--forest)]">{siteContent.brand.name}</strong>
+                <span className="block text-sm text-[var(--ink-soft)]">{siteContent.brand.tagline}</span>
+              </div>
             </div>
-          </div>
-          <a
-            className="rounded-full border border-[var(--forest)] bg-[var(--forest)] px-5 py-3 text-sm font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
-            href="#login"
-          >
-            {siteContent.publicHeader.loginCta}
-          </a>
+
+            <nav aria-label="Public navigation" className="flex items-center gap-6 max-md:hidden">
+              {siteContent.publicHeader.links.map((link) => (
+                <a className="text-sm font-medium text-[var(--ink-soft)] transition hover:text-[var(--forest)]" href={link.href} key={link.href}>
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+
+            <a
+              className="rounded-lg border border-[var(--forest)] bg-[var(--forest)] px-5 py-3 text-sm font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
+              href="#login"
+            >
+              {siteContent.publicHeader.loginCta}
+            </a>
           </div>
         </header>
 
@@ -238,10 +247,10 @@ function Welcome({
 }) {
   return (
     <div className="grid gap-6">
-      <section className="grid grid-cols-[minmax(0,1.2fr)_360px] gap-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_20px_48px_rgba(49,68,51,0.06)] max-xl:grid-cols-1 max-sm:p-4">
-        <div className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-10 max-sm:p-6">
+      <section className="grid grid-cols-[minmax(0,1.2fr)_360px] gap-6 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_20px_48px_rgba(49,68,51,0.06)] max-xl:grid-cols-1 max-sm:p-4">
+        <div className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface)] p-10 max-sm:p-6">
           <div className="max-w-3xl">
-            <span className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
+            <span className="inline-flex rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
               {siteContent.hero.eyebrow}
             </span>
             <h2 className="mt-6 max-w-4xl text-[clamp(3rem,6.5vw,5.8rem)] leading-[0.95] text-[var(--forest)]">
@@ -252,7 +261,7 @@ function Welcome({
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {siteContent.hero.highlights.map((item) => (
-                <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
+                <span className="rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
                   {item}
                 </span>
               ))}
@@ -280,7 +289,10 @@ function Welcome({
         </div>
       </section>
 
-      <section className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6">
+      <section
+        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        id="overview"
+      >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
           {siteContent.platformOverview.eyebrow}
         </span>
@@ -299,7 +311,10 @@ function Welcome({
         </div>
       </section>
 
-      <section className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6">
+      <section
+        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        id="about"
+      >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
         <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
           {siteContent.about.title}
@@ -314,6 +329,7 @@ function Welcome({
               initials={founder.initials}
               key={founder.name}
               name={founder.name}
+              role={founder.role}
               text={founder.text}
             />
           ))}
@@ -334,9 +350,22 @@ function Welcome({
           <p className="mt-4 max-w-2xl leading-8 text-[rgba(31,36,29,0.72)]">
             {siteContent.login.body}
           </p>
+          <div className="mt-7 rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
+            <h4 className="text-2xl leading-tight text-[var(--forest)]">{siteContent.login.previewTitle}</h4>
+            <ul className="mt-4 grid gap-3">
+              {siteContent.login.previewItems.map((item) => (
+                <li className="flex items-start gap-3" key={item}>
+                  <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface)] text-xs font-bold text-[var(--forest)]">
+                    ✓
+                  </span>
+                  <span className="leading-7 text-[var(--ink-soft)]">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <form className="grid gap-4 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface-muted)] p-6 shadow-[0_22px_46px_rgba(49,68,51,0.06)]">
+        <form className="grid gap-4 rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-6 shadow-[0_22px_46px_rgba(49,68,51,0.06)]">
           <div>
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
               {siteContent.login.panelEyebrow}
@@ -346,7 +375,7 @@ function Welcome({
           <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]">
             {siteContent.login.emailLabel}
             <input
-              className="min-h-12 rounded-full border border-[var(--border)] bg-[rgba(255,255,255,0.7)] px-4 text-[var(--foreground)]"
+              className="min-h-12 rounded-lg border border-[var(--border)] bg-[rgba(255,255,255,0.7)] px-4 text-[var(--foreground)]"
               onChange={(event) => {
                 setLogin({ ...login, email: event.target.value });
                 setLoginError("");
@@ -359,7 +388,7 @@ function Welcome({
           <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]">
             {siteContent.login.passwordLabel}
             <input
-              className="min-h-12 rounded-full border border-[var(--border)] bg-[rgba(255,255,255,0.7)] px-4 text-[var(--foreground)]"
+              className="min-h-12 rounded-lg border border-[var(--border)] bg-[rgba(255,255,255,0.7)] px-4 text-[var(--foreground)]"
               onChange={(event) => {
                 setLogin({ ...login, password: event.target.value });
                 setLoginError("");
@@ -375,14 +404,14 @@ function Welcome({
             </p>
           )}
           <button
-            className="min-h-12 rounded-full bg-[var(--forest)] px-4 font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
+            className="min-h-12 rounded-lg bg-[var(--forest)] px-4 font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
             onClick={enterDashboard}
             type="button"
           >
             {siteContent.login.signInCta}
           </button>
           <button
-            className="min-h-12 rounded-full border border-[var(--border)] bg-[rgba(255,255,255,0.68)] px-4 font-semibold text-[var(--forest)]"
+            className="min-h-12 rounded-lg border border-[var(--border)] bg-[rgba(255,255,255,0.68)] px-4 font-semibold text-[var(--forest)]"
             onClick={enterDashboard}
             type="button"
           >
@@ -406,13 +435,24 @@ function ProgramCard({ number, title, text }: { number: string; title: string; t
   );
 }
 
-function FounderCard({ initials, name, text }: { initials: string; name: string; text: string }) {
+function FounderCard({
+  initials,
+  name,
+  role,
+  text,
+}: {
+  initials: string;
+  name: string;
+  role: string;
+  text: string;
+}) {
   return (
     <article className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5 max-sm:grid-cols-1">
-      <div className="flex h-24 w-24 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] font-mono text-2xl font-bold text-[var(--forest)]">
+      <div className="flex h-24 w-24 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-mono text-2xl font-bold text-[var(--forest)]">
         {initials}
       </div>
       <div>
+        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{role}</span>
         <h4 className="text-2xl leading-tight text-[var(--forest)]">{name}</h4>
         <p className="mt-3 leading-7 text-[rgba(31,36,29,0.72)]">{text}</p>
       </div>
@@ -465,7 +505,7 @@ function MetricCard({
 
   return (
     <article className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
-      <span className={`inline-flex rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] ${accentClass}`}>
+      <span className={`inline-flex rounded-md px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] ${accentClass}`}>
         {label}
       </span>
       <h3 className="mt-4 text-4xl leading-none text-[var(--forest)]">{value}</h3>
@@ -477,28 +517,26 @@ function MetricCard({
 function Dashboard({ openGrants }: { openGrants: () => void }) {
   return (
     <div className="grid gap-6">
-      <section className="relative overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-[linear-gradient(180deg,#efe5d6_0%,#f8f2e8_55%,#dbe5cc_100%)] p-14 shadow-[0_28px_60px_rgba(49,68,51,0.12)] max-sm:p-6">
-        <div className="absolute inset-x-0 bottom-0 top-[56%] bg-[repeating-linear-gradient(0deg,rgba(85,106,71,0.05),rgba(85,106,71,0.05)_1px,transparent_1px,transparent_24px)]" />
-        <div className="absolute right-[-6rem] top-[-5rem] h-64 w-64 rounded-full bg-[rgba(168,96,58,0.14)] blur-3xl" />
-        <div className="absolute left-[-3rem] top-12 h-44 w-44 rounded-full bg-[rgba(139,160,117,0.18)] blur-3xl" />
+      <section className="relative overflow-hidden rounded-[1.25rem] border border-[var(--border)] bg-[#f2ede3] p-14 shadow-[0_28px_60px_rgba(49,68,51,0.08)] max-sm:p-6">
+        <div className="absolute inset-x-0 bottom-0 top-[58%] bg-[repeating-linear-gradient(0deg,rgba(85,106,71,0.05),rgba(85,106,71,0.05)_1px,transparent_1px,transparent_20px)]" />
         <div className="relative z-10">
-        <span className="inline-flex rounded-full border border-[var(--border)] bg-[rgba(251,247,239,0.84)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
-          NY farms first
-        </span>
-        <h2 className="mt-5 max-w-4xl text-6xl leading-none text-[var(--forest)] max-sm:text-4xl">
-          Find grants that match your farm, your county, and your next investment.
-        </h2>
-        <p className="mt-5 max-w-2xl leading-8 text-[rgba(31,36,29,0.74)]">
-          Profile-based recommendations, saved opportunities, application checklists, and an assistant
-          workspace ready for AI integration.
-        </p>
-        <button
-          className="mt-7 rounded-full bg-[var(--forest)] px-5 py-3 font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
-          onClick={openGrants}
-          type="button"
-        >
-          Explore grants
-        </button>
+          <span className="inline-flex rounded-md border border-[var(--border)] bg-[rgba(251,247,239,0.88)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
+            NY farms first
+          </span>
+          <h2 className="mt-5 max-w-4xl text-6xl leading-none text-[var(--forest)] max-sm:text-4xl">
+            Find grants that match your farm, your county, and your next investment.
+          </h2>
+          <p className="mt-5 max-w-2xl leading-8 text-[rgba(31,36,29,0.74)]">
+            Profile-based recommendations, saved opportunities, application checklists, and an assistant
+            workspace ready for AI integration.
+          </p>
+          <button
+            className="mt-7 rounded-lg bg-[var(--forest)] px-5 py-3 font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
+            onClick={openGrants}
+            type="button"
+          >
+            Explore grants
+          </button>
         </div>
       </section>
 
@@ -509,7 +547,7 @@ function Dashboard({ openGrants }: { openGrants: () => void }) {
         <Stat label="Readiness" value="68%" />
       </section>
 
-      <section className="rounded-[1.5rem] border border-[var(--border)] bg-[linear-gradient(135deg,rgba(139,160,117,0.14),rgba(251,247,239,0.98))] p-6">
+      <section className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-6">
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Profile insight</span>
         <h3 className="mt-2 text-3xl leading-tight text-[var(--forest)]">Energy and soil-health grants are your strongest starting lane.</h3>
         <p className="mt-3 leading-7 text-[rgba(31,36,29,0.72)]">
@@ -565,7 +603,7 @@ function Profile() {
         ].map(([label, value]) => (
           <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]" key={label}>
             {label}
-            <input className="min-h-12 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4" defaultValue={value} />
+            <input className="min-h-12 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4" defaultValue={value} />
           </label>
         ))}
         <label className="col-span-2 grid gap-2 text-sm font-semibold text-[var(--forest)] max-lg:col-span-1">
@@ -593,7 +631,7 @@ function GrantFinder({
     <div className="grid gap-5">
       <section className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
         <input
-          className="min-h-12 w-full rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4"
+          className="min-h-12 w-full rounded-lg border border-[var(--border)] bg-[var(--surface-muted)] px-4"
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search by agency, project type, or keyword"
           type="search"
@@ -613,7 +651,7 @@ function GrantCard({ grant, compact = false }: { grant: Grant; compact?: boolean
   return (
     <article className="grid gap-3 rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-5 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
       <div className="flex items-center justify-between gap-3">
-        <span className="rounded-full bg-[var(--surface-muted)] px-3 py-1 text-xs font-extrabold text-[var(--moss)]">
+        <span className="rounded-md bg-[var(--surface-muted)] px-3 py-1 text-xs font-extrabold text-[var(--moss)]">
           {grant.level}
         </span>
         <strong className="text-[var(--clay)]">{grant.fitScore}% fit</strong>
@@ -626,7 +664,7 @@ function GrantCard({ grant, compact = false }: { grant: Grant; compact?: boolean
       </div>
       <div className="flex flex-wrap gap-2">
         {grant.tags.map((tag) => (
-          <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1 text-xs font-bold text-[var(--forest)]" key={tag}>
+          <span className="rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-3 py-1 text-xs font-bold text-[var(--forest)]" key={tag}>
             {tag}
           </span>
         ))}
