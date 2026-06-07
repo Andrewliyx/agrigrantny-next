@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 
-type View = "welcome" | "login" | "dashboard" | "profile" | "grants" | "applications" | "assistant";
+type View = "dashboard" | "profile" | "grants" | "applications" | "assistant";
 
 type Grant = {
   id: string;
@@ -68,8 +68,6 @@ const grants: Grant[] = [
 ];
 
 const navItems: Array<{ id: View; label: string }> = [
-  { id: "welcome", label: "Welcome" },
-  { id: "login", label: "Log In" },
   { id: "dashboard", label: "Dashboard" },
   { id: "profile", label: "Farm Profile" },
   { id: "grants", label: "Grant Finder" },
@@ -78,7 +76,8 @@ const navItems: Array<{ id: View; label: string }> = [
 ];
 
 export default function Home() {
-  const [activeView, setActiveView] = useState<View>("welcome");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [activeView, setActiveView] = useState<View>("dashboard");
   const [query, setQuery] = useState("");
   const [login, setLogin] = useState({ email: "", password: "" });
   const [loginError, setLoginError] = useState("");
@@ -105,7 +104,42 @@ export default function Home() {
     }
 
     setLoginError("");
+    setIsAuthenticated(true);
     setActiveView("dashboard");
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[radial-gradient(circle_at_8%_8%,rgba(229,240,117,0.32),transparent_28%),radial-gradient(circle_at_92%_18%,rgba(180,82,50,0.15),transparent_26%),linear-gradient(135deg,#f8f3e8_0%,#eef3df_42%,#f7eadc_100%)] p-7 text-[#17201a] max-sm:p-4">
+        <header className="mx-auto mb-7 flex max-w-7xl items-center justify-between gap-5 rounded-lg border border-[#ded9cb]/80 bg-[#fffdf8]/80 p-4 shadow-[0_16px_36px_rgba(49,68,51,0.08)] backdrop-blur">
+          <div className="flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#e5f075,#f2c35b)] text-xl font-black text-[#173328]">
+              AG
+            </span>
+            <div>
+              <strong className="block text-lg">AgriGrant NY</strong>
+              <span className="block text-sm text-[#697467]">Grant navigation for New York farms</span>
+            </div>
+          </div>
+          <a
+            className="rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] px-5 py-3 font-semibold text-white shadow-[0_12px_24px_rgba(23,51,40,0.18)]"
+            href="#login"
+          >
+            Log in
+          </a>
+        </header>
+
+        <main className="mx-auto max-w-7xl">
+          <Welcome
+            enterDashboard={enterDashboard}
+            login={login}
+            loginError={loginError}
+            setLogin={setLogin}
+            setLoginError={setLoginError}
+          />
+        </main>
+      </div>
+    );
   }
 
   return (
@@ -155,33 +189,18 @@ export default function Home() {
               <h1 className="mt-1 text-4xl font-bold tracking-tight max-sm:text-3xl">{currentTitle}</h1>
             </div>
             <button
-              className="rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] px-5 py-3 font-semibold text-white shadow-[0_12px_24px_rgba(23,51,40,0.18)]"
-              onClick={() => setActiveView("login")}
+              className="rounded-lg border border-[#d5d4c8] bg-white px-5 py-3 font-semibold"
+              onClick={() => {
+                setIsAuthenticated(false);
+                setActiveView("dashboard");
+                setLogin({ email: "", password: "" });
+              }}
               type="button"
             >
-              Log in
+              Log out
             </button>
           </header>
 
-          {activeView === "welcome" && (
-            <Welcome
-              enterDashboard={enterDashboard}
-              login={login}
-              loginError={loginError}
-              setLogin={setLogin}
-              setLoginError={setLoginError}
-            />
-          )}
-          {activeView === "login" && (
-            <LoginView
-              enterDashboard={enterDashboard}
-              login={login}
-              loginError={loginError}
-              setActiveView={setActiveView}
-              setLogin={setLogin}
-              setLoginError={setLoginError}
-            />
-          )}
           {activeView === "dashboard" && <Dashboard openGrants={() => setActiveView("grants")} />}
           {activeView === "profile" && <Profile />}
           {activeView === "grants" && (
@@ -192,103 +211,6 @@ export default function Home() {
         </main>
       </div>
     </div>
-  );
-}
-
-function LoginView({
-  enterDashboard,
-  login,
-  loginError,
-  setActiveView,
-  setLogin,
-  setLoginError,
-}: {
-  enterDashboard: () => void;
-  login: { email: string; password: string };
-  loginError: string;
-  setActiveView: (view: View) => void;
-  setLogin: (login: { email: string; password: string }) => void;
-  setLoginError: (message: string) => void;
-}) {
-  return (
-    <section className="grid min-h-[680px] grid-cols-[minmax(0,1fr)_minmax(360px,460px)] overflow-hidden rounded-lg border border-[#ded9cb] bg-[#fffdf8] shadow-[0_30px_70px_rgba(49,68,51,0.18)] max-lg:grid-cols-1">
-      <div className="flex items-center bg-[linear-gradient(115deg,rgba(23,51,40,0.94),rgba(49,95,78,0.72)),url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center p-12 text-white max-sm:p-6">
-        <div className="max-w-2xl">
-          <span className="rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-extrabold">
-            Farmer account access
-          </span>
-          <h2 className="mt-5 text-6xl font-bold leading-none tracking-tight max-sm:text-4xl">
-            Sign in to continue your grant work.
-          </h2>
-          <p className="mt-5 text-lg leading-8 text-[#eef4e8]">
-            This separate login page is a deployment test and the future location for Supabase Auth.
-            When this appears on the live domain, GitHub to Vercel auto-deploy is working.
-          </p>
-          <button
-            className="mt-8 rounded-lg border border-white/25 bg-white/15 px-5 py-3 font-bold"
-            onClick={() => setActiveView("welcome")}
-            type="button"
-          >
-            Back to program overview
-          </button>
-        </div>
-      </div>
-
-      <form className="flex flex-col justify-center gap-4 p-8 max-sm:p-6">
-        <div>
-          <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Separate login page</span>
-          <h3 className="mt-2 text-3xl font-bold">Log in to AgriGrant NY</h3>
-          <p className="mt-2 leading-7 text-[#526257]">
-            Enter any email and password for this prototype. Real account validation comes next with Supabase.
-          </p>
-        </div>
-
-        <label className="grid gap-2 text-sm font-bold text-[#4c5d51]">
-          Email address
-          <input
-            className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3 text-[#17201a]"
-            onChange={(event) => {
-              setLogin({ ...login, email: event.target.value });
-              setLoginError("");
-            }}
-            placeholder="farmer@example.com"
-            type="email"
-            value={login.email}
-          />
-        </label>
-
-        <label className="grid gap-2 text-sm font-bold text-[#4c5d51]">
-          Password
-          <input
-            className="min-h-12 rounded-lg border border-[#cdc9bd] bg-white px-3 text-[#17201a]"
-            onChange={(event) => {
-              setLogin({ ...login, password: event.target.value });
-              setLoginError("");
-            }}
-            placeholder="Enter password"
-            type="password"
-            value={login.password}
-          />
-        </label>
-
-        {loginError && (
-          <p className="rounded-lg border border-[#e2a080] bg-[#fff1e8] px-3 py-2 text-sm text-[#8a2f18]" role="alert">
-            {loginError}
-          </p>
-        )}
-
-        <button
-          className="min-h-12 rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] px-4 font-bold text-white shadow-[0_12px_24px_rgba(23,51,40,0.22)]"
-          onClick={enterDashboard}
-          type="button"
-        >
-          Log in and open dashboard
-        </button>
-        <button className="min-h-12 rounded-lg border border-[#d5d4c8] bg-white px-4 font-bold" type="button">
-          Create farmer account
-        </button>
-      </form>
-    </section>
   );
 }
 
@@ -330,13 +252,19 @@ function Welcome({
       </section>
 
       <section className="rounded-lg border border-[#ded9cb] bg-[#fffdf8]/90 p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
-        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Program overview</span>
+        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">About us</span>
         <h3 className="mt-2 max-w-4xl text-4xl font-bold leading-tight">
-          A guided workspace for finding, preparing, and tracking agricultural grants.
+          A practical grant workspace for New York farmers.
         </h3>
         <p className="mt-3 max-w-3xl leading-7 text-[#526257]">
-          The platform is designed around the way farmers actually work: profile first, eligibility next,
-          then a clear checklist for moving an application forward.
+          AgriGrant NY is being built to reduce the time farmers spend searching through complex
+          government pages and grant requirements. The goal is to organize relevant opportunities,
+          explain eligibility in plain language, and help farmers move from interest to application.
+        </p>
+        <p className="mt-3 max-w-3xl leading-7 text-[#526257]">
+          The platform will focus on sustainable agriculture, energy improvements, conservation,
+          equipment needs, market expansion, and business support. The current version is a prototype;
+          the next version will connect real accounts and database-backed grant records.
         </p>
         <div className="mt-6 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
           <ProgramCard
@@ -362,7 +290,10 @@ function Welcome({
         </div>
       </section>
 
-      <section className="grid grid-cols-[minmax(0,1fr)_minmax(340px,440px)] items-center gap-10 rounded-lg border border-[#ded9cb] bg-[linear-gradient(135deg,rgba(229,240,117,0.22),rgba(255,253,248,0.9)),linear-gradient(90deg,#fffdf8,#f2ebda)] p-9 shadow-[0_22px_48px_rgba(49,68,51,0.12)] max-lg:grid-cols-1">
+      <section
+        className="grid grid-cols-[minmax(0,1fr)_minmax(340px,440px)] items-center gap-10 rounded-lg border border-[#ded9cb] bg-[linear-gradient(135deg,rgba(229,240,117,0.22),rgba(255,253,248,0.9)),linear-gradient(90deg,#fffdf8,#f2ebda)] p-9 shadow-[0_22px_48px_rgba(49,68,51,0.12)] max-lg:grid-cols-1"
+        id="login"
+      >
         <div>
           <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Farmer access</span>
           <h3 className="mt-2 text-4xl font-bold leading-tight">Sign in to view your dashboard.</h3>
@@ -415,7 +346,11 @@ function Welcome({
           >
             Sign in and open dashboard
           </button>
-          <button className="min-h-12 rounded-lg border border-[#d5d4c8] bg-white px-4 font-bold" type="button">
+          <button
+            className="min-h-12 rounded-lg border border-[#d5d4c8] bg-white px-4 font-bold"
+            onClick={enterDashboard}
+            type="button"
+          >
             Create farmer account
           </button>
         </form>
