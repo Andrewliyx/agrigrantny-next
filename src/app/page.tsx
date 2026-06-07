@@ -238,31 +238,45 @@ function Welcome({
 }) {
   return (
     <div className="grid gap-6">
-      <section className="grid grid-cols-[minmax(0,1.25fr)_340px] gap-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_20px_48px_rgba(49,68,51,0.06)] max-xl:grid-cols-1 max-sm:p-4">
+      <section className="grid grid-cols-[minmax(0,1.2fr)_360px] gap-6 rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_20px_48px_rgba(49,68,51,0.06)] max-xl:grid-cols-1 max-sm:p-4">
         <div className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-10 max-sm:p-6">
           <div className="max-w-3xl">
             <span className="inline-flex rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
-            {siteContent.hero.eyebrow}
-          </span>
-          <h2 className="mt-6 max-w-4xl text-[clamp(3rem,6.5vw,5.8rem)] leading-[0.95] text-[var(--forest)]">
-            {siteContent.hero.title}
-          </h2>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ink-soft)]">
-            {siteContent.hero.body}
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {siteContent.hero.highlights.map((item) => (
-              <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
-                {item}
-              </span>
-            ))}
+              {siteContent.hero.eyebrow}
+            </span>
+            <h2 className="mt-6 max-w-4xl text-[clamp(3rem,6.5vw,5.8rem)] leading-[0.95] text-[var(--forest)]">
+              {siteContent.hero.title}
+            </h2>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ink-soft)]">
+              {siteContent.hero.body}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              {siteContent.hero.highlights.map((item) => (
+                <span className="rounded-full border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-        </div>
         <div className="grid gap-4">
-          <MetricCard label="Current scope" value="NY farmers" body="Focused on sustainable practice and business support grants relevant to New York." />
-          <MetricCard label="Prototype stage" value="Public pilot" body="The product direction is established. Auth, data, and grant operations are next." accent="clay" />
-          <MetricCard label="Design direction" value="Human, not glossy" body="Structured, grounded, and editorial rather than stock-photo nonprofit aesthetic." />
+          <PhotoCard
+            alt="Farm rows and greenhouse structures"
+            body="Grant planning has to fit the actual operating rhythm of farms, not just funding language."
+            caption="Production context"
+            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80"
+          />
+          <MetricCard
+            label="Current scope"
+            value="NY farmers"
+            body="Focused on sustainable practice and business support grants relevant to New York."
+          />
+          <PhotoCard
+            alt="Pasture and barn landscape"
+            body="The site should read as a credible initiative first, with visuals supporting the message rather than leading it."
+            caption="Working landscape"
+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+          />
         </div>
       </section>
 
@@ -406,6 +420,33 @@ function FounderCard({ initials, name, text }: { initials: string; name: string;
   );
 }
 
+function PhotoCard({
+  alt,
+  body,
+  caption,
+  src,
+}: {
+  alt: string;
+  body: string;
+  caption: string;
+  src: string;
+}) {
+  return (
+    <article className="overflow-hidden rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)]">
+      <div
+        aria-label={alt}
+        className="h-44 w-full border-b border-[var(--border)] bg-cover bg-center"
+        role="img"
+        style={{ backgroundImage: `url(${src})` }}
+      />
+      <div className="p-4">
+        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{caption}</span>
+        <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{body}</p>
+      </div>
+    </article>
+  );
+}
+
 function MetricCard({
   label,
   value,
@@ -423,7 +464,7 @@ function MetricCard({
       : "bg-[rgba(139,160,117,0.16)] text-[var(--moss)]";
 
   return (
-    <article className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-5">
+    <article className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
       <span className={`inline-flex rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] ${accentClass}`}>
         {label}
       </span>
