@@ -252,7 +252,7 @@ function Welcome({
       </section>
 
       <section className="rounded-lg border border-[#ded9cb] bg-[#fffdf8]/90 p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
-        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">About us</span>
+        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">Platform overview</span>
         <h3 className="mt-2 max-w-4xl text-4xl font-bold leading-tight">
           A practical grant workspace for New York farmers.
         </h3>
@@ -288,6 +288,35 @@ function Welcome({
             title="Use future AI guidance"
           />
         </div>
+      </section>
+
+      <section className="rounded-lg border border-[#ded9cb] bg-[#fffdf8]/90 p-9 shadow-[0_18px_38px_rgba(49,68,51,0.08)]">
+        <span className="block text-xs font-extrabold uppercase text-[#6e7e30]">About us</span>
+        <h3 className="mt-2 max-w-4xl text-4xl font-bold leading-tight">
+          Built by students focused on practical service and agricultural access.
+        </h3>
+        <p className="mt-3 max-w-3xl leading-7 text-[#526257]">
+          AgriGrant NY is a student-led project designed to make agricultural grant discovery and
+          application preparation easier for farmers across New York.
+        </p>
+
+        <div className="mt-7 grid grid-cols-2 gap-5 max-lg:grid-cols-1">
+          <FounderCard
+            initials="AL"
+            name="Andrew Li"
+            text="Co-founder focused on product development, farmer workflow design, and building the platform into a practical grant-navigation tool."
+          />
+          <FounderCard
+            initials="TW"
+            name="Thijs Wittink"
+            text="Co-founder focused on program strategy, outreach, and shaping AgriGrant NY around accessible support for farmers and agricultural communities."
+          />
+        </div>
+
+        <p className="mt-7 border-t border-[#ded9cb] pt-5 text-sm font-semibold leading-6 text-[#526257]">
+          Made possible with funding from the Workman Comm Svc Speakers &amp; Awards and the Center
+          for Service and Global Citizenship of Deerfield Academy.
+        </p>
       </section>
 
       <section
@@ -367,6 +396,20 @@ function ProgramCard({ number, title, text }: { number: string; title: string; t
       </span>
       <h4 className="mt-4 text-lg font-bold">{title}</h4>
       <p className="mt-2 leading-7 text-[#526257]">{text}</p>
+    </article>
+  );
+}
+
+function FounderCard({ initials, name, text }: { initials: string; name: string; text: string }) {
+  return (
+    <article className="grid grid-cols-[96px_minmax(0,1fr)] gap-5 rounded-lg border border-[#e2d8c4] bg-[linear-gradient(180deg,#fffdf8,#fff7e7)] p-5 max-sm:grid-cols-1">
+      <div className="flex h-24 w-24 items-center justify-center rounded-lg bg-[linear-gradient(135deg,#173328,#315f4e)] text-2xl font-black text-white shadow-[0_12px_24px_rgba(23,51,40,0.18)]">
+        {initials}
+      </div>
+      <div>
+        <h4 className="text-xl font-bold">{name}</h4>
+        <p className="mt-2 leading-7 text-[#526257]">{text}</p>
+      </div>
     </article>
   );
 }
