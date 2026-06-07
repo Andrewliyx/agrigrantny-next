@@ -177,8 +177,7 @@ export default function Home() {
           <div className="mt-auto rounded-lg border border-[#477462] bg-white/10 p-4">
             <span className="block text-xs font-extrabold uppercase text-[#e5f075]">Next integration</span>
             <p className="mt-2 text-sm leading-6 text-[#e0edde]">
-              Connect Supabase Auth, a grant data source, and an AI assistant once the core workflow is
-              in Next.js.
+              Lorem ipsum doloris test please work please
             </p>
           </div>
         </aside>
