@@ -20,7 +20,7 @@ export const siteContent = {
   hero: {
     eyebrow: "Built for New York farms",
     title: "Find New York farm grants that fit your operation.",
-    body: "Build a farm profile, review matching programs, and see what to prepare before you go to the official application.",
+    body: "Build a farm profile, review matching programs, and see what to prepare before you go to the official application. Contact us at contact@agrigrantny.com for feedback and inquiries.",
     highlights: ["County-aware matching", "Eligibility checklist", "Official source links"],
     primaryCta: "Start grant match",
     secondaryCta: "View sources",
@@ -103,13 +103,13 @@ export const siteContent = {
         initials: "AL",
         name: "Andrew Li",
         role: "Co-founder",
-        text: "Focused on product direction, platform design, and shaping the workflow into a practical grant-navigation tool.",
+        text: "Focused on product direction, platform design, and shaping the workflow into a practical grant-navigation tool. Contact me at yli27@deerfield.edu.",
       },
       {
         initials: "TW",
         name: "Thijs Wittink",
         role: "Co-founder",
-        text: "Focused on program strategy, outreach, and keeping the project grounded in accessible support for agricultural communities.",
+        text: "Focused on program strategy, outreach, and keeping the project grounded in accessible support for agricultural communities. Contact me at twittink@deerfield.edu.",
       },
     ],
     funding:
@@ -146,7 +146,7 @@ export const siteContent = {
     missingFieldsError: "Enter your email and password to open the dashboard preview.",
   },
   footer: {
-    contact: "Questions: agrigrantny@gmail.com",
+    contact: "Contact us at contact@agrigrantny.com",
     policy: "Grant information should always be confirmed on the official program page before applying.",
     privacy: "Account, saved-grant, and document privacy terms will be added with the production authentication build.",
   },
