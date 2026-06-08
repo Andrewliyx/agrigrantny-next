@@ -114,8 +114,8 @@ export default function Home() {
       <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
         <div className="border-b border-[var(--border)] bg-[var(--forest)] px-6 py-2 text-sm text-white">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 max-sm:block">
-            <span>AgriGrant NY is a prototype public-service initiative for farm grant access.</span>
-            <span className="text-white/80">New York agriculture · sustainability · business support</span>
+            <span>{siteContent.disclosureBar.text}</span>
+            <span className="text-white/80">{siteContent.disclosureBar.meta}</span>
           </div>
         </div>
 
@@ -266,26 +266,55 @@ function Welcome({
                 </span>
               ))}
             </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                className="rounded-lg bg-[var(--forest)] px-5 py-3 text-sm font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
+                href="#login"
+              >
+                {siteContent.hero.primaryCta}
+              </a>
+              <a
+                className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold text-[var(--forest)] transition hover:bg-[var(--surface-muted)]"
+                href={siteContent.hero.secondaryHref}
+              >
+                {siteContent.hero.secondaryCta}
+              </a>
+            </div>
+            <p className="mt-5 text-sm leading-7 text-[var(--ink-soft)]">{siteContent.hero.note}</p>
           </div>
         </div>
-        <div className="grid gap-4">
-          <PhotoCard
-            alt="Farm rows and greenhouse structures"
-            body="Grant planning has to fit the actual operating rhythm of farms, not just funding language."
-            caption="Production context"
-            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80"
-          />
-          <MetricCard
-            label="Current scope"
-            value="NY farmers"
-            body="Focused on sustainable practice and business support grants relevant to New York."
-          />
-          <PhotoCard
-            alt="Pasture and barn landscape"
-            body="The site should read as a credible initiative first, with visuals supporting the message rather than leading it."
-            caption="Working landscape"
-            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
-          />
+        <ExamplePreview />
+      </section>
+
+      <section
+        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        id="sources"
+      >
+        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
+          {siteContent.sources.eyebrow}
+        </span>
+        <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+          {siteContent.sources.title}
+        </h3>
+        <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
+          {siteContent.sources.items.map(([label, text]) => (
+            <SourceCard key={label} label={label} text={text} />
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        id="workflow"
+      >
+        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.workflow.eyebrow}</span>
+        <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+          {siteContent.workflow.title}
+        </h3>
+        <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
+          {siteContent.workflow.steps.map((step) => (
+            <ProgramCard key={step.number} number={step.number} text={step.text} title={step.title} />
+          ))}
         </div>
       </section>
 
@@ -293,51 +322,80 @@ function Welcome({
         className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
         id="overview"
       >
-        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
-          {siteContent.platformOverview.eyebrow}
-        </span>
+        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.categories.eyebrow}</span>
         <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
-          {siteContent.platformOverview.title}
+          {siteContent.categories.title}
         </h3>
-        {siteContent.platformOverview.paragraphs.map((paragraph) => (
-          <p className="mt-4 max-w-3xl leading-8 text-[rgba(31,36,29,0.72)]" key={paragraph}>
-            {paragraph}
-          </p>
-        ))}
-        <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
-          {siteContent.platformOverview.cards.map((card) => (
-            <ProgramCard key={card.number} number={card.number} text={card.text} title={card.title} />
+        <div className="mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {siteContent.categories.items.map((item) => (
+            <CategoryCard key={item} title={item} />
           ))}
         </div>
       </section>
 
       <section
-        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        className="grid grid-cols-[minmax(0,1fr)_340px] gap-6 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-lg:grid-cols-1 max-sm:p-6"
         id="about"
       >
-        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
-        <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
-          {siteContent.about.title}
-        </h3>
-        <p className="mt-4 max-w-3xl leading-8 text-[rgba(31,36,29,0.72)]">
-          {siteContent.about.body}
-        </p>
-
-        <div className="mt-7 grid grid-cols-2 gap-5 max-lg:grid-cols-1">
-          {siteContent.about.founders.map((founder) => (
-            <FounderCard
-              initials={founder.initials}
-              key={founder.name}
-              name={founder.name}
-              role={founder.role}
-              text={founder.text}
-            />
-          ))}
+        <div>
+          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
+          <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+            {siteContent.about.title}
+          </h3>
+          <p className="mt-4 max-w-3xl leading-8 text-[rgba(31,36,29,0.72)]">
+            {siteContent.about.body}
+          </p>
+          <div className="mt-7 grid grid-cols-2 gap-5 max-lg:grid-cols-1">
+            {siteContent.about.founders.map((founder) => (
+              <FounderCard
+                initials={founder.initials}
+                key={founder.name}
+                name={founder.name}
+                role={founder.role}
+                text={founder.text}
+              />
+            ))}
+          </div>
+          <p className="mt-7 border-t border-[var(--border)] pt-5 text-sm font-semibold leading-6 text-[rgba(31,36,29,0.72)]">
+            {siteContent.about.funding}
+          </p>
         </div>
+        <aside className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
+          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.support.eyebrow}</span>
+          <h4 className="mt-3 text-3xl leading-tight text-[var(--forest)]">{siteContent.support.title}</h4>
+          <p className="mt-4 leading-7 text-[var(--ink-soft)]">{siteContent.support.body}</p>
+          <ul className="mt-5 grid gap-3">
+            {siteContent.support.items.map((item) => (
+              <li className="flex items-start gap-3" key={item}>
+                <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface)] text-xs font-bold text-[var(--forest)]">
+                  +
+                </span>
+                <span className="text-sm leading-7 text-[var(--ink-soft)]">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      </section>
 
-        <p className="mt-7 border-t border-[var(--border)] pt-5 text-sm font-semibold leading-6 text-[rgba(31,36,29,0.72)]">
-          {siteContent.about.funding}
-        </p>
+      <section className="grid grid-cols-[minmax(0,1fr)_360px] gap-6 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-lg:grid-cols-1 max-sm:p-4">
+        <PhotoCard
+          alt="Vegetable farm rows in New York growing season"
+          body="A single captioned image is more credible here than several generic decorative farm panels. It should support the public-service message, not compete with it."
+          caption="Example context: vegetable operation, New York"
+          src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
+        />
+        <div className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
+          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Source policy</span>
+          <h4 className="mt-3 text-3xl leading-tight text-[var(--forest)]">Official pages stay in the loop.</h4>
+          <p className="mt-4 leading-7 text-[var(--ink-soft)]">
+            Grant information should be summarized from public program pages, but every recommendation should still point farmers back to the original application source, dates, and instructions.
+          </p>
+          <div className="mt-5 grid gap-3 text-sm leading-7 text-[var(--ink-soft)]">
+            <p>Use official application links.</p>
+            <p>Show dates and last review timing.</p>
+            <p>State clearly when eligibility is uncertain.</p>
+          </div>
+        </div>
       </section>
 
       <section
@@ -419,7 +477,70 @@ function Welcome({
           </button>
         </form>
       </section>
+
+      <footer className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-6 text-sm leading-7 text-[var(--ink-soft)]">
+        <div className="grid gap-3">
+          <p>{siteContent.footer.contact}</p>
+          <p>{siteContent.footer.policy}</p>
+          <p>{siteContent.footer.privacy}</p>
+        </div>
+      </footer>
     </div>
+  );
+}
+
+function ExamplePreview() {
+  const preview = siteContent.hero.preview;
+
+  return (
+    <aside className="grid gap-4 rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-4">
+      <div className="rounded-[0.9rem] border border-[var(--border)] bg-[var(--surface)] p-4">
+        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{preview.eyebrow}</span>
+        <h3 className="mt-3 text-2xl leading-tight text-[var(--forest)]">{preview.title}</h3>
+        <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{preview.summary}</p>
+      </div>
+
+      <div className="rounded-[0.9rem] border border-[var(--border)] bg-[var(--surface)] p-4">
+        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Farm profile</span>
+        <dl className="mt-3 grid gap-3">
+          {preview.profile.map(([label, value]) => (
+            <div className="grid grid-cols-[110px_minmax(0,1fr)] gap-3 border-b border-[var(--border)] pb-3 last:border-b-0 last:pb-0" key={label}>
+              <dt className="text-sm font-semibold text-[var(--forest)]">{label}</dt>
+              <dd className="text-sm leading-6 text-[var(--ink-soft)]">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div className="rounded-[0.9rem] border border-[var(--border)] bg-[var(--surface)] p-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Matched program</span>
+            <h4 className="mt-2 text-xl leading-tight text-[var(--forest)]">{preview.match.program}</h4>
+          </div>
+          <span className="rounded-md bg-[#f3eadf] px-3 py-1 text-xs font-bold text-[var(--clay)]">{preview.match.fit}</span>
+        </div>
+        <div className="mt-4 grid gap-2 text-sm leading-6 text-[var(--ink-soft)]">
+          <p><strong className="text-[var(--forest)]">Review date:</strong> {preview.match.deadline}</p>
+          <p><strong className="text-[var(--forest)]">Source:</strong> {preview.match.source}</p>
+        </div>
+        <div className="mt-4">
+          <strong className="text-sm text-[var(--forest)]">What to prepare</strong>
+          <ul className="mt-2 grid gap-2">
+            {preview.requirements.map((item) => (
+              <li className="flex items-start gap-3 text-sm leading-6 text-[var(--ink-soft)]" key={item}>
+                <span className="mt-1 flex h-4 w-4 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface-muted)] text-[10px] font-bold text-[var(--forest)]">
+                  ✓
+                </span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <p className="px-1 text-xs leading-6 text-[var(--ink-soft)]">{preview.caption}</p>
+    </aside>
   );
 }
 
@@ -431,6 +552,23 @@ function ProgramCard({ number, title, text }: { number: string; title: string; t
       </span>
       <h4 className="mt-5 text-2xl leading-tight text-[var(--forest)]">{title}</h4>
       <p className="mt-3 leading-7 text-[rgba(31,36,29,0.72)]">{text}</p>
+    </article>
+  );
+}
+
+function SourceCard({ label, text }: { label: string; text: string }) {
+  return (
+    <article className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
+      <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{label}</span>
+      <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{text}</p>
+    </article>
+  );
+}
+
+function CategoryCard({ title }: { title: string }) {
+  return (
+    <article className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
+      <h4 className="text-2xl leading-tight text-[var(--forest)]">{title}</h4>
     </article>
   );
 }
@@ -483,33 +621,6 @@ function PhotoCard({
         <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{caption}</span>
         <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{body}</p>
       </div>
-    </article>
-  );
-}
-
-function MetricCard({
-  label,
-  value,
-  body,
-  accent = "moss",
-}: {
-  label: string;
-  value: string;
-  body: string;
-  accent?: "moss" | "clay";
-}) {
-  const accentClass =
-    accent === "clay"
-      ? "bg-[rgba(168,96,58,0.14)] text-[var(--clay)]"
-      : "bg-[rgba(139,160,117,0.16)] text-[var(--moss)]";
-
-  return (
-    <article className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
-      <span className={`inline-flex rounded-md px-3 py-1 text-xs font-extrabold uppercase tracking-[0.18em] ${accentClass}`}>
-        {label}
-      </span>
-      <h3 className="mt-4 text-4xl leading-none text-[var(--forest)]">{value}</h3>
-      <p className="mt-4 text-sm leading-7 text-[rgba(31,36,29,0.7)]">{body}</p>
     </article>
   );
 }

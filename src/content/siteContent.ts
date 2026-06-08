@@ -4,48 +4,94 @@ export const siteContent = {
     tagline: "Grant navigation for New York farms",
     logoText: "AG",
   },
+  disclosureBar: {
+    text: "AgriGrant NY is an independent prototype that helps New York farms navigate public grant opportunities. It is not an official government website.",
+    meta: "Prototype status · Public grant guidance · New York focus",
+  },
   publicHeader: {
-    loginCta: "Log in",
+    loginCta: "Start grant match",
     links: [
-      { href: "#overview", label: "How it works" },
+      { href: "#workflow", label: "How it works" },
+      { href: "#sources", label: "Sources" },
       { href: "#about", label: "About" },
-      { href: "#login", label: "Farmer access" },
+      { href: "#login", label: "Start matching" },
     ],
   },
   hero: {
     eyebrow: "Built for New York farms",
-    title: "A simpler path to agricultural grants for farms across New York.",
-    body: "AgriGrant NY is being built to help farmers sort through state and federal grant programs, understand what applies to their operation, and stay organized through the application process.",
-    highlights: ["State and federal programs", "Application checklists", "Farmer-specific dashboard"],
+    title: "Find New York farm grants that fit your operation.",
+    body: "Build a farm profile, review matching programs, and see what to prepare before you go to the official application.",
+    highlights: ["County-aware matching", "Eligibility checklist", "Official source links"],
+    primaryCta: "Start grant match",
+    secondaryCta: "View sources",
+    secondaryHref: "#sources",
+    note: "Current prototype uses sample grant data and a preview dashboard.",
+    preview: {
+      eyebrow: "Example result",
+      title: "Soil health and irrigation improvements",
+      summary:
+        "A preview of the kind of matched result the platform will show after a farmer answers a few questions about their operation.",
+      profile: [
+        ["County", "Tompkins"],
+        ["Farm type", "Mixed vegetables"],
+        ["Priority", "Water and soil management"],
+      ],
+      match: {
+        program: "NYS Soil and Water grant screening",
+        fit: "Likely worth reviewing",
+        deadline: "Updated June 2026",
+        source: "NYS + USDA public program pages",
+      },
+      requirements: ["Project scope", "Farm acreage", "Basic budget estimate"],
+      caption: "Sample data shown for design preview",
+    },
   },
-  platformOverview: {
-    eyebrow: "Platform overview",
-    title: "Designed to reduce search time and make applications easier to manage.",
-    paragraphs: [
-      "The platform is intended to bring relevant opportunities into one place, explain requirements in clearer language, and help farmers move from initial interest to a real application plan.",
-      "AgriGrant NY is focused on sustainable agriculture, energy improvements, conservation, equipment needs, market access, and other forms of farm business support. The current version is a prototype; future versions will use real accounts and verified grant records.",
+  sources: {
+    eyebrow: "Sources and limits",
+    title: "Public source data, prototype status, and review dates are visible on purpose.",
+    items: [
+      ["Sources", "USDA, NYSERDA, and New York State Agriculture and Markets public program pages"],
+      ["Last reviewed", "June 2026"],
+      ["Status", "Independent prototype, not affiliated with a government agency"],
+      ["Limits", "This tool helps screen opportunities; it does not submit applications or guarantee eligibility"],
     ],
-    cards: [
+  },
+  workflow: {
+    eyebrow: "How it works",
+    title: "The service should show farmers what happens next at every step.",
+    steps: [
       {
         number: "1",
-        title: "Set up your farm profile",
-        text: "Record county, operation type, business stage, project goals, and practical needs.",
+        title: "Tell us about your farm",
+        text: "County, farm type, project goals, business stage, and the kind of funding you are looking for.",
       },
       {
         number: "2",
-        title: "Review matching grants",
-        text: "Compare programs by purpose, funding source, timing, and fit with your project.",
+        title: "We screen programs",
+        text: "Relevant grants are organized by source, fit, timing, and required information.",
       },
       {
         number: "3",
-        title: "Track application work",
-        text: "Keep deadlines, supporting documents, budgets, and required narratives in one place.",
+        title: "You get an eligibility checklist",
+        text: "The platform flags what to gather before you spend time on the official application.",
       },
       {
         number: "4",
-        title: "Use guided assistance",
-        text: "Future AI support will work from verified grant records and user-specific context.",
+        title: "You go to the official source",
+        text: "Farmers still apply through the original grant program page, with clearer preparation.",
       },
+    ],
+  },
+  categories: {
+    eyebrow: "Grant categories",
+    title: "Organized around actual farm decisions rather than generic funding language.",
+    items: [
+      "Soil and water conservation",
+      "Energy upgrades",
+      "Market expansion",
+      "Beginning farmers",
+      "Equipment and infrastructure",
+      "Resilience and recovery",
     ],
   },
   about: {
@@ -69,10 +115,20 @@ export const siteContent = {
     funding:
       "Made possible with funding from the Workman Comm Svc Speakers & Awards and the Center for Service and Global Citizenship of Deerfield Academy.",
   },
+  support: {
+    eyebrow: "Questions and feedback",
+    title: "This project should feel maintained by people, not left as a static mockup.",
+    body: "As the platform develops, this section can become the route for reporting incorrect grant information, asking for clarification, or requesting help interpreting a program.",
+    items: [
+      "Report a grant detail that looks outdated",
+      "Ask a question about how matching works",
+      "Request human follow-up on a confusing requirement",
+    ],
+  },
   login: {
     eyebrow: "Farmer access",
-    title: "Sign in to view your dashboard.",
-    body: "This prototype opens into a sample dashboard for farmers. For now, any email and password will work. Supabase authentication will replace this local behavior in the next build step.",
+    title: "Open the dashboard preview.",
+    body: "For now, any email and password will open the sample dashboard. Supabase authentication will replace this local behavior in the next build step.",
     panelEyebrow: "Farmer portal",
     panelTitle: "Sign in to AgriGrant NY",
     previewTitle: "Inside the dashboard",
@@ -88,5 +144,10 @@ export const siteContent = {
     signInCta: "Sign in and open dashboard",
     signUpCta: "Create farmer account",
     missingFieldsError: "Enter your email and password to open the dashboard preview.",
+  },
+  footer: {
+    contact: "Questions: agrigrantny@gmail.com",
+    policy: "Grant information should always be confirmed on the official program page before applying.",
+    privacy: "Account, saved-grant, and document privacy terms will be added with the production authentication build.",
   },
 };
