@@ -204,7 +204,7 @@ export default function Home() {
           <header className="mb-7 flex items-center justify-between gap-5 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-4 shadow-[0_16px_36px_rgba(49,68,51,0.06)]">
             <div>
               <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">New York farmer portal</span>
-              <h1 className="mt-1 text-4xl font-bold tracking-tight max-sm:text-3xl">{currentTitle}</h1>
+              <h1 className="mt-1 text-3xl font-bold tracking-tight max-sm:text-2xl">{currentTitle}</h1>
             </div>
             <button
               className="rounded-full border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold"
@@ -253,7 +253,7 @@ function Welcome({
             <span className="inline-flex rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
               {siteContent.hero.eyebrow}
             </span>
-            <h2 className="mt-6 max-w-4xl text-[clamp(3rem,6.5vw,5.8rem)] leading-[0.95] text-[var(--forest)]">
+            <h2 className="mt-6 max-w-4xl text-[clamp(2.4rem,4.8vw,4.6rem)] leading-[0.98] text-[var(--forest)]">
               {siteContent.hero.title}
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ink-soft)]">
@@ -293,7 +293,7 @@ function Welcome({
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
           {siteContent.sources.eyebrow}
         </span>
-        <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+        <h3 className="mt-3 max-w-4xl text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">
           {siteContent.sources.title}
         </h3>
         <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
@@ -308,7 +308,7 @@ function Welcome({
         id="workflow"
       >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.workflow.eyebrow}</span>
-        <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+        <h3 className="mt-3 max-w-4xl text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">
           {siteContent.workflow.title}
         </h3>
         <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
@@ -323,7 +323,7 @@ function Welcome({
         id="overview"
       >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.categories.eyebrow}</span>
-        <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+        <h3 className="mt-3 max-w-4xl text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">
           {siteContent.categories.title}
         </h3>
         <div className="mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
@@ -339,7 +339,7 @@ function Welcome({
       >
         <div>
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
-          <h3 className="mt-3 max-w-4xl text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">
+          <h3 className="mt-3 max-w-4xl text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">
             {siteContent.about.title}
           </h3>
           <p className="mt-4 max-w-3xl leading-8 text-[rgba(31,36,29,0.72)]">
@@ -362,7 +362,7 @@ function Welcome({
         </div>
         <aside className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.support.eyebrow}</span>
-          <h4 className="mt-3 text-3xl leading-tight text-[var(--forest)]">{siteContent.support.title}</h4>
+          <h4 className="mt-3 text-2xl leading-tight text-[var(--forest)]">{siteContent.support.title}</h4>
           <p className="mt-4 leading-7 text-[var(--ink-soft)]">{siteContent.support.body}</p>
           <ul className="mt-5 grid gap-3">
             {siteContent.support.items.map((item) => (
@@ -386,7 +386,7 @@ function Welcome({
         />
         <div className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Source policy</span>
-          <h4 className="mt-3 text-3xl leading-tight text-[var(--forest)]">Official pages stay in the loop.</h4>
+          <h4 className="mt-3 text-2xl leading-tight text-[var(--forest)]">Official pages stay in the loop.</h4>
           <p className="mt-4 leading-7 text-[var(--ink-soft)]">
             Grant information should be summarized from public program pages, but every recommendation should still point farmers back to the original application source, dates, and instructions.
           </p>
@@ -404,7 +404,7 @@ function Welcome({
       >
         <div>
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.login.eyebrow}</span>
-          <h3 className="mt-3 text-5xl leading-tight text-[var(--forest)] max-sm:text-4xl">{siteContent.login.title}</h3>
+          <h3 className="mt-3 text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">{siteContent.login.title}</h3>
           <p className="mt-4 max-w-2xl leading-8 text-[rgba(31,36,29,0.72)]">
             {siteContent.login.body}
           </p>
@@ -428,7 +428,7 @@ function Welcome({
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
               {siteContent.login.panelEyebrow}
             </span>
-            <h3 className="mt-2 text-3xl leading-tight text-[var(--forest)]">{siteContent.login.panelTitle}</h3>
+            <h3 className="mt-2 text-2xl leading-tight text-[var(--forest)]">{siteContent.login.panelTitle}</h3>
           </div>
           <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]">
             {siteContent.login.emailLabel}
@@ -634,7 +634,7 @@ function Dashboard({ openGrants }: { openGrants: () => void }) {
           <span className="inline-flex rounded-md border border-[var(--border)] bg-[rgba(251,247,239,0.88)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
             NY farms first
           </span>
-          <h2 className="mt-5 max-w-4xl text-6xl leading-none text-[var(--forest)] max-sm:text-4xl">
+          <h2 className="mt-5 max-w-4xl text-5xl leading-none text-[var(--forest)] max-sm:text-3xl">
             Find grants that match your farm, your county, and your next investment.
           </h2>
           <p className="mt-5 max-w-2xl leading-8 text-[rgba(31,36,29,0.74)]">
@@ -660,7 +660,7 @@ function Dashboard({ openGrants }: { openGrants: () => void }) {
 
       <section className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-6">
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Profile insight</span>
-        <h3 className="mt-2 text-3xl leading-tight text-[var(--forest)]">Energy and soil-health grants are your strongest starting lane.</h3>
+        <h3 className="mt-2 text-2xl leading-tight text-[var(--forest)]">Energy and soil-health grants are your strongest starting lane.</h3>
         <p className="mt-3 leading-7 text-[rgba(31,36,29,0.72)]">
           Future matching logic will turn profile answers into eligibility signals, missing-document
           prompts, and application priorities.
@@ -767,7 +767,7 @@ function GrantCard({ grant, compact = false }: { grant: Grant; compact?: boolean
         </span>
         <strong className="text-[var(--clay)]">{grant.fitScore}% fit</strong>
       </div>
-      <h4 className="text-3xl leading-tight text-[var(--forest)]">{grant.name}</h4>
+      <h4 className="text-2xl leading-tight text-[var(--forest)]">{grant.name}</h4>
       <p className="leading-7 text-[var(--ink-soft)]">{grant.summary}</p>
       <div className="flex flex-wrap gap-3 text-sm text-[rgba(31,36,29,0.58)]">
         <span>{grant.agency}</span>
@@ -865,7 +865,7 @@ function Panel({
   return (
     <section className="rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_38px_rgba(49,68,51,0.05)]">
       <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{eyebrow}</span>
-      <h3 className="mt-2 text-3xl leading-tight text-[var(--forest)]">{title}</h3>
+      <h3 className="mt-2 text-2xl leading-tight text-[var(--forest)]">{title}</h3>
       <div className="mt-5">{children}</div>
     </section>
   );
