@@ -247,47 +247,77 @@ function Welcome({
 }) {
   return (
     <div className="grid gap-6">
-      <section className="grid grid-cols-[minmax(0,1.2fr)_360px] gap-6 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_20px_48px_rgba(49,68,51,0.06)] max-xl:grid-cols-1 max-sm:p-4">
-        <div className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface)] p-10 max-sm:p-6">
-          <div className="max-w-3xl">
-            <span className="inline-flex rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-extrabold text-[var(--forest)]">
-              {siteContent.hero.eyebrow}
-            </span>
-            <h2 className="mt-6 max-w-4xl text-[clamp(2.4rem,4.8vw,4.6rem)] leading-[0.98] text-[var(--forest)]">
-              {siteContent.hero.title}
-            </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--ink-soft)]">
-              {siteContent.hero.body}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {siteContent.hero.highlights.map((item) => (
-                <span className="rounded-md border border-[var(--border)] bg-[var(--surface-muted)] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
-                  {item}
-                </span>
-              ))}
+      <section className="grid grid-cols-[minmax(0,1.32fr)_minmax(320px,390px)] gap-5 max-xl:grid-cols-1">
+        <div className="overflow-hidden rounded-[1.15rem] border border-[rgba(23,56,45,0.14)] bg-[linear-gradient(180deg,rgba(255,253,246,0.92),rgba(250,244,228,0.98))] shadow-[0_18px_42px_rgba(46,59,49,0.08)]">
+          <div className="grid grid-cols-[minmax(0,1fr)_270px] gap-6 border-l-[14px] border-l-[rgba(23,56,45,0.08)] px-10 py-9 max-lg:grid-cols-1 max-sm:px-7 max-sm:py-6">
+            <div>
+              <span className="inline-flex rounded-[0.3rem] border border-[#d2c39c] bg-[#f1ead3] px-3 py-2 text-[0.79rem] font-extrabold uppercase tracking-[0.08em] text-[var(--forest)]">
+                {siteContent.hero.eyebrow}
+              </span>
+              <h2 className="mt-5 max-w-[10ch] text-[clamp(2.5rem,4.8vw,4.9rem)] leading-[0.95] text-[var(--forest)]">
+                {siteContent.hero.title}
+              </h2>
+              <p className="mt-5 max-w-[38rem] text-[1.08rem] leading-8 text-[var(--ink-soft)]">{siteContent.hero.body}</p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                {siteContent.hero.highlights.map((item) => (
+                  <span className="rounded-full border border-[#ded6b5] bg-[#f4efd9] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <a
+                  className="rounded-lg bg-[var(--forest)] px-5 py-3 text-sm font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
+                  href="#login"
+                >
+                  {siteContent.hero.primaryCta}
+                </a>
+                <a
+                  className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold text-[var(--forest)] transition hover:bg-[var(--surface-muted)]"
+                  href={siteContent.hero.secondaryHref}
+                >
+                  {siteContent.hero.secondaryCta}
+                </a>
+              </div>
+              <p className="mt-5 text-sm leading-7 text-[var(--ink-soft)]">{siteContent.hero.note}</p>
             </div>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                className="rounded-lg bg-[var(--forest)] px-5 py-3 text-sm font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
-                href="#login"
-              >
-                {siteContent.hero.primaryCta}
-              </a>
-              <a
-                className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold text-[var(--forest)] transition hover:bg-[var(--surface-muted)]"
-                href={siteContent.hero.secondaryHref}
-              >
-                {siteContent.hero.secondaryCta}
-              </a>
-            </div>
-            <p className="mt-5 text-sm leading-7 text-[var(--ink-soft)]">{siteContent.hero.note}</p>
+
+            <aside className="rounded-[0.95rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(243,236,216,0.9),rgba(255,251,239,0.98))] p-5">
+              <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
+                {siteContent.hero.regional.label}
+              </span>
+              <div className="relative mt-3 h-42 rounded-[0.85rem] border border-dashed border-[rgba(23,56,45,0.2)] bg-[linear-gradient(180deg,rgba(20,32,27,0.02),rgba(20,32,27,0.08))]">
+                <div className="absolute left-1/2 top-[18px] h-[126px] w-[94px] -translate-x-1/2 bg-[var(--forest)] [clip-path:polygon(37%_3%,54%_2%,64%_10%,70%_14%,76%_25%,72%_33%,78%_42%,66%_56%,59%_58%,57%_70%,44%_83%,37%_98%,29%_85%,25%_70%,17%_58%,12%_49%,16%_40%,13%_28%,23%_16%,28%_8%)]" />
+                <span className="absolute left-[46%] top-[34%] h-3 w-3 rounded-full border-2 border-[var(--surface)] bg-[var(--wheat)] shadow-[0_0_0_2px_rgba(11,43,34,0.2)]" />
+                <span className="absolute left-[39%] top-[54%] h-3 w-3 rounded-full border-2 border-[var(--surface)] bg-[var(--wheat)] shadow-[0_0_0_2px_rgba(11,43,34,0.2)]" />
+                <span className="absolute left-[56%] top-[68%] h-3 w-3 rounded-full border-2 border-[var(--surface)] bg-[var(--wheat)] shadow-[0_0_0_2px_rgba(11,43,34,0.2)]" />
+              </div>
+              <h3 className="mt-4 text-[1.45rem] leading-tight text-[var(--forest)]">{siteContent.hero.regional.title}</h3>
+              <ul className="mt-4 grid gap-2">
+                {siteContent.hero.regional.counties.map((item) => (
+                  <li className="border-t border-[rgba(23,56,45,0.08)] pt-2 text-sm leading-6 text-[var(--ink-soft)]" key={item}>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+
+          <div className="grid grid-cols-3 border-t border-[rgba(23,56,45,0.1)] bg-[rgba(11,43,34,0.045)] max-lg:grid-cols-1">
+            {siteContent.hero.promises.map(([title, text]) => (
+              <article className="border-r border-[rgba(23,56,45,0.08)] px-6 py-5 last:border-r-0 max-lg:border-r-0 max-lg:border-b last:max-lg:border-b-0" key={title}>
+                <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{title}</span>
+                <p className="mt-2 text-[0.95rem] leading-7 text-[var(--ink-soft)]">{text}</p>
+              </article>
+            ))}
           </div>
         </div>
+
         <ExamplePreview />
       </section>
 
       <section
-        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        className="rounded-[1.2rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.6),rgba(250,244,228,0.95))] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
         id="sources"
       >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
@@ -296,22 +326,35 @@ function Welcome({
         <h3 className="mt-3 max-w-4xl text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">
           {siteContent.sources.title}
         </h3>
-        <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
-          {siteContent.sources.items.map(([label, text]) => (
-            <SourceCard key={label} label={label} text={text} />
+        <div className="mt-6 border-b border-[rgba(23,56,45,0.12)] pb-3 text-[0.76rem] font-extrabold uppercase tracking-[0.16em] text-[var(--forest)]">
+          Public record check
+        </div>
+        <div className="mt-2">
+          <div className="grid grid-cols-[minmax(140px,0.8fr)_minmax(0,2fr)_minmax(140px,0.9fr)] gap-4 py-3 text-[0.78rem] font-bold uppercase tracking-[0.08em] text-[var(--ink-soft)] max-md:hidden">
+            <span>Item</span>
+            <span>Details</span>
+            <span>Status</span>
+          </div>
+          {siteContent.sources.items.map(([label, text, status]) => (
+            <article className="grid grid-cols-[minmax(140px,0.8fr)_minmax(0,2fr)_minmax(140px,0.9fr)] gap-4 border-t border-[rgba(23,56,45,0.1)] py-4 max-md:grid-cols-1" key={label}>
+              <span className="font-semibold text-[var(--forest)]">{label}</span>
+              <span className="leading-7 text-[var(--ink-soft)]">{text}</span>
+              <span className="font-semibold text-[var(--forest)]">{status}</span>
+            </article>
           ))}
         </div>
       </section>
 
       <section
-        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        className="overflow-hidden rounded-[1.2rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
         id="workflow"
       >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.workflow.eyebrow}</span>
         <h3 className="mt-3 max-w-4xl text-4xl leading-tight text-[var(--forest)] max-sm:text-3xl">
           {siteContent.workflow.title}
         </h3>
-        <div className="mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
+        <div className="relative mt-8 grid grid-cols-4 gap-4 max-xl:grid-cols-2 max-sm:grid-cols-1">
+          <div className="absolute left-[8%] right-[8%] top-5 h-[2px] bg-[linear-gradient(90deg,rgba(78,125,79,0.24)_0_14%,transparent_14%_20%,rgba(78,125,79,0.24)_20%_34%,transparent_34%_40%,rgba(78,125,79,0.24)_40%_54%,transparent_54%_60%,rgba(78,125,79,0.24)_60%_74%,transparent_74%_80%,rgba(78,125,79,0.24)_80%_100%)] max-xl:hidden" />
           {siteContent.workflow.steps.map((step) => (
             <ProgramCard key={step.number} number={step.number} text={step.text} title={step.title} />
           ))}
@@ -319,7 +362,7 @@ function Welcome({
       </section>
 
       <section
-        className="rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
+        className="rounded-[1.2rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(250,244,228,0.96),rgba(255,253,246,0.96))] p-9 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-sm:p-6"
         id="overview"
       >
         <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.categories.eyebrow}</span>
@@ -327,8 +370,8 @@ function Welcome({
           {siteContent.categories.title}
         </h3>
         <div className="mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {siteContent.categories.items.map((item) => (
-            <CategoryCard key={item} title={item} />
+          {siteContent.categories.items.map(([code, title, text]) => (
+            <CategoryCard code={code} description={text} key={code} title={title} />
           ))}
         </div>
       </section>
@@ -374,28 +417,15 @@ function Welcome({
               </li>
             ))}
           </ul>
-        </aside>
-      </section>
-
-      <section className="grid grid-cols-[minmax(0,1fr)_360px] gap-6 rounded-[1.25rem] border border-[var(--border)] bg-[var(--surface)] p-6 shadow-[0_18px_38px_rgba(49,68,51,0.05)] max-lg:grid-cols-1 max-sm:p-4">
-        <PhotoCard
-          alt="Vegetable farm rows in New York growing season"
-          body="A single captioned image is more credible here than several generic decorative farm panels. It should support the public-service message, not compete with it."
-          caption="Example context: vegetable operation, New York"
-          src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
-        />
-        <div className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
-          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Source policy</span>
-          <h4 className="mt-3 text-2xl leading-tight text-[var(--forest)]">Official pages stay in the loop.</h4>
-          <p className="mt-4 leading-7 text-[var(--ink-soft)]">
-            Grant information should be summarized from public program pages, but every recommendation should still point farmers back to the original application source, dates, and instructions.
-          </p>
-          <div className="mt-5 grid gap-3 text-sm leading-7 text-[var(--ink-soft)]">
-            <p>Use official application links.</p>
-            <p>Show dates and last review timing.</p>
-            <p>State clearly when eligibility is uncertain.</p>
+          <div className="mt-5 border-t border-[rgba(23,56,45,0.1)] pt-4">
+            <strong className="block font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[var(--forest)]">
+              Contact / corrections
+            </strong>
+            <p className="mt-2 text-sm leading-7 text-[var(--ink-soft)]">
+              Use contact@agrigrantny.com for corrections, questions, and source issues.
+            </p>
           </div>
-        </div>
+        </aside>
       </section>
 
       <section
@@ -493,43 +523,47 @@ function ExamplePreview() {
   const preview = siteContent.hero.preview;
 
   return (
-    <aside className="grid gap-4 rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-4">
-      <div className="rounded-[0.9rem] border border-[var(--border)] bg-[var(--surface)] p-4">
-        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{preview.eyebrow}</span>
-        <h3 className="mt-3 text-2xl leading-tight text-[var(--forest)]">{preview.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{preview.summary}</p>
-      </div>
-
-      <div className="rounded-[0.9rem] border border-[var(--border)] bg-[var(--surface)] p-4">
-        <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Farm profile</span>
-        <dl className="mt-3 grid gap-3">
+    <aside className="rounded-[1rem] border border-[rgba(23,56,45,0.18)] bg-[linear-gradient(180deg,rgba(255,251,239,0.98),rgba(243,236,216,0.94))] p-[18px] shadow-[0_22px_48px_rgba(46,59,49,0.08)]">
+      <div className="relative rounded-[0.95rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,252,243,0.98),rgba(244,236,214,0.98))] p-5 shadow-[0_12px_28px_rgba(55,59,42,0.08)]">
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(20,32,27,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(20,32,27,0.03)_1px,transparent_1px)] bg-[size:22px_22px] opacity-30" />
+        <div className="relative z-10 flex items-center justify-between gap-3 max-sm:items-start max-sm:flex-col">
+          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{preview.eyebrow}</span>
+          <span className="rounded-full border border-[rgba(155,95,66,0.46)] px-3 py-1 text-[0.68rem] font-extrabold uppercase tracking-[0.12em] text-[var(--clay)]">
+            {preview.match.stamp}
+          </span>
+        </div>
+        <h3 className="relative z-10 mt-3 text-2xl leading-tight text-[var(--forest)]">{preview.title}</h3>
+        <p className="relative z-10 mt-3 text-sm leading-7 text-[var(--ink-soft)]">{preview.summary}</p>
+        <dl className="relative z-10 mt-5 grid gap-3">
           {preview.profile.map(([label, value]) => (
-            <div className="grid grid-cols-[110px_minmax(0,1fr)] gap-3 border-b border-[var(--border)] pb-3 last:border-b-0 last:pb-0" key={label}>
+            <div className="grid grid-cols-[110px_minmax(0,1fr)] gap-3 border-b border-[var(--border)] pb-3 last:border-b-0 last:pb-0 max-sm:grid-cols-1" key={label}>
               <dt className="text-sm font-semibold text-[var(--forest)]">{label}</dt>
               <dd className="text-sm leading-6 text-[var(--ink-soft)]">{value}</dd>
             </div>
           ))}
         </dl>
-      </div>
 
-      <div className="rounded-[0.9rem] border border-[var(--border)] bg-[var(--surface)] p-4">
-        <div className="flex items-start justify-between gap-3">
+        <div className="relative z-10 mt-5 flex items-start justify-between gap-3 max-sm:items-start max-sm:flex-col">
           <div>
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Matched program</span>
             <h4 className="mt-2 text-xl leading-tight text-[var(--forest)]">{preview.match.program}</h4>
           </div>
-          <span className="rounded-md bg-[#f3eadf] px-3 py-1 text-xs font-bold text-[var(--clay)]">{preview.match.fit}</span>
+          <span className="rounded-full border border-[#cfad99] bg-[#f0e3d7] px-3 py-1 text-xs font-bold text-[#8a4b2e]">
+            {preview.match.fit}
+          </span>
         </div>
-        <div className="mt-4 grid gap-2 text-sm leading-6 text-[var(--ink-soft)]">
+
+        <div className="relative z-10 mt-4 grid gap-2 text-sm leading-6 text-[var(--ink-soft)]">
           <p><strong className="text-[var(--forest)]">Review date:</strong> {preview.match.deadline}</p>
           <p><strong className="text-[var(--forest)]">Source:</strong> {preview.match.source}</p>
         </div>
-        <div className="mt-4">
+
+        <div className="relative z-10 mt-4">
           <strong className="text-sm text-[var(--forest)]">What to prepare</strong>
           <ul className="mt-2 grid gap-2">
             {preview.requirements.map((item) => (
               <li className="flex items-start gap-3 text-sm leading-6 text-[var(--ink-soft)]" key={item}>
-                <span className="mt-1 flex h-4 w-4 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface-muted)] text-[10px] font-bold text-[var(--forest)]">
+                <span className="mt-1 flex h-4 w-4 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface)] text-[10px] font-bold text-[var(--forest)]">
                   ✓
                 </span>
                 <span>{item}</span>
@@ -537,16 +571,16 @@ function ExamplePreview() {
             ))}
           </ul>
         </div>
-      </div>
 
-      <p className="px-1 text-xs leading-6 text-[var(--ink-soft)]">{preview.caption}</p>
+        <p className="relative z-10 mt-4 text-xs leading-6 text-[var(--ink-soft)]">{preview.caption}</p>
+      </div>
     </aside>
   );
 }
 
 function ProgramCard({ number, title, text }: { number: string; title: string; text: string }) {
   return (
-    <article className="min-h-56 rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)] p-5">
+    <article className="relative min-h-56 rounded-[1.1rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,253,246,0.96),rgba(244,239,223,0.96))] p-5">
       <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface-muted)] font-mono text-sm font-bold text-[var(--forest)]">
         {number}
       </span>
@@ -556,19 +590,13 @@ function ProgramCard({ number, title, text }: { number: string; title: string; t
   );
 }
 
-function SourceCard({ label, text }: { label: string; text: string }) {
+function CategoryCard({ code, title, description }: { code: string; title: string; description: string }) {
   return (
-    <article className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
-      <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{label}</span>
-      <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{text}</p>
-    </article>
-  );
-}
-
-function CategoryCard({ title }: { title: string }) {
-  return (
-    <article className="rounded-[1rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5">
-      <h4 className="text-2xl leading-tight text-[var(--forest)]">{title}</h4>
+    <article className="relative rounded-[0.85rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(245,237,211,0.92),rgba(255,252,243,0.98))] p-5">
+      <div className="absolute left-[18px] top-[-12px] h-3 w-[92px] rounded-t-[0.55rem] border border-b-0 border-[rgba(23,56,45,0.08)] bg-[rgba(213,186,88,0.28)]" />
+      <span className="inline-block font-mono text-[0.76rem] font-bold uppercase tracking-[0.08em] text-[var(--ink-soft)]">{code}</span>
+      <h4 className="mt-3 text-2xl leading-tight text-[var(--forest)]">{title}</h4>
+      <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{description}</p>
     </article>
   );
 }
@@ -593,33 +621,6 @@ function FounderCard({
         <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{role}</span>
         <h4 className="text-2xl leading-tight text-[var(--forest)]">{name}</h4>
         <p className="mt-3 leading-7 text-[rgba(31,36,29,0.72)]">{text}</p>
-      </div>
-    </article>
-  );
-}
-
-function PhotoCard({
-  alt,
-  body,
-  caption,
-  src,
-}: {
-  alt: string;
-  body: string;
-  caption: string;
-  src: string;
-}) {
-  return (
-    <article className="overflow-hidden rounded-[1.1rem] border border-[var(--border)] bg-[var(--surface)]">
-      <div
-        aria-label={alt}
-        className="h-44 w-full border-b border-[var(--border)] bg-cover bg-center"
-        role="img"
-        style={{ backgroundImage: `url(${src})` }}
-      />
-      <div className="p-4">
-        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{caption}</span>
-        <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">{body}</p>
       </div>
     </article>
   );

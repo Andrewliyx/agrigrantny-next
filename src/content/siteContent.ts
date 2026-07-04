@@ -20,17 +20,26 @@ export const siteContent = {
   hero: {
     eyebrow: "Built for New York farms",
     title: "Find New York farm grants that fit your operation.",
-    body: "Build a farm profile, review matching programs, and see what to prepare before you go to the official application. Contact us at contact@agrigrantny.com for feedback and inquiries.",
+    body: "AgriGrant NY helps farmers screen public grant programs, see why a match fits, and prepare before leaving for the official application page.",
     highlights: ["County-aware matching", "Eligibility checklist", "Official source links"],
     primaryCta: "Start grant match",
     secondaryCta: "View sources",
     secondaryHref: "#sources",
-    note: "Current prototype uses sample grant data and a preview dashboard.",
+    note: "Prototype public-service tool. Grant details should be confirmed at the official source before applying.",
+    promises: [
+      ["Match by farm profile", "County, operation type, and project goals are screened together."],
+      ["Explain eligibility gaps", "The tool shows what still needs confirmation before you apply."],
+      ["Link back to official sources", "Every match is meant to end at the original program page."],
+    ],
+    regional: {
+      label: "New York scope",
+      title: "Built around county, farm type, project goals, and readiness.",
+      counties: ["Hudson Valley", "Finger Lakes", "Central NY", "North Country"],
+    },
     preview: {
-      eyebrow: "Example result",
+      eyebrow: "Sample review",
       title: "Soil health and irrigation improvements",
-      summary:
-        "A preview of the kind of matched result the platform will show after a farmer answers a few questions about their operation.",
+      summary: "Field note preview for a mixed-vegetable operation looking at water and soil management support.",
       profile: [
         ["County", "Tompkins"],
         ["Farm type", "Mixed vegetables"],
@@ -39,26 +48,27 @@ export const siteContent = {
       match: {
         program: "NYS Soil and Water grant screening",
         fit: "Likely worth reviewing",
-        deadline: "Updated June 2026",
+        deadline: "Reviewed June 2026",
         source: "NYS + USDA public program pages",
+        stamp: "Official source required",
       },
       requirements: ["Project scope", "Farm acreage", "Basic budget estimate"],
-      caption: "Sample data shown for design preview",
+      caption: "Sample record for design preview only",
     },
   },
   sources: {
     eyebrow: "Sources and limits",
-    title: "Public source data, prototype status, and review dates are visible on purpose.",
+    title: "Public source data, review timing, and limits stay visible on purpose.",
     items: [
-      ["Sources", "USDA, NYSERDA, and New York State Agriculture and Markets public program pages"],
-      ["Last reviewed", "June 2026"],
-      ["Status", "Independent prototype, not affiliated with a government agency"],
-      ["Limits", "This tool helps screen opportunities; it does not submit applications or guarantee eligibility"],
+      ["Source agencies", "USDA, NYSERDA, and New York State Agriculture and Markets public program pages", "Public record set"],
+      ["Last reviewed", "June 2026", "Rolling checks"],
+      ["Status", "Independent prototype, not affiliated with a government agency", "Transparent"],
+      ["Limits", "This tool screens opportunities; it does not submit applications or guarantee eligibility", "Needs source confirmation"],
     ],
   },
   workflow: {
     eyebrow: "How it works",
-    title: "The service should show farmers what happens next at every step.",
+    title: "The front page should read like a field path, not a stack of floating feature cards.",
     steps: [
       {
         number: "1",
@@ -86,18 +96,18 @@ export const siteContent = {
     eyebrow: "Grant categories",
     title: "Organized around actual farm decisions rather than generic funding language.",
     items: [
-      "Soil and water conservation",
-      "Energy upgrades",
-      "Market expansion",
-      "Beginning farmers",
-      "Equipment and infrastructure",
-      "Resilience and recovery",
+      ["Field 01", "Soil and water conservation", "Conservation planning, irrigation, soil health, and land stewardship."],
+      ["Field 02", "Energy upgrades", "Efficiency retrofits, clean energy, and utility-cost reduction projects."],
+      ["Field 03", "Market expansion", "Processing, distribution, branding, and market access support."],
+      ["Field 04", "Beginning farmers", "Early-stage operators building business readiness and farm capacity."],
+      ["Field 05", "Equipment and infrastructure", "Tools, storage, facilities, and core operating improvements."],
+      ["Field 06", "Resilience and recovery", "Weather, disaster, and recovery-oriented public support programs."],
     ],
   },
   about: {
     eyebrow: "About us",
-    title: "A student-led effort focused on access, clarity, and practical service.",
-    body: "AgriGrant NY is being developed as a public-interest project to make grant discovery and application preparation more manageable for farmers across New York.",
+    title: "Maintained by students, reviewed against public sources.",
+    body: "AgriGrant NY is a public-interest project aimed at making grant discovery and application preparation more manageable for farmers across New York without pretending to be a government portal.",
     founders: [
       {
         initials: "AL",
@@ -117,8 +127,8 @@ export const siteContent = {
   },
   support: {
     eyebrow: "Questions and feedback",
-    title: "This project should feel maintained by people, not left as a static mockup.",
-    body: "As the platform develops, this section can become the route for reporting incorrect grant information, asking for clarification, or requesting help interpreting a program.",
+    title: "Corrections, questions, and source issues should have a clear route.",
+    body: "As the platform develops, this panel should stay focused on reporting incorrect grant details, asking for clarification, or requesting help interpreting a program summary.",
     items: [
       "Report a grant detail that looks outdated",
       "Ask a question about how matching works",
@@ -127,11 +137,11 @@ export const siteContent = {
   },
   login: {
     eyebrow: "Farmer access",
-    title: "Open the dashboard preview.",
-    body: "For now, any email and password will open the sample dashboard. Supabase authentication will replace this local behavior in the next build step.",
+    title: "Open your AgriGrant NY workbench.",
+    body: "Create an account or sign in to save your farm profile, review matched grants, and keep application prep in one place.",
     panelEyebrow: "Farmer portal",
-    panelTitle: "Sign in to AgriGrant NY",
-    previewTitle: "Inside the dashboard",
+    panelTitle: "Sign in to the grant workbench",
+    previewTitle: "Inside the workbench",
     previewItems: [
       "Sample grant matches tied to farm goals and project types",
       "An application tracker for documents, deadlines, and next steps",
@@ -143,7 +153,7 @@ export const siteContent = {
     passwordPlaceholder: "Enter password",
     signInCta: "Sign in and open dashboard",
     signUpCta: "Create farmer account",
-    missingFieldsError: "Enter your email and password to open the dashboard preview.",
+    missingFieldsError: "Enter your email and password to open the grant workbench.",
   },
   footer: {
     contact: "Contact us at contact@agrigrantny.com",

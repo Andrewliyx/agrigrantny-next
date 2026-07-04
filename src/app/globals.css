@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f6f1;
+  --background: #f4efdf;
   --foreground: #1e2b23;
-  --surface: #ffffff;
-  --surface-muted: #f0f4ee;
-  --surface-strong: #e5ece5;
-  --border: #cfd8cf;
-  --forest: #234233;
-  --moss: #4f6b56;
-  --sage: #7d9580;
-  --clay: #8b684b;
-  --ink-soft: #52635a;
+  --surface: #fffdf6;
+  --surface-muted: #f7f0dd;
+  --surface-strong: #ebe2c7;
+  --border: #d7cfba;
+  --forest: #17382d;
+  --moss: #4e7d4f;
+  --sage: #7d8f70;
+  --clay: #9b5f42;
+  --ink-soft: #59685e;
+  --wheat: #d5ba58;
 }
 
 @theme inline {
@@ -31,11 +32,26 @@ html {
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 74% 18%, rgba(213, 186, 88, 0.14), transparent 24%),
+    radial-gradient(circle at 14% 82%, rgba(78, 125, 79, 0.08), transparent 26%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-body), Arial, sans-serif;
   letter-spacing: 0;
   font-variant-numeric: tabular-nums;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(23, 56, 45, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 56, 45, 0.03) 1px, transparent 1px);
+  background-size: 28px 28px;
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: -1;
 }
 
 button,
