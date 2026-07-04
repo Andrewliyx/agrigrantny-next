@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { siteContent } from "@/content/siteContent";
 
@@ -76,6 +77,12 @@ const navItems: Array<{ id: View; label: string }> = [
   { id: "assistant", label: "Assistant" },
 ];
 
+const serviceImages = [
+  "/stock/greenhouse-team.jpg",
+  "/stock/harvest-crate.jpg",
+  "/stock/produce-basket.jpg",
+];
+
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeView, setActiveView] = useState<View>("dashboard");
@@ -149,7 +156,7 @@ export default function Home() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-7xl px-6 py-8 max-sm:px-4">
+        <main className="mx-auto max-w-7xl py-8">
           <Welcome
             enterDashboard={enterDashboard}
             login={login}
@@ -248,7 +255,7 @@ function Welcome({
 }) {
   return (
     <div className="grid gap-0">
-      <section className="grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-0 border-b border-[rgba(18,63,50,0.12)] max-xl:grid-cols-1">
+      <section className="section-bleed grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-0 border-b border-[rgba(18,63,50,0.12)] max-xl:grid-cols-1">
         <div className="bg-paper-panel px-10 py-12 max-sm:px-6 max-sm:py-8">
           <div className="max-w-[40rem]">
             <span className="inline-flex rounded-[0.3rem] border border-[#d2c39c] bg-[#f1ead3] px-3 py-2 text-[0.79rem] font-extrabold uppercase tracking-[0.08em] text-[var(--forest)]">
@@ -281,6 +288,15 @@ function Welcome({
         </div>
 
         <div className="bg-photo-placeholder relative min-h-[620px] overflow-hidden max-xl:min-h-[440px]">
+          <Image
+            alt="Greenhouse team carrying trays through a working farm structure"
+            className="object-cover opacity-52"
+            fill
+            priority
+            sizes="(max-width: 1280px) 100vw, 50vw"
+            src="/stock/greenhouse-team.jpg"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(12,34,28,0.74),rgba(12,34,28,0.24)_42%,rgba(199,179,109,0.26)_100%)]" />
           <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:100%_38px] opacity-25" />
           <div className="absolute inset-x-0 bottom-0 top-[58%] bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.12),rgba(255,255,255,0.12)_1px,transparent_1px,transparent_22px)] opacity-35" />
           <div className="absolute left-[11%] top-[11%] max-w-[18rem] border border-white/18 bg-[rgba(255,253,246,0.12)] p-5 text-white backdrop-blur-sm">
@@ -296,7 +312,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="bg-[var(--forest)] px-6 py-14 text-[var(--surface)]">
+      <section className="section-bleed bg-[var(--forest)] px-6 py-14 text-[var(--surface)]">
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] gap-10 max-lg:grid-cols-1">
           <div>
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">
@@ -325,7 +341,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="bg-[var(--surface)] px-6 py-14">
+      <section className="section-bleed bg-[var(--surface)] px-6 py-14">
         <div className="mx-auto grid max-w-7xl gap-8">
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
             {siteContent.services.eyebrow}
@@ -337,7 +353,7 @@ function Welcome({
           <div className="border-t border-[rgba(23,56,45,0.12)]">
             {siteContent.services.items.map(([title, text, tag], index) => (
               <article
-                className={`grid grid-cols-[170px_minmax(0,1fr)_220px] gap-6 border-b border-[rgba(23,56,45,0.12)] py-8 max-lg:grid-cols-1 ${index % 2 === 1 ? "bg-[rgba(244,239,226,0.38)]" : ""}`}
+                className={`grid grid-cols-[170px_minmax(0,1fr)_300px] gap-6 border-b border-[rgba(23,56,45,0.12)] py-8 max-lg:grid-cols-1 ${index % 2 === 1 ? "bg-[rgba(244,239,226,0.38)]" : ""}`}
                 key={title}
               >
                 <div className="px-2">
@@ -349,16 +365,27 @@ function Welcome({
                   <h4 className="max-w-[18ch] text-[1.75rem] leading-tight text-[var(--forest)]">{title}</h4>
                   <p className="mt-3 max-w-3xl text-[1rem] leading-8 text-[var(--ink-soft)]">{text}</p>
                 </div>
-                <div className="mx-2 flex min-h-[132px] items-end border border-[rgba(23,56,45,0.12)] bg-[linear-gradient(135deg,rgba(18,63,50,0.18),rgba(213,186,88,0.08))] p-4 text-sm font-semibold text-[var(--forest)]">
-                  PROGRAM VISUAL {String(index + 1).padStart(2, "0")}
-                </div>
+                <figure className="mx-2 overflow-hidden border border-[rgba(23,56,45,0.12)]">
+                  <div className="relative h-[172px]">
+                    <Image
+                    alt={`${title} visual`}
+                    className="object-cover"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 300px"
+                    src={serviceImages[index % serviceImages.length]}
+                    />
+                  </div>
+                  <figcaption className="border-t border-[rgba(23,56,45,0.12)] bg-[rgba(255,253,246,0.94)] px-4 py-3 text-[0.72rem] font-extrabold uppercase tracking-[0.12em] text-[var(--forest)]">
+                    Field context {String(index + 1).padStart(2, "0")}
+                  </figcaption>
+                </figure>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[rgba(233,239,232,0.78)] px-6 py-14" id="sources">
+      <section className="section-bleed bg-[rgba(233,239,232,0.78)] px-6 py-14" id="sources">
         <div className="mx-auto max-w-7xl">
           <div className="mb-8 grid grid-cols-[40px_minmax(0,1fr)] gap-5 max-sm:grid-cols-1">
             <div className="hidden bg-[var(--forest)] px-2 py-3 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-white [writing-mode:vertical-rl] rotate-180 sm:block">
@@ -398,12 +425,28 @@ function Welcome({
         </div>
       </section>
 
-      <section className="bg-[var(--forest)] px-6 py-14 text-[var(--surface)]" id="workflow">
+      <section className="section-bleed bg-[var(--forest)] px-6 py-14 text-[var(--surface)]" id="workflow">
         <div className="mx-auto max-w-7xl">
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">{siteContent.workflow.eyebrow}</span>
           <h3 className="mt-3 max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-white">
             {siteContent.workflow.title}
           </h3>
+          <div className="mt-8 grid grid-cols-[minmax(240px,0.55fr)_minmax(0,1.45fr)] gap-8 max-lg:grid-cols-1">
+            <div className="border-t border-white/12 pt-4">
+              <p className="max-w-md text-sm leading-7 text-white/74">
+                The journey should feel like a guided route across real farm conditions, not a neutral SaaS checklist. This band now carries an actual landscape to break the monotony before the timeline begins.
+              </p>
+            </div>
+            <figure className="relative h-[220px] overflow-hidden border border-white/12">
+              <Image
+                alt="Rows of cropland under a dramatic sunrise sky"
+                className="object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 900px"
+                src="/stock/cornfield-sunrise.jpg"
+              />
+            </figure>
+          </div>
           <div className="relative mt-10 grid grid-cols-4 gap-8 max-xl:grid-cols-2 max-sm:grid-cols-1">
             <div className="absolute left-[10%] right-[10%] top-6 h-[3px] bg-[linear-gradient(90deg,rgba(241,214,118,0.8)_0_100%)] max-xl:hidden" />
             {siteContent.workflow.steps.map((step) => (
@@ -419,7 +462,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="bg-[linear-gradient(90deg,#17382d_0%,#17382d_54%,#f7f0dd_54%,#f7f0dd_100%)] px-6 py-14 max-lg:bg-[var(--forest)]">
+      <section className="section-bleed bg-[linear-gradient(90deg,#17382d_0%,#17382d_54%,#f7f0dd_54%,#f7f0dd_100%)] px-6 py-14 max-lg:bg-[var(--forest)]">
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] gap-10 max-lg:grid-cols-1">
           <div>
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">
@@ -453,7 +496,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="bg-[rgba(241,236,220,0.96)] px-6 py-14" id="overview">
+      <section className="section-bleed bg-[rgba(241,236,220,0.96)] px-6 py-14" id="overview">
         <div className="mx-auto max-w-7xl">
           <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.categories.eyebrow}</span>
           <h3 className="mt-3 max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-[var(--forest)]">
@@ -467,7 +510,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="bg-[var(--surface)] px-6 py-14" id="about">
+      <section className="section-bleed bg-[var(--surface)] px-6 py-14" id="about">
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_340px] gap-10 max-lg:grid-cols-1">
           <div>
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
@@ -491,33 +534,47 @@ function Welcome({
               {siteContent.about.funding}
             </p>
           </div>
-          <aside className="bg-[var(--forest)] p-6 text-[var(--surface)]">
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">{siteContent.support.eyebrow}</span>
-            <h4 className="mt-3 text-2xl leading-tight text-white">{siteContent.support.title}</h4>
-            <p className="mt-4 leading-7 text-white/78">{siteContent.support.body}</p>
-            <ul className="mt-5 grid gap-3">
-              {siteContent.support.items.map((item) => (
-                <li className="flex items-start gap-3" key={item}>
-                  <span className="mt-1 flex h-5 w-5 items-center justify-center border border-white/20 bg-white/8 text-xs font-bold text-white">
-                    +
-                  </span>
-                  <span className="text-sm leading-7 text-white/82">{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5 border-t border-white/12 pt-4">
-              <strong className="block font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[#f1d676]">
-                Contact / corrections
-              </strong>
-              <p className="mt-2 text-sm leading-7 text-white/78">
-                Use contact@agrigrantny.com for corrections, questions, and source issues.
-              </p>
+          <aside className="overflow-hidden bg-[var(--forest)] text-[var(--surface)]">
+            <div className="relative h-56">
+              <Image
+                alt="Farmer holding a basket of fresh produce"
+                className="object-cover opacity-82"
+                fill
+                sizes="(max-width: 1024px) 100vw, 340px"
+                src="/stock/produce-basket.jpg"
+              />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,63,50,0.05),rgba(18,63,50,0.86))]" />
+              <span className="absolute left-6 top-5 block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">
+                {siteContent.support.eyebrow}
+              </span>
+            </div>
+            <div className="p-6">
+              <h4 className="text-2xl leading-tight text-white">{siteContent.support.title}</h4>
+              <p className="mt-4 leading-7 text-white/78">{siteContent.support.body}</p>
+              <ul className="mt-5 grid gap-3">
+                {siteContent.support.items.map((item) => (
+                  <li className="flex items-start gap-3" key={item}>
+                    <span className="mt-1 flex h-5 w-5 items-center justify-center border border-white/20 bg-white/8 text-xs font-bold text-white">
+                      +
+                    </span>
+                    <span className="text-sm leading-7 text-white/82">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 border-t border-white/12 pt-4">
+                <strong className="block font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[#f1d676]">
+                  Contact / corrections
+                </strong>
+                <p className="mt-2 text-sm leading-7 text-white/78">
+                  Use contact@agrigrantny.com for corrections, questions, and source issues.
+                </p>
+              </div>
             </div>
           </aside>
         </div>
       </section>
 
-      <section className="bg-[var(--forest)] px-6 py-14" id="login">
+      <section className="section-bleed bg-[var(--forest)] px-6 py-14" id="login">
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_minmax(340px,440px)] items-center gap-10 max-lg:grid-cols-1">
           <div className="text-[var(--surface)]">
             <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">{siteContent.login.eyebrow}</span>
@@ -596,7 +653,7 @@ function Welcome({
         </div>
       </section>
 
-      <footer className="bg-[#22342d] px-6 py-10 text-sm leading-7 text-white/74">
+      <footer className="section-bleed bg-[#22342d] px-6 py-10 text-sm leading-7 text-white/74">
         <div className="mx-auto grid max-w-7xl gap-3">
           <p>{siteContent.footer.contact}</p>
           <p>{siteContent.footer.policy}</p>

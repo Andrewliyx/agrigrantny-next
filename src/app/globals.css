@@ -42,6 +42,7 @@ body {
   font-family: var(--font-body), Arial, sans-serif;
   letter-spacing: 0;
   font-variant-numeric: tabular-nums;
+  overflow-x: clip;
 }
 
 body::before {
@@ -88,6 +89,11 @@ body::before {
 .bg-photo-placeholder {
   background:
     linear-gradient(160deg, rgba(18, 63, 50, 0.96) 0%, rgba(27, 53, 43, 0.94) 58%, rgba(212, 196, 134, 0.92) 58%, rgba(200, 179, 106, 0.9) 100%);
+}
+
+.section-bleed {
+  margin-inline: calc(50% - 50vw);
+  width: 100vw;
 }
 
 button,
