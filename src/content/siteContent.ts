@@ -5,8 +5,9 @@ export const siteContent = {
     logoText: "AG",
   },
   disclosureBar: {
-    text: "AgriGrant NY is an independent prototype that helps New York farms navigate public grant opportunities. It is not an official government website.",
-    meta: "Prototype status · Public grant guidance · New York focus",
+    text: "Independent public-interest prototype",
+    meta: "New York farm grant navigation",
+    review: "Sources reviewed: June 2026",
   },
   publicHeader: {
     loginCta: "Start grant match",
@@ -19,8 +20,8 @@ export const siteContent = {
   },
   hero: {
     eyebrow: "Built for New York farms",
-    title: "Find New York farm grants that fit your operation.",
-    body: "AgriGrant NY helps farmers screen public grant programs, see why a match fits, and prepare before leaving for the official application page.",
+    title: "Find farm grants that fit your operation - and know what to prepare next.",
+    body: "AgriGrant NY helps New York farmers screen public grant programs, understand eligibility gaps, and move from opportunity to official source with clearer preparation.",
     highlights: ["County-aware matching", "Eligibility checklist", "Official source links"],
     primaryCta: "Start grant match",
     secondaryCta: "View sources",
@@ -35,6 +36,11 @@ export const siteContent = {
       label: "New York scope",
       title: "Built around county, farm type, project goals, and readiness.",
       counties: ["Hudson Valley", "Finger Lakes", "Central NY", "North Country"],
+    },
+    image: {
+      label: "Image placeholder",
+      title: "New York farmer standing in vegetable field with clipboard",
+      note: "Replace with human-centered New York farm photography when available.",
     },
     preview: {
       eyebrow: "Sample review",
@@ -55,6 +61,51 @@ export const siteContent = {
       requirements: ["Project scope", "Farm acreage", "Basic budget estimate"],
       caption: "Sample record for design preview only",
     },
+  },
+  mission: {
+    eyebrow: "Why this exists",
+    title: "Grant programs are useful, but they take time most farms do not have.",
+    statement: "The goal is not to automate trust. The goal is to make public grant information easier to act on.",
+    items: [
+      [
+        "The problem",
+        "Grant programs are scattered across agency pages, deadlines shift, and requirements are hard to compare when you are already running a farm.",
+      ],
+      [
+        "What AgriGrant does",
+        "AgriGrant screens opportunities, organizes source-backed details, and helps farmers see what to prepare before opening the official application page.",
+      ],
+      [
+        "What it does not do",
+        "It does not replace official applications, guarantee eligibility, or hide the source material behind a black-box recommendation.",
+      ],
+    ],
+  },
+  services: {
+    eyebrow: "How AgriGrant helps",
+    title: "A public-service tool first, with a practical grant workbench underneath.",
+    items: [
+      [
+        "Match grants to your farm profile",
+        "Screen programs against county, operation type, project goals, and business stage so the shortlist starts closer to your reality.",
+        "County profile",
+      ],
+      [
+        "Explain eligibility gaps before you apply",
+        "Show what still needs confirmation, which requirements are unclear, and where a farmer may need more documentation before spending time on the application.",
+        "Application prep",
+      ],
+      [
+        "Keep official source links visible",
+        "Every recommendation is meant to end at an agency or program page with dates, instructions, and official documents still in view.",
+        "Source checked",
+      ],
+      [
+        "Track preparation, not just possibilities",
+        "Turn a promising match into a working checklist so application prep is less abstract and more manageable.",
+        "Field note",
+      ],
+    ],
   },
   sources: {
     eyebrow: "Sources and limits",
@@ -93,8 +144,8 @@ export const siteContent = {
     ],
   },
   categories: {
-    eyebrow: "Grant categories",
-    title: "Organized around actual farm decisions rather than generic funding language.",
+    eyebrow: "Focus areas",
+    title: "Organized around the kinds of farm decisions people are actually trying to make.",
     items: [
       ["Field 01", "Soil and water conservation", "Conservation planning, irrigation, soil health, and land stewardship."],
       ["Field 02", "Energy upgrades", "Efficiency retrofits, clean energy, and utility-cost reduction projects."],
@@ -135,9 +186,16 @@ export const siteContent = {
       "Request human follow-up on a confusing requirement",
     ],
   },
+  example: {
+    eyebrow: "Workbench preview",
+    title: "Example: soil health and irrigation improvements",
+    body: "This is the kind of workbench view AgriGrant is aiming for: a farm profile summary, a relevant program to review, a preparation checklist, and a clear reminder to confirm details on the official source page.",
+    fieldNote:
+      "Field note: a strong match is still not a guaranteed fit. Water source details, acreage, and project timing often need one more source check.",
+  },
   login: {
     eyebrow: "Farmer access",
-    title: "Open your AgriGrant NY workbench.",
+    title: "Start with your farm profile.",
     body: "Create an account or sign in to save your farm profile, review matched grants, and keep application prep in one place.",
     panelEyebrow: "Farmer portal",
     panelTitle: "Sign in to the grant workbench",
