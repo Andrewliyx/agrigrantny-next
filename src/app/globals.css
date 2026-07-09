@@ -9,7 +9,7 @@
   --surface: #fefae0;
   --surface-muted: #e9edc9;
   --surface-strong: #dbe2d6;
-  --border: rgba(23, 49, 43, 0.16);
+  --border: rgba(0, 0, 0, 0.34);
   --evergreen: #123d32;
   --deep-forest: #082e26;
   --forest: #123d32;
@@ -25,8 +25,8 @@
   --ink-soft: #5e665f;
   --muted-ink: #5e665f;
   --inverse: #fffdf4;
-  --line: rgba(23, 49, 43, 0.16);
-  --line-strong: rgba(23, 49, 43, 0.28);
+  --line: rgba(0, 0, 0, 0.34);
+  --line-strong: rgba(0, 0, 0, 0.6);
   --rule-line: rgba(23, 49, 43, 0.08);
   --warm-rule: rgba(210, 168, 74, 0.12);
   --shadow-soft: 0 16px 40px rgba(28, 45, 35, 0.08);
@@ -124,6 +124,6 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--clay);
+  outline: 2px solid #000;
   outline-offset: 2px;
 }

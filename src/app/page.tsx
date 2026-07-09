@@ -115,10 +115,10 @@ export default function Home() {
       <div className="min-h-screen bg-civic-field text-[var(--foreground)]">
         <div className="border-b border-[rgba(255,255,255,0.12)] bg-[var(--forest)] px-6 py-3 text-sm text-white">
           <div className="mx-auto grid max-w-7xl grid-cols-3 gap-4 max-md:grid-cols-1">
-            <span className="font-semibold uppercase tracking-[0.12em] text-white/0" aria-hidden="true">
+            <span className="font-semibold text-white/85">{siteContent.disclosureBar.meta}</span>
+            <span className="text-white/0" aria-hidden="true">
               {siteContent.disclosureBar.text}
             </span>
-            <span className="text-white/85">{siteContent.disclosureBar.meta}</span>
             <span className="text-white/75 md:text-right">{siteContent.disclosureBar.review}</span>
           </div>
         </div>
@@ -309,11 +309,11 @@ function Welcome({
                 {siteContent.hero.secondaryCta}
               </a>
             </div>
-            <div className="mt-6 border-t border-[var(--clay)] pt-4 text-[0.8rem] leading-5 text-[var(--muted-ink)]">
+            <div className="mt-6 border-t border-black pt-4 text-[0.8rem] leading-5 text-[var(--muted-ink)]">
               {siteContent.hero.note}
             </div>
             <p className="mt-4 text-[0.8rem] leading-5 text-[var(--muted-ink)]">
-              Contact: <a className="font-semibold text-[var(--evergreen)] underline decoration-[var(--clay)] underline-offset-3" href="mailto:contact@agrigrantny.com">contact@agrigrantny.com</a>
+              Contact: <a className="font-semibold text-[var(--evergreen)] underline decoration-black underline-offset-3" href="mailto:contact@agrigrantny.com">contact@agrigrantny.com</a>
             </p>
           </div>
         </div>
@@ -328,7 +328,7 @@ function Welcome({
             src="/stock/greenhouse-team.jpg"
           />
           <div className="absolute inset-0 bg-[rgba(18,61,50,0.18)]" />
-          <div className="absolute left-6 top-6 max-w-[16rem] border border-[rgba(254,250,224,0.58)] bg-[rgba(18,61,50,0.72)] p-3 text-[var(--inverse)] md:left-8 md:top-8">
+          <div className="absolute left-6 top-6 max-w-[16rem] border border-black bg-[rgba(18,61,50,0.72)] p-3 text-[var(--inverse)] md:left-8 md:top-8">
             <span className="text-[0.62rem] font-semibold text-[var(--pale-sage)]">
               {siteContent.hero.image.label}
             </span>
@@ -345,12 +345,12 @@ function Welcome({
             {siteContent.workflow.title}
           </h3>
           <div className="mt-8 grid grid-cols-[minmax(240px,0.55fr)_minmax(0,1.45fr)] gap-8 max-lg:grid-cols-1">
-            <div className="border-t border-[var(--ochre)] pt-4">
+            <div className="border-t border-black pt-4">
               <p className="max-w-md text-[0.84rem] leading-5 text-[var(--muted-ink)]">
                 AgriGrant NY turns scattered public program pages into a clearer shortlist and next-step checklist.
               </p>
             </div>
-            <figure className="relative h-[220px] overflow-hidden border border-[rgba(212,163,115,0.55)]">
+            <figure className="relative h-[220px] overflow-hidden border border-black">
               <Image
                 alt="Rows of cropland under a dramatic sunrise sky"
                 className="object-cover"
@@ -365,9 +365,9 @@ function Welcome({
               <article className="relative" key={step.number}>
                 {index < siteContent.workflow.steps.length - 1 && (
                   <>
-                    <div className="absolute left-11 right-[-2rem] top-[22px] h-[2px] bg-[rgba(212,163,115,0.28)] max-xl:hidden" />
-                    <div
-                      className="absolute left-11 top-[22px] h-[2px] bg-[var(--clay)] transition-[width] duration-200 ease-out max-xl:hidden"
+                  <div className="absolute left-11 right-[-2rem] top-[22px] h-[2px] bg-[rgba(0,0,0,0.2)] max-xl:hidden" />
+                  <div
+                      className="absolute left-11 top-[22px] h-[2px] bg-black transition-[width] duration-200 ease-out max-xl:hidden"
                       style={{
                         width: `calc((100% + 2rem - 2.75rem) * ${Math.max(0, Math.min(1, workflowProgress * (siteContent.workflow.steps.length - 1) - index))})`,
                       }}
@@ -379,7 +379,7 @@ function Welcome({
                   style={{
                     backgroundColor:
                       workflowProgress * (siteContent.workflow.steps.length - 1) >= index ? "var(--clay)" : "var(--cream)",
-                    borderColor: "var(--clay)",
+                    borderColor: "#000",
                     color:
                       workflowProgress * (siteContent.workflow.steps.length - 1) >= index ? "var(--inverse)" : "var(--evergreen)",
                     boxShadow:
@@ -398,7 +398,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="section-bleed border-t border-[rgba(212,163,115,0.45)] bg-[var(--paper)] px-6 py-14" id="example">
+      <section className="section-bleed border-t border-black bg-[var(--paper)] px-6 py-14" id="example">
         <div className="mx-auto grid max-w-7xl gap-8">
           <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] gap-10 max-lg:grid-cols-1">
             <div>
@@ -411,8 +411,8 @@ function Welcome({
               <ExamplePreview />
             </div>
           </div>
-            <aside className="self-start border border-[rgba(212,163,115,0.55)] bg-[var(--cream)] p-6">
-              <div className="border-l-[3px] border-[var(--clay)] pl-4">
+            <aside className="self-start border border-black bg-[var(--cream)] p-6">
+              <div className="border-l-[3px] border-black pl-4">
                 <span className="text-[0.76rem] font-semibold text-[var(--clay)]">What a result should make clear</span>
                 <ul className="mt-4 grid gap-4 text-[0.84rem] leading-5 text-[var(--muted-ink)]">
                   <li>Why the program may fit the farm profile</li>
@@ -455,7 +455,7 @@ function Welcome({
               {siteContent.about.funding}
             </p>
           </div>
-          <aside className="overflow-hidden border border-[rgba(212,163,115,0.45)] bg-[var(--sage)]/28 text-[var(--ink)]" id="login">
+          <aside className="overflow-hidden border border-black bg-[var(--sage)]/28 text-[var(--ink)]" id="login">
             <div className="relative h-48">
               <Image
                 alt="Farmer holding a basket of fresh produce"
@@ -546,7 +546,7 @@ function Welcome({
         </div>
       </section>
 
-      <footer className="section-bleed border-t-4 border-[var(--clay)] bg-[var(--deep-forest)] px-6 py-10 text-sm leading-7 text-[rgba(255,253,244,0.78)]">
+      <footer className="section-bleed border-t-4 border-black bg-[var(--deep-forest)] px-6 py-10 text-sm leading-7 text-[rgba(255,253,244,0.78)]">
         <div className="mx-auto grid max-w-7xl gap-3">
           <p>{siteContent.footer.contact}</p>
           <p>{siteContent.footer.policy}</p>
@@ -559,7 +559,7 @@ function Welcome({
 
 function TrustMini({ title, text }: { title: string; text: string }) {
   return (
-    <article className="border-t border-[var(--clay)] bg-[rgba(254,250,224,0.72)] px-4 py-4">
+    <article className="border-t border-black bg-[rgba(254,250,224,0.72)] px-4 py-4">
       <strong className="block text-sm font-semibold text-[var(--ink)]">{title}</strong>
       <p className="mt-2 text-sm leading-7 text-[var(--muted-ink)]">{text}</p>
     </article>
