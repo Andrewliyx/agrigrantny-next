@@ -77,12 +77,6 @@ const navItems: Array<{ id: View; label: string }> = [
   { id: "assistant", label: "Assistant" },
 ];
 
-const serviceImages = [
-  "/stock/greenhouse-team.jpg",
-  "/stock/harvest-crate.jpg",
-  "/stock/produce-basket.jpg",
-];
-
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeView, setActiveView] = useState<View>("dashboard");
@@ -255,189 +249,72 @@ function Welcome({
 }) {
   return (
     <div className="grid gap-0">
-      <section className="section-bleed grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-0 border-b border-[rgba(18,63,50,0.12)] max-xl:grid-cols-1">
-        <div className="bg-paper-panel px-10 py-12 max-sm:px-6 max-sm:py-8">
-          <div className="max-w-[40rem]">
-            <span className="inline-flex rounded-[0.3rem] border border-[#d2c39c] bg-[#f1ead3] px-3 py-2 text-[0.79rem] font-extrabold uppercase tracking-[0.08em] text-[var(--forest)]">
+      <section className="section-bleed grid grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] border-b border-[var(--line)] bg-[var(--paper)] max-[900px]:grid-cols-1">
+        <div className="px-8 py-12 lg:px-12 lg:py-14">
+          <div className="max-w-[42.5rem]">
+            <span className="inline-flex border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-2 text-[0.8rem] font-semibold text-[var(--evergreen)]">
               {siteContent.hero.eyebrow}
             </span>
-            <h2 className="mt-5 max-w-[12ch] text-[clamp(2.8rem,5vw,5.35rem)] leading-[0.93] text-[var(--forest)]">
+            <h2 className="mt-5 max-w-[680px] text-[clamp(3.25rem,6vw,5.75rem)] leading-[0.98] text-[var(--evergreen)]">
               {siteContent.hero.title}
             </h2>
-            <p className="mt-5 max-w-[38rem] text-[1.09rem] leading-8 text-[var(--ink-soft)]">{siteContent.hero.body}</p>
+            <p className="mt-5 max-w-[42rem] text-[1.08rem] leading-8 text-[var(--muted-ink)]">{siteContent.hero.body}</p>
+            <p className="mt-4 max-w-[38rem] text-sm leading-7 text-[var(--muted-ink)]">
+              {siteContent.hero.note} AgriGrant NY does not replace official applications.
+            </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a className="bg-[var(--forest)] px-5 py-3 text-sm font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]" href="#login">
+              <a className="bg-[var(--evergreen)] px-5 py-3 text-sm font-semibold text-[var(--inverse)] transition hover:bg-[var(--clay)]" href="#login">
                 {siteContent.hero.primaryCta}
               </a>
               <a
-                className="border border-[var(--border)] bg-[var(--surface)] px-5 py-3 text-sm font-semibold text-[var(--forest)] transition hover:bg-[var(--surface-muted)]"
+                className="border border-[var(--line)] bg-[var(--paper-soft)] px-5 py-3 text-sm font-semibold text-[var(--evergreen)] transition hover:bg-[var(--linen)]"
                 href={siteContent.hero.secondaryHref}
               >
                 {siteContent.hero.secondaryCta}
               </a>
             </div>
-            <div className="mt-7 flex flex-wrap gap-3">
-              {siteContent.hero.highlights.map((item) => (
-                <span className="rounded-full border border-[#ded6b5] bg-[#f4efd9] px-4 py-2 text-sm font-semibold text-[var(--forest)]" key={item}>
-                  {item}
-                </span>
-              ))}
+            <div className="mt-7 border-t border-[var(--line)] pt-4 text-sm text-[var(--muted-ink)]">
+              {siteContent.hero.highlights.join(" · ")}
             </div>
-            <p className="mt-5 text-sm leading-7 text-[var(--ink-soft)]">{siteContent.hero.note}</p>
           </div>
         </div>
 
-        <div className="bg-photo-placeholder relative min-h-[620px] overflow-hidden max-xl:min-h-[440px]">
+        <div className="relative min-h-[560px] overflow-hidden border-l border-[var(--line)] max-[900px]:min-h-[460px] max-[900px]:border-l-0 max-[900px]:border-t">
           <Image
             alt="Greenhouse team carrying trays through a working farm structure"
-            className="object-cover opacity-52"
+            className="object-cover"
             fill
             priority
-            sizes="(max-width: 1280px) 100vw, 50vw"
+            sizes="(max-width: 900px) 100vw, 52vw"
             src="/stock/greenhouse-team.jpg"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(12,34,28,0.74),rgba(12,34,28,0.24)_42%,rgba(199,179,109,0.26)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:100%_38px] opacity-25" />
-          <div className="absolute inset-x-0 bottom-0 top-[58%] bg-[repeating-linear-gradient(0deg,rgba(255,255,255,0.12),rgba(255,255,255,0.12)_1px,transparent_1px,transparent_22px)] opacity-35" />
-          <div className="absolute left-[11%] top-[11%] max-w-[18rem] border border-white/18 bg-[rgba(255,253,246,0.12)] p-5 text-white backdrop-blur-sm">
-            <span className="block text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[#f6df86]">
+          <div className="absolute inset-0 bg-[rgba(8,46,38,0.3)]" />
+          <div className="absolute left-6 top-6 max-w-[17rem] border border-white/20 bg-[rgba(8,46,38,0.6)] p-4 text-[var(--inverse)] backdrop-blur-sm md:left-8 md:top-8">
+            <span className="text-[0.8rem] font-semibold text-[#f2d487]">
               {siteContent.hero.image.label}
             </span>
-            <p className="mt-3 text-[1.05rem] font-semibold leading-7">[{siteContent.hero.image.title}]</p>
-            <p className="mt-3 text-sm leading-6 text-white/78">{siteContent.hero.image.note}</p>
+            <p className="mt-2 text-[1rem] font-semibold leading-6">{siteContent.hero.image.title}</p>
+            <p className="mt-2 text-sm leading-6 text-white/82">{siteContent.hero.image.note}</p>
           </div>
-          <div className="absolute bottom-0 right-0 w-[min(380px,calc(100%-2rem))] translate-x-[-1.5rem] translate-y-[-1.5rem]">
+          <div className="absolute bottom-6 right-6 w-[42%] min-w-[280px] max-w-[360px] max-[900px]:bottom-4 max-[900px]:right-4 max-[900px]:w-[calc(100%-2rem)]">
             <ExamplePreview />
           </div>
         </div>
       </section>
 
-      <section className="section-bleed bg-[var(--forest)] px-6 py-14 text-[var(--surface)]">
-        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] gap-10 max-lg:grid-cols-1">
-          <div>
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">
-              {siteContent.mission.eyebrow}
-            </span>
-            <h3 className="mt-3 max-w-4xl text-[clamp(2.2rem,4vw,3.8rem)] leading-tight text-white">
-              {siteContent.mission.title}
-            </h3>
-            <div className="mt-8 grid gap-6">
-              {siteContent.mission.items.map(([label, text]) => (
-                <article className="grid grid-cols-[140px_minmax(0,1fr)] gap-4 border-t border-white/12 pt-4 max-sm:grid-cols-1" key={label}>
-                  <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#d7e5cf]">{label}</span>
-                  <p className="max-w-3xl text-[1.02rem] leading-8 text-white/82">{text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <aside className="self-start border border-white/12 bg-[rgba(255,255,255,0.06)] p-6">
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">Public-service position</span>
-            <p className="mt-4 text-[1.2rem] leading-8 text-white">{siteContent.mission.statement}</p>
-            <div className="mt-6 border-t border-white/12 pt-4 text-sm leading-7 text-white/76">
-              The point is not to replace agency pages. The point is to help farmers get to those pages with clearer expectations and better preparation.
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="section-bleed bg-[var(--surface)] px-6 py-14">
-        <div className="mx-auto grid max-w-7xl gap-8">
-          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
-            {siteContent.services.eyebrow}
-          </span>
-          <h3 className="max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-[var(--forest)]">
-            {siteContent.services.title}
-          </h3>
-
-          <div className="border-t border-[rgba(23,56,45,0.12)]">
-            {siteContent.services.items.map(([title, text, tag], index) => (
-              <article
-                className={`grid grid-cols-[170px_minmax(0,1fr)_300px] gap-6 border-b border-[rgba(23,56,45,0.12)] py-8 max-lg:grid-cols-1 ${index % 2 === 1 ? "bg-[rgba(244,239,226,0.38)]" : ""}`}
-                key={title}
-              >
-                <div className="px-2">
-                  <span className="inline-flex border border-[#d2c39c] bg-[#f5eccf] px-3 py-1 text-[0.72rem] font-extrabold uppercase tracking-[0.12em] text-[var(--forest)]">
-                    {tag}
-                  </span>
-                </div>
-                <div className="px-2">
-                  <h4 className="max-w-[18ch] text-[1.75rem] leading-tight text-[var(--forest)]">{title}</h4>
-                  <p className="mt-3 max-w-3xl text-[1rem] leading-8 text-[var(--ink-soft)]">{text}</p>
-                </div>
-                <figure className="mx-2 overflow-hidden border border-[rgba(23,56,45,0.12)]">
-                  <div className="relative h-[172px]">
-                    <Image
-                    alt={`${title} visual`}
-                    className="object-cover"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 300px"
-                    src={serviceImages[index % serviceImages.length]}
-                    />
-                  </div>
-                  <figcaption className="border-t border-[rgba(23,56,45,0.12)] bg-[rgba(255,253,246,0.94)] px-4 py-3 text-[0.72rem] font-extrabold uppercase tracking-[0.12em] text-[var(--forest)]">
-                    Field context {String(index + 1).padStart(2, "0")}
-                  </figcaption>
-                </figure>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-bleed bg-[rgba(233,239,232,0.78)] px-6 py-14" id="sources">
+      <section className="section-bleed bg-[var(--paper-soft)] px-6 py-14" id="workflow">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 grid grid-cols-[40px_minmax(0,1fr)] gap-5 max-sm:grid-cols-1">
-            <div className="hidden bg-[var(--forest)] px-2 py-3 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-white [writing-mode:vertical-rl] rotate-180 sm:block">
-              Public record check
-            </div>
-            <div>
-              <span className="inline-flex bg-[var(--forest)] px-3 py-2 text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-white sm:hidden">
-                Public record check
-              </span>
-              <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
-                {siteContent.sources.eyebrow}
-              </span>
-              <h3 className="mt-3 max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-[var(--forest)]">
-                Built around public sources, not black-box recommendations.
-              </h3>
-              <p className="mt-4 max-w-3xl text-[1rem] leading-8 text-[var(--ink-soft)]">{siteContent.sources.title}</p>
-            </div>
-          </div>
-
-          <div className="border-t border-b border-[rgba(23,56,45,0.16)] bg-[rgba(255,253,246,0.92)]">
-            <div className="grid grid-cols-[minmax(140px,0.8fr)_minmax(0,2fr)_minmax(140px,0.9fr)] gap-4 px-6 py-4 text-[0.78rem] font-bold uppercase tracking-[0.08em] text-[var(--ink-soft)] max-md:hidden">
-              <span>Item</span>
-              <span>Details</span>
-              <span>Status</span>
-            </div>
-            {siteContent.sources.items.map(([label, text, status]) => (
-              <article className="grid grid-cols-[minmax(140px,0.8fr)_minmax(0,2fr)_minmax(140px,0.9fr)] gap-4 border-t border-[rgba(23,56,45,0.1)] px-6 py-5 max-md:grid-cols-1" key={label}>
-                <span className="font-semibold text-[var(--forest)]">{label}</span>
-                <span className="leading-7 text-[var(--ink-soft)]">{text}</span>
-                <span className="font-semibold text-[var(--forest)]">{status}</span>
-              </article>
-            ))}
-          </div>
-          <div className="mt-4 text-sm leading-7 text-[var(--ink-soft)]">
-            This section is meant to read like an accountability ledger: source agencies, review timing, prototype status, and limits stay in the open.
-          </div>
-        </div>
-      </section>
-
-      <section className="section-bleed bg-[var(--forest)] px-6 py-14 text-[var(--surface)]" id="workflow">
-        <div className="mx-auto max-w-7xl">
-          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">{siteContent.workflow.eyebrow}</span>
-          <h3 className="mt-3 max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-white">
+          <span className="text-sm font-semibold text-[var(--clay)]">{siteContent.workflow.eyebrow}</span>
+          <h3 className="mt-3 max-w-4xl font-sans text-[clamp(2rem,3vw,2.85rem)] font-semibold leading-tight text-[var(--ink)]">
             {siteContent.workflow.title}
           </h3>
           <div className="mt-8 grid grid-cols-[minmax(240px,0.55fr)_minmax(0,1.45fr)] gap-8 max-lg:grid-cols-1">
-            <div className="border-t border-white/12 pt-4">
-              <p className="max-w-md text-sm leading-7 text-white/74">
-                The journey should feel like a guided route across real farm conditions, not a neutral SaaS checklist. This band now carries an actual landscape to break the monotony before the timeline begins.
+            <div className="border-t border-[var(--ochre)] pt-4">
+              <p className="max-w-md text-sm leading-7 text-[var(--muted-ink)]">
+                AgriGrant NY turns scattered public program pages into a clearer shortlist and next-step checklist.
               </p>
             </div>
-            <figure className="relative h-[220px] overflow-hidden border border-white/12">
+            <figure className="relative h-[220px] overflow-hidden border border-[var(--line)]">
               <Image
                 alt="Rows of cropland under a dramatic sunrise sky"
                 className="object-cover"
@@ -448,76 +325,66 @@ function Welcome({
             </figure>
           </div>
           <div className="relative mt-10 grid grid-cols-4 gap-8 max-xl:grid-cols-2 max-sm:grid-cols-1">
-            <div className="absolute left-[10%] right-[10%] top-6 h-[3px] bg-[linear-gradient(90deg,rgba(241,214,118,0.8)_0_100%)] max-xl:hidden" />
+            <div className="absolute left-[10%] right-[10%] top-6 h-[2px] bg-[var(--ochre)] max-xl:hidden" />
             {siteContent.workflow.steps.map((step) => (
               <article className="relative" key={step.number}>
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[#f1d676] bg-[var(--forest)] text-lg font-bold text-[#f1d676]">
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[var(--ochre)] bg-[var(--paper-soft)] text-lg font-bold text-[var(--evergreen)]">
                   {step.number}
                 </div>
-                <h4 className="mt-5 text-[1.55rem] leading-tight text-white">{step.title}</h4>
-                <p className="mt-3 leading-8 text-white/78">{step.text}</p>
+                <h4 className="mt-5 font-sans text-[1.4rem] font-semibold leading-tight text-[var(--ink)]">{step.title}</h4>
+                <p className="mt-3 leading-8 text-[var(--muted-ink)]">{step.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section-bleed bg-[linear-gradient(90deg,#17382d_0%,#17382d_54%,#f7f0dd_54%,#f7f0dd_100%)] px-6 py-14 max-lg:bg-[var(--forest)]">
+      <section className="section-bleed border-t border-[var(--line)] bg-[var(--paper)] px-6 py-14" id="example">
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] gap-10 max-lg:grid-cols-1">
           <div>
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">
-              {siteContent.example.eyebrow}
-            </span>
-            <h3 className="mt-3 max-w-3xl text-[clamp(2rem,3.2vw,2.8rem)] leading-tight text-white">
+            <span className="text-sm font-semibold text-[var(--clay)]">{siteContent.example.eyebrow}</span>
+            <h3 className="mt-3 max-w-3xl font-sans text-[clamp(2rem,3vw,2.8rem)] font-semibold leading-tight text-[var(--ink)]">
               {siteContent.example.title}
             </h3>
-            <p className="mt-4 max-w-3xl text-[1rem] leading-8 text-white/78">{siteContent.example.body}</p>
-            <div className="mt-8 max-w-[42rem] rotate-[-2deg]">
+            <p className="mt-4 max-w-3xl text-[1rem] leading-8 text-[var(--muted-ink)]">{siteContent.example.body}</p>
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-[var(--muted-ink)]">
+              Source links and review dates stay visible. AgriGrant NY helps you prepare, but farmers still apply through the official program page.
+            </p>
+            <div className="mt-8 max-w-[42rem]">
               <ExamplePreview />
             </div>
           </div>
-          <aside className="bg-[var(--surface)] p-6 max-lg:bg-[var(--surface)]">
+          <aside className="self-start border border-[var(--line)] bg-[var(--paper-soft)] p-6">
             <div className="grid gap-4">
-              {[
-                "Source required",
-                "Review date visible",
-                "Preparation checklist",
-                "Not a guarantee",
-              ].map((note) => (
-                <div className="border-l-[3px] border-[var(--clay)] pl-4" key={note}>
-                  <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{note}</span>
-                  <p className="mt-2 text-sm leading-7 text-[var(--ink-soft)]">
-                    This output is meant to help a farmer prepare before leaving for the official program page.
-                  </p>
-                </div>
-              ))}
+              <ProofPoint
+                text="Every recommendation points back to an official program page."
+                title="Source required"
+              />
+              <ProofPoint
+                text="Farmers can see when the record was last checked."
+                title="Review date visible"
+              />
+              <ProofPoint
+                text="The result shows what to gather before applying."
+                title="Preparation checklist"
+              />
+              <ProofPoint
+                text="The tool helps screen opportunities; eligibility is confirmed by the official program."
+                title="Not a guarantee"
+              />
             </div>
           </aside>
         </div>
       </section>
 
-      <section className="section-bleed bg-[rgba(241,236,220,0.96)] px-6 py-14" id="overview">
-        <div className="mx-auto max-w-7xl">
-          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.categories.eyebrow}</span>
-          <h3 className="mt-3 max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-[var(--forest)]">
-            {siteContent.categories.title}
-          </h3>
-          <div className="mt-8 grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
-            {siteContent.categories.items.map(([code, title, text], index) => (
-              <CategoryCard code={code} description={text} emphasis={index === 0 || index === 4} featured={index === 0} key={code} title={title} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-bleed bg-[var(--surface)] px-6 py-14" id="about">
-        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_340px] gap-10 max-lg:grid-cols-1">
+      <section className="section-bleed bg-[var(--paper)] px-6 py-14" id="about">
+        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_minmax(320px,420px)] gap-10 max-lg:grid-cols-1">
           <div>
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{siteContent.about.eyebrow}</span>
-            <h3 className="mt-3 max-w-4xl text-[clamp(2rem,3.4vw,3rem)] leading-tight text-[var(--forest)]">
+            <span className="text-sm font-semibold text-[var(--clay)]">{siteContent.about.eyebrow}</span>
+            <h3 className="mt-3 max-w-4xl font-sans text-[clamp(2rem,3vw,2.8rem)] font-semibold leading-tight text-[var(--ink)]">
               {siteContent.about.title}
             </h3>
-            <p className="mt-4 max-w-3xl leading-8 text-[rgba(31,36,29,0.72)]">
+            <p className="mt-4 max-w-3xl leading-8 text-[var(--muted-ink)]">
               {siteContent.about.body}
             </p>
             <div className="mt-8 grid grid-cols-2 gap-6 max-lg:grid-cols-1">
@@ -530,42 +397,93 @@ function Welcome({
                 />
               ))}
             </div>
-            <p className="mt-8 border-t border-[var(--border)] pt-5 text-sm font-semibold leading-6 text-[rgba(31,36,29,0.72)]">
+            <p className="mt-8 border-t border-[var(--line)] pt-5 text-sm font-semibold leading-6 text-[var(--muted-ink)]">
               {siteContent.about.funding}
             </p>
           </div>
-          <aside className="overflow-hidden bg-[var(--forest)] text-[var(--surface)]">
-            <div className="relative h-56">
+          <aside className="overflow-hidden border border-[var(--line)] bg-[var(--sky-muted)]/20 text-[var(--ink)]" id="login">
+            <div className="relative h-48">
               <Image
                 alt="Farmer holding a basket of fresh produce"
                 className="object-cover opacity-82"
                 fill
-                sizes="(max-width: 1024px) 100vw, 340px"
-                src="/stock/produce-basket.jpg"
+                sizes="(max-width: 1024px) 100vw, 420px"
+                src="/stock/harvest-crate.jpg"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,63,50,0.05),rgba(18,63,50,0.86))]" />
-              <span className="absolute left-6 top-5 block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">
+              <div className="absolute inset-0 bg-[rgba(8,46,38,0.28)]" />
+              <span className="absolute left-5 top-5 text-sm font-semibold text-[var(--inverse)]">
                 {siteContent.support.eyebrow}
               </span>
             </div>
             <div className="p-6">
-              <h4 className="text-2xl leading-tight text-white">{siteContent.support.title}</h4>
-              <p className="mt-4 leading-7 text-white/78">{siteContent.support.body}</p>
+              <h4 className="font-sans text-2xl font-semibold leading-tight text-[var(--ink)]">{siteContent.support.title}</h4>
+              <p className="mt-4 leading-7 text-[var(--muted-ink)]">{siteContent.support.body}</p>
               <ul className="mt-5 grid gap-3">
                 {siteContent.support.items.map((item) => (
                   <li className="flex items-start gap-3" key={item}>
-                    <span className="mt-1 flex h-5 w-5 items-center justify-center border border-white/20 bg-white/8 text-xs font-bold text-white">
-                      +
+                    <span className="mt-1 flex h-5 w-5 items-center justify-center border border-[var(--line)] bg-[var(--paper-soft)] text-xs font-bold text-[var(--evergreen)]">
+                      •
                     </span>
-                    <span className="text-sm leading-7 text-white/82">{item}</span>
+                    <span className="text-sm leading-7 text-[var(--muted-ink)]">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-5 border-t border-white/12 pt-4">
-                <strong className="block font-mono text-[0.78rem] uppercase tracking-[0.08em] text-[#f1d676]">
-                  Contact / corrections
-                </strong>
-                <p className="mt-2 text-sm leading-7 text-white/78">
+              <form className="mt-6 border-t border-[var(--line)] pt-5">
+                <div>
+                  <span className="text-xs font-semibold text-[var(--moss)]">{siteContent.login.panelEyebrow}</span>
+                  <h4 className="mt-2 font-sans text-xl font-semibold leading-tight text-[var(--ink)]">{siteContent.login.panelTitle}</h4>
+                </div>
+                <div className="mt-4 grid gap-4">
+                  <label className="grid gap-2 text-sm font-semibold text-[var(--ink)]">
+                    {siteContent.login.emailLabel}
+                    <input
+                      className="min-h-12 border border-[var(--line)] bg-[var(--paper-soft)] px-4 text-[var(--foreground)]"
+                      onChange={(event) => {
+                        setLogin({ ...login, email: event.target.value });
+                        setLoginError("");
+                      }}
+                      placeholder={siteContent.login.emailPlaceholder}
+                      type="email"
+                      value={login.email}
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm font-semibold text-[var(--ink)]">
+                    {siteContent.login.passwordLabel}
+                    <input
+                      className="min-h-12 border border-[var(--line)] bg-[var(--paper-soft)] px-4 text-[var(--foreground)]"
+                      onChange={(event) => {
+                        setLogin({ ...login, password: event.target.value });
+                        setLoginError("");
+                      }}
+                      placeholder={siteContent.login.passwordPlaceholder}
+                      type="password"
+                      value={login.password}
+                    />
+                  </label>
+                  {loginError && (
+                    <p className="border border-[#e2a080] bg-[#fff1e8] px-3 py-2 text-sm text-[#8a2f18]" role="alert">
+                      {loginError}
+                    </p>
+                  )}
+                  <button
+                    className="min-h-12 bg-[var(--evergreen)] px-4 font-semibold text-[var(--inverse)] transition hover:bg-[var(--clay)]"
+                    onClick={enterDashboard}
+                    type="button"
+                  >
+                    {siteContent.login.signInCta}
+                  </button>
+                  <button
+                    className="min-h-12 border border-[var(--line)] bg-[var(--paper-soft)] px-4 font-semibold text-[var(--evergreen)]"
+                    onClick={enterDashboard}
+                    type="button"
+                  >
+                    {siteContent.login.signUpCta}
+                  </button>
+                </div>
+              </form>
+              <div className="mt-5 border-t border-[var(--line)] pt-4">
+                <strong className="block text-sm font-semibold text-[var(--moss)]">Contact / corrections</strong>
+                <p className="mt-2 text-sm leading-7 text-[var(--muted-ink)]">
                   Use contact@agrigrantny.com for corrections, questions, and source issues.
                 </p>
               </div>
@@ -574,86 +492,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="section-bleed bg-[var(--forest)] px-6 py-14" id="login">
-        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_minmax(340px,440px)] items-center gap-10 max-lg:grid-cols-1">
-          <div className="text-[var(--surface)]">
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[#f1d676]">{siteContent.login.eyebrow}</span>
-            <h3 className="mt-3 text-[clamp(2rem,3.6vw,3.35rem)] leading-tight text-white">{siteContent.login.title}</h3>
-            <p className="mt-4 max-w-2xl leading-8 text-white/78">
-              {siteContent.login.body}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-6 text-sm font-medium text-white/84">
-              {siteContent.login.previewItems.map((item) => (
-                <span className="inline-flex items-center gap-2" key={item}>
-                  <span className="text-[#f1d676]">✓</span>
-                  <span>{item}</span>
-                </span>
-              ))}
-            </div>
-            <p className="mt-6 text-sm leading-7 text-white/72">
-              Start with a farm profile, then keep your shortlist, source links, and next-step notes in one place.
-            </p>
-          </div>
-
-          <form className="border border-[rgba(18,63,50,0.18)] bg-[rgba(255,253,246,0.96)] p-6 shadow-[0_22px_46px_rgba(49,68,51,0.06)]">
-            <div>
-              <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">
-                {siteContent.login.panelEyebrow}
-              </span>
-              <h3 className="mt-2 text-2xl leading-tight text-[var(--forest)]">{siteContent.login.panelTitle}</h3>
-            </div>
-            <div className="mt-4 grid gap-4">
-              <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]">
-                {siteContent.login.emailLabel}
-                <input
-                  className="min-h-12 border border-[var(--border)] bg-[rgba(255,255,255,0.7)] px-4 text-[var(--foreground)]"
-                  onChange={(event) => {
-                    setLogin({ ...login, email: event.target.value });
-                    setLoginError("");
-                  }}
-                  placeholder={siteContent.login.emailPlaceholder}
-                  type="email"
-                  value={login.email}
-                />
-              </label>
-              <label className="grid gap-2 text-sm font-semibold text-[var(--forest)]">
-                {siteContent.login.passwordLabel}
-                <input
-                  className="min-h-12 border border-[var(--border)] bg-[rgba(255,255,255,0.7)] px-4 text-[var(--foreground)]"
-                  onChange={(event) => {
-                    setLogin({ ...login, password: event.target.value });
-                    setLoginError("");
-                  }}
-                  placeholder={siteContent.login.passwordPlaceholder}
-                  type="password"
-                  value={login.password}
-                />
-              </label>
-              {loginError && (
-                <p className="border border-[#e2a080] bg-[#fff1e8] px-3 py-2 text-sm text-[#8a2f18]" role="alert">
-                  {loginError}
-                </p>
-              )}
-              <button
-                className="min-h-12 bg-[var(--forest)] px-4 font-semibold text-[var(--surface)] transition hover:bg-[var(--moss)]"
-                onClick={enterDashboard}
-                type="button"
-              >
-                {siteContent.login.signInCta}
-              </button>
-              <button
-                className="min-h-12 border border-[var(--border)] bg-[rgba(255,255,255,0.68)] px-4 font-semibold text-[var(--forest)]"
-                onClick={enterDashboard}
-                type="button"
-              >
-                {siteContent.login.signUpCta}
-              </button>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <footer className="section-bleed bg-[#22342d] px-6 py-10 text-sm leading-7 text-white/74">
+      <footer className="section-bleed bg-[var(--deep-forest)] px-6 py-10 text-sm leading-7 text-[rgba(255,253,244,0.78)]">
         <div className="mx-auto grid max-w-7xl gap-3">
           <p>{siteContent.footer.contact}</p>
           <p>{siteContent.footer.policy}</p>
@@ -664,51 +503,60 @@ function Welcome({
   );
 }
 
+function ProofPoint({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="border-l-[3px] border-[var(--clay)] pl-4">
+      <span className="text-sm font-semibold text-[var(--ink)]">{title}</span>
+      <p className="mt-2 text-sm leading-7 text-[var(--muted-ink)]">{text}</p>
+    </div>
+  );
+}
+
 function ExamplePreview() {
   const preview = siteContent.hero.preview;
 
   return (
-    <aside className="bg-ledger-panel rounded-[1rem] border border-[rgba(23,56,45,0.18)] p-[18px]">
-      <div className="relative rounded-[0.95rem] border border-[var(--border)] bg-[linear-gradient(180deg,rgba(255,252,243,0.98),rgba(244,236,214,0.98))] p-5 shadow-[0_12px_28px_rgba(55,59,42,0.08)]">
+    <aside className="bg-ledger-panel border border-[var(--line-strong)] p-4 shadow-[0_14px_30px_rgba(22,49,43,0.12)]">
+      <div className="relative border border-[var(--line)] bg-[var(--paper-soft)] p-5">
         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(20,32,27,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(20,32,27,0.03)_1px,transparent_1px)] bg-[size:22px_22px] opacity-30" />
         <div className="relative z-10 flex items-center justify-between gap-3 max-sm:items-start max-sm:flex-col">
-          <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{preview.eyebrow}</span>
-          <span className="rounded-full border border-[rgba(155,95,66,0.46)] px-3 py-1 text-[0.68rem] font-extrabold uppercase tracking-[0.12em] text-[var(--clay)]">
+          <span className="text-xs font-semibold text-[var(--moss)]">{preview.eyebrow}</span>
+          <span className="border border-[rgba(168,95,61,0.46)] px-3 py-1 text-[0.72rem] font-semibold text-[var(--clay)]">
             {preview.match.stamp}
           </span>
         </div>
-        <h3 className="relative z-10 mt-3 text-2xl leading-tight text-[var(--forest)]">{preview.title}</h3>
-        <p className="relative z-10 mt-3 text-sm leading-7 text-[var(--ink-soft)]">{preview.summary}</p>
+        <h3 className="relative z-10 mt-3 font-sans text-[1.6rem] font-semibold leading-tight text-[var(--ink)]">{preview.title}</h3>
+        <p className="relative z-10 mt-3 text-sm leading-7 text-[var(--muted-ink)]">{preview.summary}</p>
         <dl className="relative z-10 mt-5 grid gap-3">
           {preview.profile.map(([label, value]) => (
-            <div className="grid grid-cols-[110px_minmax(0,1fr)] gap-3 border-b border-[var(--border)] pb-3 last:border-b-0 last:pb-0 max-sm:grid-cols-1" key={label}>
-              <dt className="text-sm font-semibold text-[var(--forest)]">{label}</dt>
-              <dd className="text-sm leading-6 text-[var(--ink-soft)]">{value}</dd>
+            <div className="grid grid-cols-[110px_minmax(0,1fr)] gap-3 border-b border-[var(--line)] pb-3 last:border-b-0 last:pb-0 max-sm:grid-cols-1" key={label}>
+              <dt className="text-sm font-semibold text-[var(--evergreen)]">{label}</dt>
+              <dd className="text-sm leading-6 text-[var(--muted-ink)]">{value}</dd>
             </div>
           ))}
         </dl>
 
         <div className="relative z-10 mt-5 flex items-start justify-between gap-3 max-sm:items-start max-sm:flex-col">
           <div>
-            <span className="block text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">Matched program</span>
-            <h4 className="mt-2 text-xl leading-tight text-[var(--forest)]">{preview.match.program}</h4>
+            <span className="text-xs font-semibold text-[var(--moss)]">Matched program</span>
+            <h4 className="mt-2 font-sans text-xl font-semibold leading-tight text-[var(--ink)]">{preview.match.program}</h4>
           </div>
-          <span className="rounded-full border border-[#cfad99] bg-[#f0e3d7] px-3 py-1 text-xs font-bold text-[#8a4b2e]">
+          <span className="border border-[#cfad99] bg-[#f0e3d7] px-3 py-1 text-xs font-semibold text-[#8a4b2e]">
             {preview.match.fit}
           </span>
         </div>
 
-        <div className="relative z-10 mt-4 grid gap-2 text-sm leading-6 text-[var(--ink-soft)]">
-          <p><strong className="text-[var(--forest)]">Review date:</strong> {preview.match.deadline}</p>
-          <p><strong className="text-[var(--forest)]">Source:</strong> {preview.match.source}</p>
+        <div className="relative z-10 mt-4 grid gap-2 text-sm leading-6 text-[var(--muted-ink)]">
+          <p><strong className="text-[var(--evergreen)]">Review date:</strong> {preview.match.deadline}</p>
+          <p><strong className="text-[var(--evergreen)]">Source:</strong> {preview.match.source}</p>
         </div>
 
         <div className="relative z-10 mt-4">
-          <strong className="text-sm text-[var(--forest)]">What to prepare</strong>
+          <strong className="text-sm text-[var(--evergreen)]">What to prepare</strong>
           <ul className="mt-2 grid gap-2">
             {preview.requirements.map((item) => (
-              <li className="flex items-start gap-3 text-sm leading-6 text-[var(--ink-soft)]" key={item}>
-                <span className="mt-1 flex h-4 w-4 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--surface)] text-[10px] font-bold text-[var(--forest)]">
+              <li className="flex items-start gap-3 text-sm leading-6 text-[var(--muted-ink)]" key={item}>
+                <span className="mt-1 flex h-4 w-4 items-center justify-center border border-[var(--line)] bg-[var(--paper)] text-[10px] font-bold text-[var(--evergreen)]">
                   ✓
                 </span>
                 <span>{item}</span>
@@ -717,40 +565,9 @@ function ExamplePreview() {
           </ul>
         </div>
 
-        <p className="relative z-10 mt-4 text-xs leading-6 text-[var(--ink-soft)]">{preview.caption}</p>
+        <p className="relative z-10 mt-4 text-xs leading-6 text-[var(--muted-ink)]">{preview.caption}</p>
       </div>
     </aside>
-  );
-}
-
-function CategoryCard({
-  code,
-  title,
-  description,
-  emphasis = false,
-  featured = false,
-}: {
-  code: string;
-  title: string;
-  description: string;
-  emphasis?: boolean;
-  featured?: boolean;
-}) {
-  return (
-    <article
-      className={`relative rounded-[0.85rem] border p-5 ${
-        featured
-          ? "col-span-2 min-h-[260px] border-[rgba(18,63,50,0.18)] bg-[linear-gradient(135deg,rgba(18,63,50,0.92),rgba(49,88,72,0.9))] text-white max-lg:col-span-1"
-          : emphasis
-          ? "border-[rgba(18,63,50,0.18)] bg-[linear-gradient(180deg,rgba(231,234,215,0.82),rgba(255,252,243,0.98))]"
-          : "border-[var(--border)] bg-[linear-gradient(180deg,rgba(245,237,211,0.92),rgba(255,252,243,0.98))]"
-      }`}
-    >
-      <div className={`absolute left-[18px] top-0 h-2 w-[104px] ${featured ? "bg-[#f1d676]" : "bg-[rgba(213,186,88,0.55)]"}`} />
-      <span className={`inline-block font-mono text-[0.76rem] font-bold uppercase tracking-[0.08em] ${featured ? "text-white/70" : "text-[var(--ink-soft)]"}`}>{code}</span>
-      <h4 className={`mt-3 text-2xl leading-tight ${featured ? "max-w-[14ch] text-white" : "text-[var(--forest)]"}`}>{title}</h4>
-      <p className={`mt-3 text-sm leading-7 ${featured ? "max-w-[40ch] text-white/82" : "text-[var(--ink-soft)]"}`}>{description}</p>
-    </article>
   );
 }
 
@@ -764,17 +581,17 @@ function FounderCard({
   text: string;
 }) {
   return (
-    <article className="grid grid-cols-[140px_minmax(0,1fr)] gap-5 border-t border-[rgba(23,56,45,0.12)] py-5 max-sm:grid-cols-1">
-      <div className="flex h-36 items-center justify-center border border-[var(--border)] bg-[rgba(244,239,226,0.96)] p-4 text-center">
+    <article className="grid grid-cols-[140px_minmax(0,1fr)] gap-5 border-t border-[var(--line)] py-5 max-sm:grid-cols-1">
+      <div className="flex h-36 items-center justify-center border border-[var(--line)] bg-[var(--linen)] p-4 text-center">
         <div>
-          <span className="block text-[0.72rem] font-extrabold uppercase tracking-[0.14em] text-[var(--moss)]">Portrait placeholder</span>
-          <strong className="mt-2 block font-mono text-base text-[var(--forest)]">{name}</strong>
+          <span className="block text-[0.72rem] font-semibold text-[var(--moss)]">{role}</span>
+          <strong className="mt-2 block font-mono text-base text-[var(--evergreen)]">{name}</strong>
         </div>
       </div>
       <div>
-        <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[var(--moss)]">{role}</span>
-        <h4 className="text-2xl leading-tight text-[var(--forest)]">{name}</h4>
-        <p className="mt-3 max-w-3xl leading-7 text-[rgba(31,36,29,0.72)]">{text}</p>
+        <span className="text-sm font-semibold text-[var(--moss)]">{role}</span>
+        <h4 className="font-sans text-2xl font-semibold leading-tight text-[var(--ink)]">{name}</h4>
+        <p className="mt-3 max-w-3xl leading-7 text-[var(--muted-ink)]">{text}</p>
       </div>
     </article>
   );

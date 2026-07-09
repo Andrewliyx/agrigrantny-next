@@ -1,20 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f2e8;
-  --foreground: #1e2b23;
-  --surface: #fffdf6;
-  --surface-muted: #f4efe2;
-  --surface-strong: #e7ead7;
-  --border: #d8d1bf;
-  --forest: #123f32;
-  --moss: #4e7d4f;
-  --sage: #7d8f70;
-  --clay: #9b5f42;
-  --ink-soft: #59685e;
-  --wheat: #d5ba58;
-  --rule-line: rgba(18, 63, 50, 0.09);
-  --warm-rule: rgba(126, 99, 52, 0.1);
+  --background: #f4f0e4;
+  --foreground: #17312b;
+  --paper: #f4f0e4;
+  --paper-soft: #faf8ef;
+  --linen: #e8e1d0;
+  --surface: #faf8ef;
+  --surface-muted: #e8e1d0;
+  --surface-strong: #dbe2d6;
+  --border: rgba(23, 49, 43, 0.16);
+  --evergreen: #123d32;
+  --deep-forest: #082e26;
+  --forest: #123d32;
+  --moss: #6f7d4e;
+  --sage: #9db5b2;
+  --sky-muted: #9db5b2;
+  --clay: #a85f3d;
+  --ochre: #d2a84a;
+  --ink: #17312b;
+  --ink-soft: #5e665f;
+  --muted-ink: #5e665f;
+  --inverse: #fffdf4;
+  --line: rgba(23, 49, 43, 0.16);
+  --line-strong: rgba(23, 49, 43, 0.28);
+  --rule-line: rgba(23, 49, 43, 0.08);
+  --warm-rule: rgba(210, 168, 74, 0.12);
   --shadow-soft: 0 16px 40px rgba(28, 45, 35, 0.08);
 }
 
@@ -35,9 +46,7 @@ html {
 }
 
 body {
-  background:
-    linear-gradient(180deg, rgba(231, 234, 215, 0.42), transparent 22%),
-    var(--background);
+  background: var(--paper);
   color: var(--foreground);
   font-family: var(--font-body), Arial, sans-serif;
   letter-spacing: 0;
@@ -47,14 +56,11 @@ body {
 
 body::before {
   background:
-    linear-gradient(90deg, rgba(18, 63, 50, 0.04) 0 1px, transparent 1px 100%) left 56px top 0 / 72px 100% no-repeat,
-    linear-gradient(90deg, transparent calc(100% - 80px), rgba(18, 63, 50, 0.035) calc(100% - 80px), rgba(18, 63, 50, 0.035) calc(100% - 79px), transparent calc(100% - 79px)) 0 0 / 100% 100% no-repeat,
-    linear-gradient(0deg, var(--warm-rule) 0 1px, transparent 1px 28px) 0 0 / 100% 28px no-repeat,
-    radial-gradient(circle at 8% 18%, rgba(18, 63, 50, 0.05), transparent 18%),
-    radial-gradient(circle at 92% 76%, rgba(126, 99, 52, 0.05), transparent 20%);
+    linear-gradient(90deg, rgba(23, 49, 43, 0.03) 0 1px, transparent 1px 100%) left 56px top 0 / 72px 100% no-repeat,
+    linear-gradient(0deg, var(--warm-rule) 0 1px, transparent 1px 30px) 0 0 / 100% 30px no-repeat;
   content: "";
   inset: 0;
-  opacity: 0.75;
+  opacity: 0.5;
   pointer-events: none;
   position: fixed;
   z-index: -1;
@@ -62,33 +68,28 @@ body::before {
 
 .bg-civic-field {
   background:
-    linear-gradient(180deg, rgba(255, 253, 246, 0.94), rgba(246, 242, 232, 0.92)),
-    repeating-linear-gradient(0deg, rgba(126, 99, 52, 0.06), rgba(126, 99, 52, 0.06) 1px, transparent 1px, transparent 28px);
+    linear-gradient(180deg, rgba(250, 248, 239, 0.96), rgba(244, 240, 228, 0.94)),
+    repeating-linear-gradient(0deg, rgba(210, 168, 74, 0.04), rgba(210, 168, 74, 0.04) 1px, transparent 1px, transparent 28px);
 }
 
 .bg-paper-panel {
-  background:
-    linear-gradient(180deg, rgba(255, 253, 246, 0.98), rgba(250, 246, 236, 0.98)),
-    var(--surface);
+  background: var(--paper-soft);
   box-shadow: var(--shadow-soft);
 }
 
 .bg-ledger-panel {
   background:
-    linear-gradient(180deg, rgba(255, 253, 246, 0.98), rgba(244, 240, 227, 0.98)),
-    repeating-linear-gradient(0deg, rgba(18, 63, 50, 0.045), rgba(18, 63, 50, 0.045) 1px, transparent 1px, transparent 32px);
+    linear-gradient(180deg, rgba(250, 248, 239, 0.98), rgba(244, 240, 228, 0.98)),
+    repeating-linear-gradient(0deg, rgba(23, 49, 43, 0.045), rgba(23, 49, 43, 0.045) 1px, transparent 1px, transparent 32px);
   box-shadow: var(--shadow-soft);
 }
 
 .bg-field-wash {
-  background:
-    linear-gradient(180deg, rgba(231, 234, 215, 0.62), rgba(255, 253, 246, 0.94)),
-    var(--surface);
+  background: rgba(157, 181, 178, 0.12);
 }
 
 .bg-photo-placeholder {
-  background:
-    linear-gradient(160deg, rgba(18, 63, 50, 0.96) 0%, rgba(27, 53, 43, 0.94) 58%, rgba(212, 196, 134, 0.92) 58%, rgba(200, 179, 106, 0.9) 100%);
+  background: var(--evergreen);
 }
 
 .section-bleed {
