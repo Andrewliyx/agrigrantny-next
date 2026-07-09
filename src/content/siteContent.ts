@@ -2,7 +2,6 @@ export const siteContent = {
   brand: {
     name: "AgriGrant NY",
     tagline: "Grant navigation for New York farms",
-    logoText: "AG",
   },
   disclosureBar: {
     text: "Independent public-interest prototype",
@@ -38,9 +37,9 @@ export const siteContent = {
       counties: ["Hudson Valley", "Finger Lakes", "Central NY", "North Country"],
     },
     image: {
-      label: "Farm grant navigation",
-      title: "Working farm conditions across New York",
-      note: "One example result stays visible inside the photo block so the homepage shows what the service actually returns.",
+      label: "Source-backed grant matching",
+      title: "For New York farms.",
+      note: "Built to prepare farmers before they leave for the official application.",
     },
     preview: {
       eyebrow: "Sample review",

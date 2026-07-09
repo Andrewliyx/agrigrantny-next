@@ -124,12 +124,16 @@ export default function Home() {
         <header className="border-b border-[var(--border)] bg-[rgba(255,253,246,0.92)] backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-6 py-6 max-md:flex-col max-md:items-start max-sm:px-4">
             <div className="flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center border border-[var(--border)] bg-[var(--surface-muted)] font-mono text-sm font-bold text-[var(--forest)]">
-                {siteContent.brand.logoText}
-              </span>
+              <Image
+                alt="AgriGrant NY logo"
+                className="h-11 w-11 object-contain"
+                height={44}
+                src="/logo-csgc.png"
+                width={44}
+              />
               <div>
-                <strong className="block text-lg font-semibold text-[var(--forest)]">{siteContent.brand.name}</strong>
-                <span className="block text-sm text-[var(--ink-soft)]">{siteContent.brand.tagline}</span>
+                <strong className="block text-lg font-semibold text-[var(--evergreen)]">{siteContent.brand.name}</strong>
+                <span className="block text-sm text-[var(--muted-ink)]">{siteContent.brand.tagline}</span>
               </div>
             </div>
 
@@ -168,9 +172,13 @@ export default function Home() {
       <div className="grid min-h-screen grid-cols-[280px_minmax(0,1fr)] max-lg:grid-cols-1">
         <aside className="sticky top-0 flex h-screen flex-col gap-7 overflow-hidden border-r border-[#183126] bg-[var(--forest)] p-6 text-[var(--surface)] max-lg:static max-lg:h-auto max-lg:border-r-0 max-lg:border-b">
           <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-[rgba(255,255,255,0.08)] font-mono text-sm font-bold text-[var(--surface)]">
-              {siteContent.brand.logoText}
-            </span>
+            <Image
+              alt="AgriGrant NY logo"
+              className="h-11 w-11 rounded-full object-contain"
+              height={44}
+              src="/logo-csgc.png"
+              width={44}
+            />
             <div>
               <strong className="block text-lg font-semibold">{siteContent.brand.name}</strong>
               <span className="block text-sm text-[rgba(251,247,239,0.68)]">Grant navigation for farms</span>
@@ -255,13 +263,10 @@ function Welcome({
             <span className="inline-flex border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-2 text-[0.8rem] font-semibold text-[var(--evergreen)]">
               {siteContent.hero.eyebrow}
             </span>
-            <h2 className="mt-5 max-w-[680px] text-[clamp(3.25rem,6vw,5.75rem)] leading-[0.98] text-[var(--evergreen)]">
+            <h2 className="mt-5 max-w-[680px] text-[clamp(3rem,6vw,5.25rem)] leading-[0.95] tracking-[-0.035em] text-[var(--evergreen)]">
               {siteContent.hero.title}
             </h2>
             <p className="mt-5 max-w-[42rem] text-[1.08rem] leading-8 text-[var(--muted-ink)]">{siteContent.hero.body}</p>
-            <p className="mt-4 max-w-[38rem] text-sm leading-7 text-[var(--muted-ink)]">
-              {siteContent.hero.note} AgriGrant NY does not replace official applications.
-            </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a className="bg-[var(--evergreen)] px-5 py-3 text-sm font-semibold text-[var(--inverse)] transition hover:bg-[var(--clay)]" href="#login">
                 {siteContent.hero.primaryCta}
@@ -273,13 +278,13 @@ function Welcome({
                 {siteContent.hero.secondaryCta}
               </a>
             </div>
-            <div className="mt-7 border-t border-[var(--line)] pt-4 text-sm text-[var(--muted-ink)]">
-              {siteContent.hero.highlights.join(" · ")}
+            <div className="mt-6 border-t border-[var(--clay)] pt-4 text-sm text-[var(--muted-ink)]">
+              {siteContent.hero.note}
             </div>
           </div>
         </div>
 
-        <div className="relative min-h-[560px] overflow-hidden border-l border-[var(--line)] max-[900px]:min-h-[460px] max-[900px]:border-l-0 max-[900px]:border-t">
+        <div className="relative min-h-[540px] overflow-hidden border-l border-[var(--line)] max-[900px]:min-h-[420px] max-[900px]:border-l-0 max-[900px]:border-t">
           <Image
             alt="Greenhouse team carrying trays through a working farm structure"
             className="object-cover"
@@ -288,21 +293,18 @@ function Welcome({
             sizes="(max-width: 900px) 100vw, 52vw"
             src="/stock/greenhouse-team.jpg"
           />
-          <div className="absolute inset-0 bg-[rgba(8,46,38,0.3)]" />
-          <div className="absolute left-6 top-6 max-w-[17rem] border border-white/20 bg-[rgba(8,46,38,0.6)] p-4 text-[var(--inverse)] backdrop-blur-sm md:left-8 md:top-8">
-            <span className="text-[0.8rem] font-semibold text-[#f2d487]">
+          <div className="absolute inset-0 bg-[rgba(18,61,50,0.18)]" />
+          <div className="absolute left-6 top-6 max-w-[16rem] border border-[rgba(254,250,224,0.58)] bg-[rgba(18,61,50,0.72)] p-3 text-[var(--inverse)] md:left-8 md:top-8">
+            <span className="text-[0.78rem] font-semibold text-[var(--pale-sage)]">
               {siteContent.hero.image.label}
             </span>
-            <p className="mt-2 text-[1rem] font-semibold leading-6">{siteContent.hero.image.title}</p>
-            <p className="mt-2 text-sm leading-6 text-white/82">{siteContent.hero.image.note}</p>
-          </div>
-          <div className="absolute bottom-6 right-6 w-[42%] min-w-[280px] max-w-[360px] max-[900px]:bottom-4 max-[900px]:right-4 max-[900px]:w-[calc(100%-2rem)]">
-            <ExamplePreview />
+            <p className="mt-1 text-[0.98rem] font-semibold leading-6">{siteContent.hero.image.title}</p>
+            <p className="mt-2 text-sm leading-6 text-white/84">{siteContent.hero.image.note}</p>
           </div>
         </div>
       </section>
 
-      <section className="section-bleed bg-[var(--paper-soft)] px-6 py-14" id="workflow">
+      <section className="section-bleed bg-[var(--pale-sage)] px-6 py-14" id="workflow">
         <div className="mx-auto max-w-7xl">
           <span className="text-sm font-semibold text-[var(--clay)]">{siteContent.workflow.eyebrow}</span>
           <h3 className="mt-3 max-w-4xl font-sans text-[clamp(2rem,3vw,2.85rem)] font-semibold leading-tight text-[var(--ink)]">
@@ -314,7 +316,7 @@ function Welcome({
                 AgriGrant NY turns scattered public program pages into a clearer shortlist and next-step checklist.
               </p>
             </div>
-            <figure className="relative h-[220px] overflow-hidden border border-[var(--line)]">
+            <figure className="relative h-[220px] overflow-hidden border border-[rgba(212,163,115,0.55)]">
               <Image
                 alt="Rows of cropland under a dramatic sunrise sky"
                 className="object-cover"
@@ -328,7 +330,7 @@ function Welcome({
             <div className="absolute left-[10%] right-[10%] top-6 h-[2px] bg-[var(--ochre)] max-xl:hidden" />
             {siteContent.workflow.steps.map((step) => (
               <article className="relative" key={step.number}>
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[var(--ochre)] bg-[var(--paper-soft)] text-lg font-bold text-[var(--evergreen)]">
+                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[var(--clay)] bg-[var(--cream)] text-lg font-bold text-[var(--evergreen)]">
                   {step.number}
                 </div>
                 <h4 className="mt-5 font-sans text-[1.4rem] font-semibold leading-tight text-[var(--ink)]">{step.title}</h4>
@@ -339,41 +341,36 @@ function Welcome({
         </div>
       </section>
 
-      <section className="section-bleed border-t border-[var(--line)] bg-[var(--paper)] px-6 py-14" id="example">
-        <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] gap-10 max-lg:grid-cols-1">
-          <div>
+      <section className="section-bleed border-t border-[rgba(212,163,115,0.45)] bg-[var(--wheat)] px-6 py-14" id="example">
+        <div className="mx-auto grid max-w-7xl gap-8">
+          <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] gap-10 max-lg:grid-cols-1">
+            <div>
             <span className="text-sm font-semibold text-[var(--clay)]">{siteContent.example.eyebrow}</span>
             <h3 className="mt-3 max-w-3xl font-sans text-[clamp(2rem,3vw,2.8rem)] font-semibold leading-tight text-[var(--ink)]">
               {siteContent.example.title}
             </h3>
             <p className="mt-4 max-w-3xl text-[1rem] leading-8 text-[var(--muted-ink)]">{siteContent.example.body}</p>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-[var(--muted-ink)]">
-              Source links and review dates stay visible. AgriGrant NY helps you prepare, but farmers still apply through the official program page.
-            </p>
-            <div className="mt-8 max-w-[42rem]">
+            <div className="mt-6 max-w-[40rem]">
               <ExamplePreview />
             </div>
           </div>
-          <aside className="self-start border border-[var(--line)] bg-[var(--paper-soft)] p-6">
-            <div className="grid gap-4">
-              <ProofPoint
-                text="Every recommendation points back to an official program page."
-                title="Source required"
-              />
-              <ProofPoint
-                text="Farmers can see when the record was last checked."
-                title="Review date visible"
-              />
-              <ProofPoint
-                text="The result shows what to gather before applying."
-                title="Preparation checklist"
-              />
-              <ProofPoint
-                text="The tool helps screen opportunities; eligibility is confirmed by the official program."
-                title="Not a guarantee"
-              />
-            </div>
-          </aside>
+            <aside className="self-start border border-[rgba(212,163,115,0.55)] bg-[var(--cream)] p-6">
+              <div className="border-l-[3px] border-[var(--clay)] pl-4">
+                <span className="text-sm font-semibold text-[var(--clay)]">What a result should make clear</span>
+                <ul className="mt-4 grid gap-4 text-sm leading-7 text-[var(--muted-ink)]">
+                  <li>Why the program may fit the farm profile</li>
+                  <li>What information still needs checking</li>
+                  <li>Which documents may be needed next</li>
+                  <li>Where to continue on the official source page</li>
+                </ul>
+              </div>
+            </aside>
+          </div>
+          <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
+            <TrustMini text="Every match points back to a public program page." title="Source link visible" />
+            <TrustMini text="Farmers can see when a record was last checked." title="Review timing shown" />
+            <TrustMini text="The tool helps organize next steps before applying." title="Preparation first" />
+          </div>
         </div>
       </section>
 
@@ -401,7 +398,7 @@ function Welcome({
               {siteContent.about.funding}
             </p>
           </div>
-          <aside className="overflow-hidden border border-[var(--line)] bg-[var(--sky-muted)]/20 text-[var(--ink)]" id="login">
+          <aside className="overflow-hidden border border-[rgba(212,163,115,0.45)] bg-[var(--sage)]/28 text-[var(--ink)]" id="login">
             <div className="relative h-48">
               <Image
                 alt="Farmer holding a basket of fresh produce"
@@ -410,7 +407,7 @@ function Welcome({
                 sizes="(max-width: 1024px) 100vw, 420px"
                 src="/stock/harvest-crate.jpg"
               />
-              <div className="absolute inset-0 bg-[rgba(8,46,38,0.28)]" />
+              <div className="absolute inset-0 bg-[rgba(18,61,50,0.18)]" />
               <span className="absolute left-5 top-5 text-sm font-semibold text-[var(--inverse)]">
                 {siteContent.support.eyebrow}
               </span>
@@ -430,7 +427,7 @@ function Welcome({
               </ul>
               <form className="mt-6 border-t border-[var(--line)] pt-5">
                 <div>
-                  <span className="text-xs font-semibold text-[var(--moss)]">{siteContent.login.panelEyebrow}</span>
+                  <span className="text-xs font-semibold text-[var(--clay)]">{siteContent.login.panelEyebrow}</span>
                   <h4 className="mt-2 font-sans text-xl font-semibold leading-tight text-[var(--ink)]">{siteContent.login.panelTitle}</h4>
                 </div>
                 <div className="mt-4 grid gap-4">
@@ -492,7 +489,7 @@ function Welcome({
         </div>
       </section>
 
-      <footer className="section-bleed bg-[var(--deep-forest)] px-6 py-10 text-sm leading-7 text-[rgba(255,253,244,0.78)]">
+      <footer className="section-bleed border-t-4 border-[var(--clay)] bg-[var(--deep-forest)] px-6 py-10 text-sm leading-7 text-[rgba(255,253,244,0.78)]">
         <div className="mx-auto grid max-w-7xl gap-3">
           <p>{siteContent.footer.contact}</p>
           <p>{siteContent.footer.policy}</p>
@@ -503,12 +500,12 @@ function Welcome({
   );
 }
 
-function ProofPoint({ title, text }: { title: string; text: string }) {
+function TrustMini({ title, text }: { title: string; text: string }) {
   return (
-    <div className="border-l-[3px] border-[var(--clay)] pl-4">
-      <span className="text-sm font-semibold text-[var(--ink)]">{title}</span>
+    <article className="border-t border-[var(--clay)] bg-[rgba(254,250,224,0.72)] px-4 py-4">
+      <strong className="block text-sm font-semibold text-[var(--ink)]">{title}</strong>
       <p className="mt-2 text-sm leading-7 text-[var(--muted-ink)]">{text}</p>
-    </div>
+    </article>
   );
 }
 

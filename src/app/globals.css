@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f0e4;
+  --background: #fefae0;
   --foreground: #17312b;
-  --paper: #f4f0e4;
-  --paper-soft: #faf8ef;
-  --linen: #e8e1d0;
-  --surface: #faf8ef;
-  --surface-muted: #e8e1d0;
+  --paper: #fefae0;
+  --paper-soft: #fefae0;
+  --linen: #faedcd;
+  --surface: #fefae0;
+  --surface-muted: #e9edc9;
   --surface-strong: #dbe2d6;
   --border: rgba(23, 49, 43, 0.16);
   --evergreen: #123d32;
   --deep-forest: #082e26;
   --forest: #123d32;
   --moss: #6f7d4e;
-  --sage: #9db5b2;
-  --sky-muted: #9db5b2;
-  --clay: #a85f3d;
-  --ochre: #d2a84a;
+  --sage: #ccd5ae;
+  --pale-sage: #e9edc9;
+  --cream: #fefae0;
+  --wheat: #faedcd;
+  --sky-muted: #ccd5ae;
+  --clay: #d4a373;
+  --ochre: #d4a373;
   --ink: #17312b;
   --ink-soft: #5e665f;
   --muted-ink: #5e665f;
@@ -68,8 +71,8 @@ body::before {
 
 .bg-civic-field {
   background:
-    linear-gradient(180deg, rgba(250, 248, 239, 0.96), rgba(244, 240, 228, 0.94)),
-    repeating-linear-gradient(0deg, rgba(210, 168, 74, 0.04), rgba(210, 168, 74, 0.04) 1px, transparent 1px, transparent 28px);
+    linear-gradient(180deg, rgba(254, 250, 224, 0.96), rgba(250, 237, 205, 0.4)),
+    repeating-linear-gradient(0deg, rgba(212, 163, 115, 0.045), rgba(212, 163, 115, 0.045) 1px, transparent 1px, transparent 28px);
 }
 
 .bg-paper-panel {
@@ -79,7 +82,7 @@ body::before {
 
 .bg-ledger-panel {
   background:
-    linear-gradient(180deg, rgba(250, 248, 239, 0.98), rgba(244, 240, 228, 0.98)),
+    linear-gradient(180deg, rgba(254, 250, 224, 0.98), rgba(250, 237, 205, 0.78)),
     repeating-linear-gradient(0deg, rgba(23, 49, 43, 0.045), rgba(23, 49, 43, 0.045) 1px, transparent 1px, transparent 32px);
   box-shadow: var(--shadow-soft);
 }
