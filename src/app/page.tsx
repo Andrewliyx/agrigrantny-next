@@ -115,7 +115,9 @@ export default function Home() {
       <div className="min-h-screen bg-civic-field text-[var(--foreground)]">
         <div className="border-b border-[rgba(255,255,255,0.12)] bg-[var(--forest)] px-6 py-3 text-sm text-white">
           <div className="mx-auto grid max-w-7xl grid-cols-3 gap-4 max-md:grid-cols-1">
-            <span className="font-semibold uppercase tracking-[0.12em]">{siteContent.disclosureBar.text}</span>
+            <span className="font-semibold uppercase tracking-[0.12em] text-white/0" aria-hidden="true">
+              {siteContent.disclosureBar.text}
+            </span>
             <span className="text-white/85">{siteContent.disclosureBar.meta}</span>
             <span className="text-white/75 md:text-right">{siteContent.disclosureBar.review}</span>
           </div>
@@ -260,13 +262,13 @@ function Welcome({
       <section className="section-bleed grid grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] border-b border-[var(--line)] bg-[var(--paper)] max-[900px]:grid-cols-1">
         <div className="px-8 py-12 lg:px-12 lg:py-14">
           <div className="max-w-[42.5rem]">
-            <span className="inline-flex border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-2 text-[0.72rem] font-semibold text-[var(--evergreen)]">
+            <span className="inline-flex border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-2 text-[0.66rem] font-semibold text-[var(--evergreen)]">
               {siteContent.hero.eyebrow}
             </span>
-            <h2 className="mt-5 max-w-[680px] text-[clamp(2.3rem,4.3vw,4rem)] leading-[0.94] tracking-[-0.035em] text-[var(--evergreen)]">
+            <h2 className="mt-5 max-w-[640px] text-[clamp(1.95rem,3.7vw,3.35rem)] leading-[0.95] tracking-[-0.03em] text-[var(--evergreen)]">
               {siteContent.hero.title}
             </h2>
-            <p className="mt-5 max-w-[40rem] text-[0.98rem] leading-7 text-[var(--muted-ink)]">{siteContent.hero.body}</p>
+            <p className="mt-5 max-w-[38rem] text-[0.88rem] leading-6 text-[var(--muted-ink)]">{siteContent.hero.body}</p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a className="bg-[var(--evergreen)] px-5 py-3 text-sm font-semibold text-[var(--inverse)] transition hover:bg-[var(--clay)]" href="#login">
                 {siteContent.hero.primaryCta}
@@ -278,7 +280,7 @@ function Welcome({
                 {siteContent.hero.secondaryCta}
               </a>
             </div>
-            <div className="mt-6 border-t border-[var(--clay)] pt-4 text-[0.9rem] leading-6 text-[var(--muted-ink)]">
+            <div className="mt-6 border-t border-[var(--clay)] pt-4 text-[0.8rem] leading-5 text-[var(--muted-ink)]">
               {siteContent.hero.note}
             </div>
           </div>
@@ -295,24 +297,24 @@ function Welcome({
           />
           <div className="absolute inset-0 bg-[rgba(18,61,50,0.18)]" />
           <div className="absolute left-6 top-6 max-w-[16rem] border border-[rgba(254,250,224,0.58)] bg-[rgba(18,61,50,0.72)] p-3 text-[var(--inverse)] md:left-8 md:top-8">
-            <span className="text-[0.7rem] font-semibold text-[var(--pale-sage)]">
+            <span className="text-[0.62rem] font-semibold text-[var(--pale-sage)]">
               {siteContent.hero.image.label}
             </span>
-            <p className="mt-1 text-[0.9rem] font-semibold leading-5">{siteContent.hero.image.title}</p>
-            <p className="mt-2 text-[0.84rem] leading-5 text-white/84">{siteContent.hero.image.note}</p>
+            <p className="mt-1 text-[0.8rem] font-semibold leading-5">{siteContent.hero.image.title}</p>
+            <p className="mt-2 text-[0.76rem] leading-5 text-white/84">{siteContent.hero.image.note}</p>
           </div>
         </div>
       </section>
 
       <section className="section-bleed bg-[var(--pale-sage)] px-6 py-14" id="workflow">
         <div className="mx-auto max-w-7xl">
-          <span className="text-[0.84rem] font-semibold text-[var(--clay)]">{siteContent.workflow.eyebrow}</span>
-          <h3 className="mt-3 max-w-4xl font-sans text-[clamp(1.65rem,2.4vw,2.2rem)] font-semibold leading-tight text-[var(--ink)]">
+          <span className="text-[0.76rem] font-semibold text-[var(--clay)]">{siteContent.workflow.eyebrow}</span>
+          <h3 className="mt-3 max-w-4xl font-sans text-[clamp(1.45rem,2vw,1.85rem)] font-semibold leading-tight text-[var(--ink)]">
             {siteContent.workflow.title}
           </h3>
           <div className="mt-8 grid grid-cols-[minmax(240px,0.55fr)_minmax(0,1.45fr)] gap-8 max-lg:grid-cols-1">
             <div className="border-t border-[var(--ochre)] pt-4">
-              <p className="max-w-md text-[0.92rem] leading-6 text-[var(--muted-ink)]">
+              <p className="max-w-md text-[0.84rem] leading-5 text-[var(--muted-ink)]">
                 AgriGrant NY turns scattered public program pages into a clearer shortlist and next-step checklist.
               </p>
             </div>
@@ -332,11 +334,11 @@ function Welcome({
                 {index < siteContent.workflow.steps.length - 1 && (
                   <div className="absolute left-12 right-[-2rem] top-6 h-[2px] bg-[var(--ochre)] max-xl:hidden" />
                 )}
-                <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[var(--clay)] bg-[var(--cream)] text-base font-bold text-[var(--evergreen)]">
+                <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--clay)] bg-[var(--cream)] text-[0.92rem] font-bold text-[var(--evergreen)]">
                   {step.number}
                 </div>
-                <h4 className="mt-5 font-sans text-[1.08rem] font-semibold leading-tight text-[var(--ink)]">{step.title}</h4>
-                <p className="mt-3 text-[0.94rem] leading-6 text-[var(--muted-ink)]">{step.text}</p>
+                <h4 className="mt-5 font-sans text-[0.96rem] font-semibold leading-tight text-[var(--ink)]">{step.title}</h4>
+                <p className="mt-3 text-[0.84rem] leading-5 text-[var(--muted-ink)]">{step.text}</p>
               </article>
             ))}
           </div>
@@ -347,19 +349,19 @@ function Welcome({
         <div className="mx-auto grid max-w-7xl gap-8">
           <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] gap-10 max-lg:grid-cols-1">
             <div>
-            <span className="text-[0.84rem] font-semibold text-[var(--clay)]">{siteContent.example.eyebrow}</span>
-            <h3 className="mt-3 max-w-3xl font-sans text-[clamp(1.65rem,2.4vw,2.2rem)] font-semibold leading-tight text-[var(--ink)]">
+            <span className="text-[0.76rem] font-semibold text-[var(--clay)]">{siteContent.example.eyebrow}</span>
+            <h3 className="mt-3 max-w-3xl font-sans text-[clamp(1.45rem,2vw,1.85rem)] font-semibold leading-tight text-[var(--ink)]">
               {siteContent.example.title}
             </h3>
-            <p className="mt-4 max-w-3xl text-[0.96rem] leading-7 text-[var(--muted-ink)]">{siteContent.example.body}</p>
+            <p className="mt-4 max-w-3xl text-[0.86rem] leading-6 text-[var(--muted-ink)]">{siteContent.example.body}</p>
             <div className="mt-6 max-w-[40rem]">
               <ExamplePreview />
             </div>
           </div>
             <aside className="self-start border border-[rgba(212,163,115,0.55)] bg-[var(--cream)] p-6">
               <div className="border-l-[3px] border-[var(--clay)] pl-4">
-                <span className="text-[0.84rem] font-semibold text-[var(--clay)]">What a result should make clear</span>
-                <ul className="mt-4 grid gap-4 text-[0.92rem] leading-6 text-[var(--muted-ink)]">
+                <span className="text-[0.76rem] font-semibold text-[var(--clay)]">What a result should make clear</span>
+                <ul className="mt-4 grid gap-4 text-[0.84rem] leading-5 text-[var(--muted-ink)]">
                   <li>Why the program may fit the farm profile</li>
                   <li>What information still needs checking</li>
                   <li>Which documents may be needed next</li>
@@ -376,14 +378,14 @@ function Welcome({
         </div>
       </section>
 
-      <section className="section-bleed bg-[var(--paper)] px-6 py-14" id="about">
+      <section className="section-bleed bg-white px-6 py-14" id="about">
         <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_minmax(320px,420px)] gap-10 max-lg:grid-cols-1">
           <div>
-            <span className="text-[0.84rem] font-semibold text-[var(--clay)]">{siteContent.about.eyebrow}</span>
-            <h3 className="mt-3 max-w-4xl font-sans text-[clamp(1.7rem,2.5vw,2.3rem)] font-semibold leading-tight text-[var(--ink)]">
+            <span className="text-[0.76rem] font-semibold text-[var(--clay)]">{siteContent.about.eyebrow}</span>
+            <h3 className="mt-3 max-w-4xl font-sans text-[clamp(1.5rem,2.1vw,1.95rem)] font-semibold leading-tight text-[var(--ink)]">
               {siteContent.about.title}
             </h3>
-            <p className="mt-4 max-w-3xl text-[0.96rem] leading-7 text-[var(--muted-ink)]">
+            <p className="mt-4 max-w-3xl text-[0.86rem] leading-6 text-[var(--muted-ink)]">
               {siteContent.about.body}
             </p>
             <div className="mt-8 grid grid-cols-2 gap-6 max-lg:grid-cols-1">
@@ -396,7 +398,7 @@ function Welcome({
                 />
               ))}
             </div>
-            <p className="mt-8 border-t border-[var(--line)] pt-5 text-sm font-semibold leading-6 text-[var(--muted-ink)]">
+            <p className="mt-8 border-t border-[var(--line)] pt-5 text-[0.82rem] font-semibold leading-5 text-[var(--muted-ink)]">
               {siteContent.about.funding}
             </p>
           </div>
@@ -415,15 +417,15 @@ function Welcome({
               </span>
             </div>
             <div className="p-6">
-              <h4 className="font-sans text-[1.4rem] font-semibold leading-tight text-[var(--ink)]">{siteContent.support.title}</h4>
-              <p className="mt-4 text-[0.94rem] leading-6 text-[var(--muted-ink)]">{siteContent.support.body}</p>
+              <h4 className="font-sans text-[1.2rem] font-semibold leading-tight text-[var(--ink)]">{siteContent.support.title}</h4>
+              <p className="mt-4 text-[0.84rem] leading-5 text-[var(--muted-ink)]">{siteContent.support.body}</p>
               <ul className="mt-5 grid gap-3">
                 {siteContent.support.items.map((item) => (
                   <li className="flex items-start gap-3" key={item}>
                     <span className="mt-1 flex h-5 w-5 items-center justify-center border border-[var(--line)] bg-[var(--paper-soft)] text-xs font-bold text-[var(--evergreen)]">
                       •
                     </span>
-                    <span className="text-[0.92rem] leading-6 text-[var(--muted-ink)]">{item}</span>
+                    <span className="text-[0.82rem] leading-5 text-[var(--muted-ink)]">{item}</span>
                   </li>
                 ))}
               </ul>
