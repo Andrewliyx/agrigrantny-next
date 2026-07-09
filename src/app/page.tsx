@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { siteContent } from "@/content/siteContent";
 
 type View = "dashboard" | "profile" | "grants" | "applications" | "assistant";
@@ -156,7 +156,7 @@ export default function Home() {
           </div>
         </header>
 
-        <main className="mx-auto max-w-7xl py-8">
+        <main className="mx-auto max-w-7xl py-0">
           <Welcome
             enterDashboard={enterDashboard}
             login={login}
@@ -257,10 +257,39 @@ function Welcome({
   setLogin: (login: { email: string; password: string }) => void;
   setLoginError: (message: string) => void;
 }) {
+  const workflowRef = useRef<HTMLElement | null>(null);
+  const [workflowProgress, setWorkflowProgress] = useState(0);
+
+  useEffect(() => {
+    function updateWorkflowProgress() {
+      const node = workflowRef.current;
+
+      if (!node) return;
+
+      const rect = node.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const start = viewportHeight * 0.22;
+      const end = rect.height - viewportHeight * 0.32;
+      const traveled = start - rect.top;
+      const progress = end <= 0 ? 0 : Math.max(0, Math.min(1, traveled / end));
+
+      setWorkflowProgress(progress);
+    }
+
+    updateWorkflowProgress();
+    window.addEventListener("scroll", updateWorkflowProgress, { passive: true });
+    window.addEventListener("resize", updateWorkflowProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateWorkflowProgress);
+      window.removeEventListener("resize", updateWorkflowProgress);
+    };
+  }, []);
+
   return (
     <div className="grid gap-0">
-      <section className="section-bleed grid grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] border-b border-[var(--line)] bg-[var(--paper)] max-[900px]:grid-cols-1">
-        <div className="px-8 py-12 lg:px-12 lg:py-14">
+      <section className="section-bleed grid min-h-[calc(100vh-9rem)] grid-cols-[minmax(0,0.98fr)_minmax(0,1.02fr)] border-b border-[var(--line)] bg-[var(--paper)] max-[900px]:min-h-0 max-[900px]:grid-cols-1">
+        <div className="flex items-center px-8 py-12 lg:px-12 lg:py-14">
           <div className="max-w-[42.5rem]">
             <span className="inline-flex border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-2 text-[0.66rem] font-semibold text-[var(--evergreen)]">
               {siteContent.hero.eyebrow}
@@ -283,6 +312,9 @@ function Welcome({
             <div className="mt-6 border-t border-[var(--clay)] pt-4 text-[0.8rem] leading-5 text-[var(--muted-ink)]">
               {siteContent.hero.note}
             </div>
+            <p className="mt-4 text-[0.8rem] leading-5 text-[var(--muted-ink)]">
+              Contact: <a className="font-semibold text-[var(--evergreen)] underline decoration-[var(--clay)] underline-offset-3" href="mailto:contact@agrigrantny.com">contact@agrigrantny.com</a>
+            </p>
           </div>
         </div>
 
@@ -306,7 +338,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="section-bleed bg-[var(--pale-sage)] px-6 py-14" id="workflow">
+      <section className="section-bleed bg-[var(--pale-sage)] px-6 py-14" id="workflow" ref={workflowRef}>
         <div className="mx-auto max-w-7xl">
           <span className="text-[0.76rem] font-semibold text-[var(--clay)]">{siteContent.workflow.eyebrow}</span>
           <h3 className="mt-3 max-w-4xl font-sans text-[clamp(1.45rem,2vw,1.85rem)] font-semibold leading-tight text-[var(--ink)]">
@@ -332,9 +364,30 @@ function Welcome({
             {siteContent.workflow.steps.map((step, index) => (
               <article className="relative" key={step.number}>
                 {index < siteContent.workflow.steps.length - 1 && (
-                  <div className="absolute left-12 right-[-2rem] top-6 h-[2px] bg-[var(--ochre)] max-xl:hidden" />
+                  <>
+                    <div className="absolute left-11 right-[-2rem] top-[22px] h-[2px] bg-[rgba(212,163,115,0.28)] max-xl:hidden" />
+                    <div
+                      className="absolute left-11 top-[22px] h-[2px] bg-[var(--clay)] transition-[width] duration-200 ease-out max-xl:hidden"
+                      style={{
+                        width: `calc((100% + 2rem - 2.75rem) * ${Math.max(0, Math.min(1, workflowProgress * (siteContent.workflow.steps.length - 1) - index))})`,
+                      }}
+                    />
+                  </>
                 )}
-                <div className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--clay)] bg-[var(--cream)] text-[0.92rem] font-bold text-[var(--evergreen)]">
+                <div
+                  className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border text-[0.92rem] font-bold transition-all duration-200"
+                  style={{
+                    backgroundColor:
+                      workflowProgress * (siteContent.workflow.steps.length - 1) >= index ? "var(--clay)" : "var(--cream)",
+                    borderColor: "var(--clay)",
+                    color:
+                      workflowProgress * (siteContent.workflow.steps.length - 1) >= index ? "var(--inverse)" : "var(--evergreen)",
+                    boxShadow:
+                      workflowProgress * (siteContent.workflow.steps.length - 1) >= index
+                        ? "0 0 0 4px rgba(212, 163, 115, 0.18)"
+                        : "none",
+                  }}
+                >
                   {step.number}
                 </div>
                 <h4 className="mt-5 font-sans text-[0.96rem] font-semibold leading-tight text-[var(--ink)]">{step.title}</h4>
