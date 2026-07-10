@@ -365,9 +365,9 @@ function Welcome({
               <article className="relative" key={step.number}>
                 {index < siteContent.workflow.steps.length - 1 && (
                   <>
-                  <div className="absolute left-11 right-[-2rem] top-[22px] h-[2px] bg-[rgba(0,0,0,0.2)] max-xl:hidden" />
+                  <div className="absolute left-11 right-[-2rem] top-[22px] h-[2px] bg-[rgba(212,163,115,0.32)] max-xl:hidden" />
                   <div
-                      className="absolute left-11 top-[22px] h-[2px] bg-black transition-[width] duration-200 ease-out max-xl:hidden"
+                      className="absolute left-11 top-[22px] h-[2px] bg-[var(--clay)] transition-[width] duration-200 ease-out max-xl:hidden"
                       style={{
                         width: `calc((100% + 2rem - 2.75rem) * ${Math.max(0, Math.min(1, workflowProgress * (siteContent.workflow.steps.length - 1) - index))})`,
                       }}
@@ -421,6 +421,20 @@ function Welcome({
                   <li>Where to continue on the official source page</li>
                 </ul>
               </div>
+              <figure className="mt-6 border-t border-black pt-5">
+                <div className="relative aspect-[4/3] overflow-hidden border border-black">
+                  <Image
+                    alt="Farmer interacting with an AI grant assistant on a laptop during application preparation"
+                    className="object-cover"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    src="/ai-agent-demo.png"
+                  />
+                </div>
+                <figcaption className="mt-3 text-[0.78rem] leading-5 text-[var(--muted-ink)]">
+                  A future assistant could help compare source-backed options, flag eligibility gaps, and organize next documents before a farmer leaves for the official application.
+                </figcaption>
+              </figure>
             </aside>
           </div>
           <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
