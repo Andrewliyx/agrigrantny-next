@@ -625,140 +625,149 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
   const stageThree = Math.max(0, Math.min(1, (progress - 0.38) * 1.75));
 
   return (
-    <div className="overflow-hidden border border-black bg-[#0b0d10] text-[#f5f7fa] shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
-      <div className="border-b border-[rgba(255,255,255,0.14)] bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] px-3 py-2">
-        <div className="flex items-center justify-between gap-3">
+    <div className="overflow-hidden border border-black bg-white text-[var(--ink)] shadow-[0_18px_36px_rgba(0,0,0,0.1)]">
+      <div className="border-b border-black bg-[linear-gradient(180deg,rgba(254,250,224,0.65),rgba(255,255,255,0.95))] px-4 py-3">
+        <div className="flex items-start justify-between gap-3">
           <div>
-            <strong className="block font-mono text-[0.73rem] font-semibold uppercase tracking-[0.16em] text-[#f7fafc]">
-              Grant Assistant Workspace
-            </strong>
-            <span className="block text-[0.62rem] text-[#98a2b3]">Live product preview</span>
+            <strong className="block text-[0.84rem] font-semibold text-[var(--ink)]">Grant assistant workspace</strong>
+            <span className="block text-[0.68rem] text-[var(--muted-ink)]">Interactive product preview</span>
           </div>
-          <span className="border border-[rgba(255,255,255,0.16)] bg-[rgba(255,255,255,0.04)] px-2 py-1 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-[#cfd6df]">
-            local draft
+          <span className="rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold text-[var(--ink)] shadow-[0_2px_0_rgba(0,0,0,0.12)]">
+            Local draft
           </span>
         </div>
+
         <div
-          className="mt-2 flex flex-wrap gap-1.5 transition-all duration-400"
+          className="mt-3 flex flex-wrap gap-2 transition-all duration-400"
           style={{ opacity: stageOne, transform: `translateY(${10 - stageOne * 10}px)` }}
         >
-          <span className="border border-[rgba(255,255,255,0.18)] bg-[rgba(255,255,255,0.08)] px-2 py-1 font-mono text-[0.56rem] text-[#f5f7fa]">
+          <span className="cursor-default rounded-full border border-black bg-black px-3 py-1 text-[0.62rem] font-semibold text-white shadow-[0_2px_0_rgba(0,0,0,0.16)]">
             Match brief
           </span>
-          <span className="border border-[rgba(255,255,255,0.1)] px-2 py-1 font-mono text-[0.56rem] text-[#7f8b99]">
+          <span className="cursor-default rounded-full border border-black bg-white px-3 py-1 text-[0.62rem] font-semibold text-[var(--muted-ink)] shadow-[0_2px_0_rgba(0,0,0,0.08)]">
             Readiness plan
           </span>
-          <span className="border border-[rgba(255,255,255,0.1)] px-2 py-1 font-mono text-[0.56rem] text-[#7f8b99]">
-            Follow-up
+          <span className="cursor-default rounded-full border border-black bg-white px-3 py-1 text-[0.62rem] font-semibold text-[var(--muted-ink)] shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+            Follow-up questions
           </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-[minmax(0,1fr)_154px] max-sm:grid-cols-1">
-        <div className="border-r border-[rgba(255,255,255,0.12)] p-3 max-sm:border-r-0 max-sm:border-b max-sm:border-[rgba(255,255,255,0.12)]">
-          <div
-            className="grid gap-2 rounded-[0.7rem] border border-[rgba(255,255,255,0.12)] bg-[rgba(255,255,255,0.03)] p-2.5 transition-all duration-400"
-            style={{ opacity: stageOne, transform: `translateY(${14 - stageOne * 14}px)` }}
-          >
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-[0.56rem] uppercase tracking-[0.16em] text-[#8f9aaa]">Focus grant</span>
-              <span className="font-mono text-[0.56rem] text-[#8f9aaa]">auto</span>
-            </div>
-            <div className="flex items-center justify-between rounded-md border border-[rgba(255,255,255,0.12)] bg-[#11151a] px-2.5 py-2 text-[0.64rem] text-[#f5f7fa]">
+      <div className="p-4">
+        <div
+          className="grid gap-3 transition-all duration-400"
+          style={{ opacity: stageOne, transform: `translateY(${14 - stageOne * 14}px)` }}
+        >
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Focus grant</span>
+            <div className="inline-flex min-w-[16rem] cursor-default items-center justify-between rounded-full border border-black bg-[var(--paper-soft)] px-3 py-2 text-[0.68rem] shadow-[0_2px_0_rgba(0,0,0,0.08)]">
               <span>Tompkins County SWCD</span>
-              <span className="font-mono text-[#7f8b99]">⌄</span>
+              <span className="text-[0.72rem]">⌄</span>
             </div>
+            <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.6rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+              Source-backed
+            </span>
           </div>
 
           <div
-            className="mt-2 rounded-[0.7rem] border border-[rgba(255,255,255,0.12)] bg-[#0f1318] p-2.5 transition-all duration-400"
-            style={{ opacity: stageTwo, transform: `translateY(${14 - stageTwo * 14}px)` }}
+            className="grid gap-3 rounded-[1rem] border border-black bg-[var(--paper-soft)] p-3 transition-all duration-400"
+            style={{ opacity: stageTwo, transform: `translateY(${12 - stageTwo * 12}px)` }}
           >
-            <div className="flex items-center justify-between gap-2">
-              <strong className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-[#dfe6ee]">Prompt to GPT</strong>
-              <span className="text-[0.56rem] text-[#7f8b99]">verified context</span>
-            </div>
-            <p className="mt-2 text-[0.64rem] leading-4 text-[#a7b0bc]">
-              Rank top matches, explain fit, surface missing facts, and keep every recommendation tied to official source records.
-            </p>
-            <div className="mt-2 rounded-md border border-[rgba(255,255,255,0.08)] bg-black/30 p-2 font-mono text-[0.56rem] leading-4 text-[#7fe3c5]">
-              {`{ county: "Tompkins", top_matches: 3, source_mode: "verified" }`}
-            </div>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              <span className="border border-[rgba(255,255,255,0.12)] px-2 py-1 font-mono text-[0.54rem] text-[#d8dee7]">copy prompt</span>
-              <span className="border border-[rgba(255,255,255,0.12)] px-2 py-1 font-mono text-[0.54rem] text-[#d8dee7]">copy context</span>
-              <span className="border border-[rgba(127,227,197,0.28)] bg-[rgba(127,227,197,0.08)] px-2 py-1 font-mono text-[0.54rem] text-[#7fe3c5]">
-                hosted route offline
-              </span>
-            </div>
-          </div>
-
-          <div
-            className="mt-2 rounded-[0.8rem] border border-[rgba(127,227,197,0.18)] bg-[linear-gradient(180deg,rgba(16,24,31,0.98),rgba(8,11,15,0.98))] p-2.5 transition-all duration-500"
-            style={{ opacity: stageThree, transform: `translateY(${16 - stageThree * 16}px)` }}
-          >
-            <div className="flex items-start justify-between gap-2">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <div>
-                <strong className="block font-mono text-[0.6rem] uppercase tracking-[0.14em] text-[#dfe6ee]">Assistant response</strong>
-                <span className="block text-[0.58rem] text-[#7f8b99]">Local fallback draft</span>
+                <strong className="block text-[0.72rem] font-semibold text-[var(--ink)]">Assistant chat</strong>
+                <span className="block text-[0.64rem] text-[var(--muted-ink)]">The site can package farm context and answer inside the workflow.</span>
               </div>
-              <span className="rounded-full border border-[rgba(127,227,197,0.28)] bg-[rgba(127,227,197,0.08)] px-2 py-1 font-mono text-[0.52rem] uppercase tracking-[0.14em] text-[#7fe3c5]">
-                active
-              </span>
-            </div>
-            <div className="mt-2 grid gap-2 md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
-              <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] p-2">
-                <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Best current fit</span>
-                <strong className="mt-1 block text-[0.67rem] leading-4 text-[#f5f7fa]">Tompkins County Soil and Water Conservation District Programs</strong>
-                <p className="mt-1 text-[0.6rem] leading-4 text-[#a7b0bc]">County-specific, source-backed, and already aligned to the current farm profile.</p>
-              </div>
-              <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] p-2">
-                <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Next actions</span>
-                <ul className="mt-1 grid gap-1 text-[0.6rem] leading-4 text-[#d8dee7]">
-                  <li>Open top result</li>
-                  <li>Confirm deadline</li>
-                  <li>Save to tracker</li>
-                </ul>
+              <div className="flex flex-wrap gap-2">
+                <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                  Copy context
+                </span>
+                <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                  Open source links
+                </span>
               </div>
             </div>
-            <div className="mt-2 grid gap-2 sm:grid-cols-2">
-              <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] p-2">
-                <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Follow-up</span>
-                <p className="mt-1 text-[0.6rem] leading-4 text-[#a7b0bc]">Project scope, budgets, and planning docs still determine the best route.</p>
-              </div>
-              <div className="rounded-md border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] p-2">
-                <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Sources</span>
-                <p className="mt-1 text-[0.6rem] leading-4 text-[#a7b0bc]">tompkinscountyny.gov • apps.cio.ny.gov/apps/cfa</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div className="bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))] p-3">
-          <div
-            className="grid gap-2 transition-all duration-500"
-            style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
-          >
-            <div className="rounded-md border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] p-2">
-              <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Agent context</span>
-              <ul className="mt-1 grid gap-1 text-[0.58rem] leading-4 text-[#d8dee7]">
-                <li>Profile complete</li>
-                <li>Match explanations</li>
-                <li>Source records</li>
-              </ul>
-            </div>
-            <div className="rounded-md border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] p-2">
-              <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Current focus</span>
-              <p className="mt-1 text-[0.58rem] leading-4 text-[#d8dee7]">Tompkins County SWCD</p>
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="rounded-md border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] p-2">
-                <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Saved</span>
-                <p className="mt-1 text-[0.75rem] font-semibold text-[#f5f7fa]">0</p>
+            <div className="grid gap-2 rounded-[0.9rem] border border-black bg-white p-3 shadow-[inset_0_1px_0_rgba(0,0,0,0.04)]">
+              <div className="flex justify-end">
+                <div className="max-w-[80%] rounded-[1rem] rounded-br-sm border border-black bg-[#f4f1ea] px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
+                  <p className="text-[0.66rem] leading-4 text-[var(--ink)]">
+                    Which grant should I start with for a Tompkins County farm focused on conservation work?
+                  </p>
+                </div>
               </div>
-              <div className="rounded-md border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] p-2">
-                <span className="block font-mono text-[0.54rem] uppercase tracking-[0.14em] text-[#7f8b99]">Rank</span>
-                <p className="mt-1 text-[0.75rem] font-semibold text-[#7fe3c5]">#1</p>
+
+              <div
+                className="flex justify-start transition-all duration-500"
+                style={{ opacity: stageThree, transform: `translateY(${10 - stageThree * 10}px)` }}
+              >
+                <div className="max-w-[88%] rounded-[1rem] rounded-bl-sm border border-black bg-[#fffdf6] px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
+                  <div className="flex items-center justify-between gap-3">
+                    <strong className="text-[0.66rem] font-semibold text-[var(--ink)]">Assistant</strong>
+                    <span className="rounded-full border border-black bg-white px-2 py-0.5 text-[0.54rem] font-semibold text-[var(--muted-ink)]">
+                      Draft answer
+                    </span>
+                  </div>
+                  <p className="mt-2 text-[0.66rem] leading-4 text-[var(--muted-ink)]">
+                    Start with Tompkins County Soil and Water Conservation District Programs. It is county-specific, fits the current profile,
+                    and points to official next steps before a full application decision.
+                  </p>
+                  <div className="mt-2 grid gap-2 sm:grid-cols-3">
+                    <div className="rounded-[0.8rem] border border-black bg-white px-2.5 py-2">
+                      <span className="block text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted-ink)]">Best fit</span>
+                      <p className="mt-1 text-[0.6rem] leading-4">Tompkins County SWCD</p>
+                    </div>
+                    <div className="rounded-[0.8rem] border border-black bg-white px-2.5 py-2">
+                      <span className="block text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted-ink)]">Need to confirm</span>
+                      <p className="mt-1 text-[0.6rem] leading-4">Deadline and applicant route</p>
+                    </div>
+                    <div className="rounded-[0.8rem] border border-black bg-white px-2.5 py-2">
+                      <span className="block text-[0.54rem] font-semibold uppercase tracking-[0.06em] text-[var(--muted-ink)]">Official sources</span>
+                      <p className="mt-1 text-[0.6rem] leading-4">2 linked records</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="grid gap-2 transition-all duration-500"
+                style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
+              >
+                <div className="flex flex-wrap gap-2">
+                  <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                    Why this match
+                  </span>
+                  <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                    Required documents
+                  </span>
+                  <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                    Continue to source
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-2 rounded-full border border-black bg-white px-3 py-2 shadow-[0_3px_0_rgba(0,0,0,0.08)]">
+                  <span className="text-[0.66rem] text-[var(--muted-ink)]">
+                    Ask about deadlines, documents, or eligibility gaps...
+                  </span>
+                  <span className="ml-auto inline-flex h-7 w-7 items-center justify-center rounded-full border border-black bg-black text-[0.68rem] text-white">
+                    →
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="grid gap-2 text-[0.62rem] leading-4 text-[var(--muted-ink)] transition-all duration-500 sm:grid-cols-3"
+              style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
+            >
+              <div className="rounded-[0.85rem] border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
+                Profile complete and ready to reuse
+              </div>
+              <div className="rounded-[0.85rem] border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
+                Match explanations stay visible in the reply
+              </div>
+              <div className="rounded-[0.85rem] border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
+                Official sources remain one click away
               </div>
             </div>
           </div>
