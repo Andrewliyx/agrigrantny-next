@@ -258,7 +258,9 @@ function Welcome({
   setLoginError: (message: string) => void;
 }) {
   const workflowRef = useRef<HTMLElement | null>(null);
+  const exampleRef = useRef<HTMLElement | null>(null);
   const [workflowProgress, setWorkflowProgress] = useState(0);
+  const [exampleProgress, setExampleProgress] = useState(0);
 
   useEffect(() => {
     function updateWorkflowProgress() {
@@ -283,6 +285,33 @@ function Welcome({
     return () => {
       window.removeEventListener("scroll", updateWorkflowProgress);
       window.removeEventListener("resize", updateWorkflowProgress);
+    };
+  }, []);
+
+  useEffect(() => {
+    function updateExampleProgress() {
+      const node = exampleRef.current;
+
+      if (!node) return;
+
+      const rect = node.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const start = viewportHeight * 0.82;
+      const end = viewportHeight * 0.22;
+      const traveled = start - rect.top;
+      const total = start - end;
+      const progress = total <= 0 ? 0 : Math.max(0, Math.min(1, traveled / total));
+
+      setExampleProgress(progress);
+    }
+
+    updateExampleProgress();
+    window.addEventListener("scroll", updateExampleProgress, { passive: true });
+    window.addEventListener("resize", updateExampleProgress);
+
+    return () => {
+      window.removeEventListener("scroll", updateExampleProgress);
+      window.removeEventListener("resize", updateExampleProgress);
     };
   }, []);
 
@@ -398,7 +427,7 @@ function Welcome({
         </div>
       </section>
 
-      <section className="section-bleed border-t border-black bg-[var(--paper)] px-6 py-14" id="example">
+      <section className="section-bleed border-t border-black bg-[var(--paper)] px-6 py-14" id="example" ref={exampleRef}>
         <div className="mx-auto grid max-w-7xl gap-8">
           <div className="grid grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] gap-10 max-lg:grid-cols-1">
             <div>
@@ -407,11 +436,23 @@ function Welcome({
               {siteContent.example.title}
             </h3>
             <p className="mt-4 max-w-3xl text-[0.86rem] leading-6 text-[var(--muted-ink)]">{siteContent.example.body}</p>
-            <div className="mt-6 max-w-[40rem]">
+            <div
+              className="mt-6 max-w-[40rem] transition-all duration-500"
+              style={{
+                opacity: Math.max(0, Math.min(1, exampleProgress * 1.2)),
+                transform: `translateY(${24 - Math.min(exampleProgress, 1) * 24}px)`,
+              }}
+            >
               <ExamplePreview />
             </div>
           </div>
-            <aside className="self-start border border-black bg-[var(--cream)] p-6">
+            <aside
+              className="self-start border border-black bg-[var(--cream)] p-6 transition-all duration-500"
+              style={{
+                opacity: Math.max(0, Math.min(1, (exampleProgress - 0.18) * 1.35)),
+                transform: `translateY(${24 - Math.max(0, Math.min(1, (exampleProgress - 0.18) * 1.35)) * 24}px)`,
+              }}
+            >
               <div className="border-l-[3px] border-black pl-4">
                 <span className="text-[0.76rem] font-semibold text-[var(--clay)]">What a result should make clear</span>
                 <ul className="mt-4 grid gap-4 text-[0.84rem] leading-5 text-[var(--muted-ink)]">
@@ -422,14 +463,20 @@ function Welcome({
                 </ul>
               </div>
               <div className="mt-6 border-t border-black pt-5">
-                <AgentWorkbenchDemo />
+                <AgentWorkbenchDemo progress={exampleProgress} />
                 <p className="mt-3 text-[0.78rem] leading-5 text-[var(--muted-ink)]">
                   A future assistant could help compare source-backed options, flag eligibility gaps, and organize next documents before a farmer leaves for the official application.
                 </p>
               </div>
             </aside>
           </div>
-          <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
+          <div
+            className="grid grid-cols-3 gap-4 transition-all duration-500 max-md:grid-cols-1"
+            style={{
+              opacity: Math.max(0, Math.min(1, (exampleProgress - 0.4) * 1.7)),
+              transform: `translateY(${18 - Math.max(0, Math.min(1, (exampleProgress - 0.4) * 1.7)) * 18}px)`,
+            }}
+          >
             <TrustMini text="Every match points back to a public program page." title="Source link visible" />
             <TrustMini text="Farmers can see when a record was last checked." title="Review timing shown" />
             <TrustMini text="The tool helps organize next steps before applying." title="Preparation first" />
@@ -572,44 +619,66 @@ function TrustMini({ title, text }: { title: string; text: string }) {
   );
 }
 
-function AgentWorkbenchDemo() {
+function AgentWorkbenchDemo({ progress }: { progress: number }) {
+  const stageOne = Math.max(0, Math.min(1, progress * 1.35));
+  const stageTwo = Math.max(0, Math.min(1, (progress - 0.18) * 1.55));
+  const stageThree = Math.max(0, Math.min(1, (progress - 0.38) * 1.75));
+
   return (
     <div className="border border-black bg-[var(--paper-soft)]">
       <div className="flex items-center justify-between border-b border-black bg-[rgba(0,0,0,0.04)] px-3 py-2">
         <div>
-          <strong className="block text-[0.78rem] font-semibold text-[var(--ink)]">Grant assistant</strong>
-          <span className="block text-[0.68rem] text-[var(--muted-ink)]">Interactive workbench preview</span>
+          <strong className="block text-[0.78rem] font-semibold text-[var(--ink)]">AI agent workspace</strong>
+          <span className="block text-[0.68rem] text-[var(--muted-ink)]">Future workflow preview</span>
         </div>
         <span className="border border-black px-2 py-1 font-mono text-[0.62rem] text-[var(--muted-ink)]">
-          LIVE TASK
+          TASK THREAD
         </span>
       </div>
 
-      <div className="grid grid-cols-[minmax(0,1.2fr)_150px] max-sm:grid-cols-1">
+      <div className="grid grid-cols-[minmax(0,1.1fr)_160px] max-sm:grid-cols-1">
         <div className="border-r border-black p-3 max-sm:border-r-0 max-sm:border-b">
           <div className="grid gap-3">
-            <div className="max-w-[84%] border border-black bg-[rgba(204,213,174,0.34)] px-3 py-2 text-[0.74rem] leading-5 text-[var(--ink)]">
-              Help me understand which irrigation grants fit a Tompkins County vegetable farm.
+            <div
+              className="max-w-[86%] border border-black bg-[rgba(0,0,0,0.03)] px-3 py-2 text-[0.72rem] leading-5 text-[var(--ink)] transition-all duration-400"
+              style={{ opacity: stageOne, transform: `translateY(${18 - stageOne * 18}px)` }}
+            >
+              Help me compare irrigation grants for a Tompkins County vegetable farm and show what I still need before applying.
             </div>
-            <div className="max-w-[92%] border border-black bg-white px-3 py-2 text-[0.72rem] leading-5 text-[var(--muted-ink)]">
-              I found three source-backed programs. Two look plausible now. One needs a conservation-plan check before it is worth pursuing.
+            <div
+              className="max-w-[92%] border border-black bg-white px-3 py-2 text-[0.72rem] leading-5 text-[var(--muted-ink)] transition-all duration-400"
+              style={{ opacity: stageTwo, transform: `translateY(${18 - stageTwo * 18}px)` }}
+            >
+              I can use your farm profile, saved grants, and source records to organize likely matches, open questions, and next documents.
             </div>
-            <div className="border border-black bg-[rgba(250,237,205,0.58)] p-3">
+            <div
+              className="border border-black bg-[rgba(0,0,0,0.035)] p-3 transition-all duration-500"
+              style={{ opacity: stageThree, transform: `translateY(${18 - stageThree * 18}px)` }}
+            >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <strong className="block text-[0.74rem] font-semibold text-[var(--ink)]">NYS SWCD Water Quality Improvement Project</strong>
-                  <span className="block text-[0.68rem] text-[var(--muted-ink)]">Source link visible • Reviewed June 2026</span>
+                  <strong className="block text-[0.74rem] font-semibold text-[var(--ink)]">Current task: irrigation planning grants</strong>
+                  <span className="block text-[0.68rem] text-[var(--muted-ink)]">Using profile, shortlist, checklist, and source records</span>
                 </div>
-                <span className="border border-black px-2 py-1 text-[0.62rem] font-semibold text-[var(--ink)]">MATCH</span>
+                <span className="border border-black px-2 py-1 text-[0.62rem] font-semibold text-[var(--ink)]">ACTIVE</span>
               </div>
-              <ul className="mt-3 grid gap-2 text-[0.7rem] leading-5 text-[var(--muted-ink)]">
-                <li>Water source details still needed</li>
-                <li>Conservation-plan status should be confirmed</li>
-                <li>Map of fields likely needed next</li>
-              </ul>
+              <div className="mt-3 grid gap-2">
+                <div className="border border-black bg-white p-2">
+                  <strong className="block text-[0.66rem] font-semibold text-[var(--ink)]">Top match</strong>
+                  <p className="mt-1 text-[0.66rem] leading-4 text-[var(--muted-ink)]">NYS SWCD Water Quality Improvement Project</p>
+                  <p className="mt-1 text-[0.62rem] leading-4 text-[var(--muted-ink)]">Source link visible • Reviewed June 2026</p>
+                </div>
+                <div className="border border-black bg-white p-2">
+                  <strong className="block text-[0.66rem] font-semibold text-[var(--ink)]">Eligibility gap</strong>
+                  <p className="mt-1 text-[0.66rem] leading-4 text-[var(--muted-ink)]">Water source details and conservation-plan status still need confirmation.</p>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center justify-between border border-black bg-white px-3 py-2">
-              <span className="text-[0.68rem] text-[var(--muted-ink)]">Ask a follow-up about eligibility gaps or documents</span>
+            <div
+              className="flex items-center justify-between border border-black bg-white px-3 py-2 transition-all duration-500"
+              style={{ opacity: stageThree, transform: `translateY(${18 - stageThree * 18}px)` }}
+            >
+              <span className="text-[0.68rem] text-[var(--muted-ink)]">Ask about deadlines, required files, or source links</span>
               <span className="font-mono text-[0.72rem] text-[var(--ink)]">→</span>
             </div>
           </div>
@@ -618,8 +687,13 @@ function AgentWorkbenchDemo() {
         <div className="p-3">
           <div className="grid gap-3">
             <div className="border border-black bg-white p-2">
-              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Eligibility gap</strong>
-              <p className="mt-2 text-[0.66rem] leading-4 text-[var(--muted-ink)]">Water-use estimate and plan status need review.</p>
+              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Agent context</strong>
+              <ul className="mt-2 grid gap-1 text-[0.64rem] leading-4 text-[var(--muted-ink)]">
+                <li>Farm profile</li>
+                <li>Saved grants</li>
+                <li>Checklist state</li>
+                <li>Source records</li>
+              </ul>
             </div>
             <div className="border border-black bg-white p-2">
               <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Next documents</strong>
@@ -630,8 +704,8 @@ function AgentWorkbenchDemo() {
               </ul>
             </div>
             <div className="border border-black bg-[rgba(0,0,0,0.04)] p-2">
-              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Official source</strong>
-              <p className="mt-2 text-[0.64rem] leading-4 text-[var(--muted-ink)]">Continue on the agency page after prep is complete.</p>
+              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Workflow state</strong>
+              <p className="mt-2 text-[0.64rem] leading-4 text-[var(--muted-ink)]">Preparing the farmer to continue on the official source page.</p>
             </div>
           </div>
         </div>
