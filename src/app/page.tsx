@@ -620,17 +620,39 @@ function TrustMini({ title, text }: { title: string; text: string }) {
 }
 
 function AgentWorkbenchDemo({ progress }: { progress: number }) {
+  const [activeTab, setActiveTab] = useState<"brief" | "plan" | "questions">("brief");
+  const [activeAction, setActiveAction] = useState<"prompt" | "context" | "response">("response");
   const stageOne = Math.max(0, Math.min(1, progress * 1.35));
   const stageTwo = Math.max(0, Math.min(1, (progress - 0.18) * 1.55));
   const stageThree = Math.max(0, Math.min(1, (progress - 0.38) * 1.75));
 
+  const tabContent = {
+    brief: {
+      label: "Match brief",
+      body: "Explain the best current grant fits using the structured profile and verified source-backed grant records.",
+      subcopy: "Rank the top opportunities, call out uncertainty, and keep every recommendation attached to official sources.",
+    },
+    plan: {
+      label: "Readiness plan",
+      body: "Show what the farmer needs before applying: deadline checks, county routing, and missing documents.",
+      subcopy: "The assistant should turn ranked matches into a short preparation sequence that feels actionable, not abstract.",
+    },
+    questions: {
+      label: "Follow-up questions",
+      body: "Ask only the minimum follow-up needed to resolve eligibility gaps or missing project details.",
+      subcopy: "Questions should narrow the next decision quickly and stay grounded in the saved profile and source records.",
+    },
+  } as const;
+
   return (
     <div className="overflow-hidden border border-black bg-white text-[var(--ink)] shadow-[0_18px_36px_rgba(0,0,0,0.1)]">
-      <div className="border-b border-black bg-[linear-gradient(180deg,rgba(254,250,224,0.65),rgba(255,255,255,0.95))] px-4 py-3">
+      <div className="border-b border-black bg-[linear-gradient(180deg,rgba(254,250,224,0.78),rgba(255,255,255,0.98))] px-4 py-3">
         <div className="flex items-start justify-between gap-3">
           <div>
             <strong className="block text-[0.84rem] font-semibold text-[var(--ink)]">Grant assistant workspace</strong>
-            <span className="block text-[0.68rem] text-[var(--muted-ink)]">Interactive product preview</span>
+            <span className="block text-[0.68rem] text-[var(--muted-ink)]">
+              The assistant packages the current profile, ranked grants, tracker state, and official sources into an in-product workflow.
+            </span>
           </div>
           <span className="rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold text-[var(--ink)] shadow-[0_2px_0_rgba(0,0,0,0.12)]">
             Local draft
@@ -638,18 +660,41 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
         </div>
 
         <div
-          className="mt-3 flex flex-wrap gap-2 transition-all duration-400"
+          className="mt-3 flex flex-wrap items-center gap-2 transition-all duration-400"
           style={{ opacity: stageOne, transform: `translateY(${10 - stageOne * 10}px)` }}
         >
-          <span className="cursor-default rounded-full border border-black bg-black px-3 py-1 text-[0.62rem] font-semibold text-white shadow-[0_2px_0_rgba(0,0,0,0.16)]">
+          <button
+            className={`rounded-full border border-black px-3 py-1 text-[0.62rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)] transition ${
+              activeTab === "brief" ? "bg-[#173f35] text-white" : "bg-white text-[var(--muted-ink)]"
+            }`}
+            onClick={() => setActiveTab("brief")}
+            type="button"
+          >
             Match brief
-          </span>
-          <span className="cursor-default rounded-full border border-black bg-white px-3 py-1 text-[0.62rem] font-semibold text-[var(--muted-ink)] shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+          </button>
+          <button
+            className={`rounded-full border border-black px-3 py-1 text-[0.62rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)] transition ${
+              activeTab === "plan" ? "bg-[#173f35] text-white" : "bg-white text-[var(--muted-ink)]"
+            }`}
+            onClick={() => setActiveTab("plan")}
+            type="button"
+          >
             Readiness plan
-          </span>
-          <span className="cursor-default rounded-full border border-black bg-white px-3 py-1 text-[0.62rem] font-semibold text-[var(--muted-ink)] shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+          </button>
+          <button
+            className={`rounded-full border border-black px-3 py-1 text-[0.62rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)] transition ${
+              activeTab === "questions" ? "bg-[#173f35] text-white" : "bg-white text-[var(--muted-ink)]"
+            }`}
+            onClick={() => setActiveTab("questions")}
+            type="button"
+          >
             Follow-up questions
-          </span>
+          </button>
+          <div className="ml-auto inline-flex min-w-[15rem] items-center justify-between rounded-[0.8rem] border border-black bg-white px-3 py-2 text-[0.64rem] shadow-[0_2px_0_rgba(0,0,0,0.08)] max-sm:ml-0">
+            <span className="font-semibold text-[var(--muted-ink)]">Focus grant</span>
+            <span className="text-[var(--ink)]">No grants available yet</span>
+            <span className="text-[0.74rem]">⌄</span>
+          </div>
         </div>
       </div>
 
@@ -658,37 +703,132 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
           className="grid gap-3 transition-all duration-400"
           style={{ opacity: stageOne, transform: `translateY(${14 - stageOne * 14}px)` }}
         >
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="text-[0.62rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Focus grant</span>
-            <div className="inline-flex min-w-[16rem] cursor-default items-center justify-between rounded-full border border-black bg-[var(--paper-soft)] px-3 py-2 text-[0.68rem] shadow-[0_2px_0_rgba(0,0,0,0.08)]">
-              <span>Tompkins County SWCD</span>
-              <span className="text-[0.72rem]">⌄</span>
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1.15fr)_220px]">
+            <div
+              className="grid gap-3 rounded-[1rem] border border-black bg-[var(--paper-soft)] p-3 transition-all duration-400"
+              style={{ opacity: stageTwo, transform: `translateY(${12 - stageTwo * 12}px)` }}
+            >
+              <div className="rounded-[0.9rem] border border-[#2f5d4d] bg-[#173f35] px-4 py-3 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                <strong className="block text-[0.72rem] font-semibold">{tabContent[activeTab].label}</strong>
+                <p className="mt-2 text-[0.66rem] leading-5 text-white/88">{tabContent[activeTab].body}</p>
+                <p className="mt-2 text-[0.62rem] leading-4 text-white/72">{tabContent[activeTab].subcopy}</p>
+              </div>
+
+              <div className="rounded-[0.9rem] border border-black bg-white p-3 shadow-[0_2px_0_rgba(0,0,0,0.05)]">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <strong className="text-[0.7rem] font-semibold text-[var(--ink)]">Prompt</strong>
+                  <button
+                    className={`rounded-[0.7rem] border border-black px-3 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)] transition ${
+                      activeAction === "prompt" ? "bg-[#173f35] text-white" : "bg-white text-[var(--muted-ink)]"
+                    }`}
+                    onClick={() => setActiveAction("prompt")}
+                    type="button"
+                  >
+                    Copy prompt
+                  </button>
+                </div>
+                <div className="mt-3 overflow-hidden rounded-[0.85rem] border border-[#27463b] bg-[#15372e] p-3 font-mono text-[0.58rem] leading-5 text-[#f4f5ef]">
+                  <p>You are helping a New York farmer review grant opportunities.</p>
+                  <p>Use the provided JSON context as the source of truth.</p>
+                  <p>Keep the answer practical and plain language.</p>
+                  <p>Rank the best current opportunities and explain why each one fits.</p>
+                </div>
+              </div>
+
+              <div className="rounded-[0.9rem] border border-black bg-white p-3 shadow-[0_2px_0_rgba(0,0,0,0.05)]">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <strong className="text-[0.7rem] font-semibold text-[var(--ink)]">Structured context</strong>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      className={`rounded-[0.7rem] border border-black px-3 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)] transition ${
+                        activeAction === "context" ? "bg-[#173f35] text-white" : "bg-white text-[var(--muted-ink)]"
+                      }`}
+                      onClick={() => setActiveAction("context")}
+                      type="button"
+                    >
+                      Copy context
+                    </button>
+                    <button
+                      className="rounded-[0.7rem] border border-black bg-[#f3f0e6] px-3 py-1 text-[0.58rem] font-semibold text-[var(--muted-ink)] shadow-[0_2px_0_rgba(0,0,0,0.08)]"
+                      type="button"
+                    >
+                      Generate response
+                    </button>
+                  </div>
+                </div>
+                <p className="mt-3 text-[0.62rem] leading-4 font-semibold text-[#24503f]">
+                  The hosted assistant route exists, but it is blocked. `OPENAI_API_KEY` secret is missing in Supabase.
+                </p>
+                <div className="mt-3 overflow-hidden rounded-[0.85rem] border border-[#27463b] bg-[#15372e] p-3 font-mono text-[0.58rem] leading-5 text-[#f4f5ef]">
+                  <p>{`{`}</p>
+                  <p>{`  "app": "AgriGrant NY",`}</p>
+                  <p>{`  "generated_on": "2026-07-10",`}</p>
+                  <p>{`  "instructions": ["Use only structured data", "Do not invent deadlines"],`}</p>
+                  <p>{`  "backend": { "mode": "supabase", "status": "ready" }`}</p>
+                  <p>{`}`}</p>
+                </div>
+              </div>
             </div>
-            <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.6rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
-              Source-backed
-            </span>
+
+            <div
+              className="grid gap-3 transition-all duration-500"
+              style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
+            >
+              <div className="rounded-[0.95rem] border border-black bg-white p-4 shadow-[0_2px_0_rgba(0,0,0,0.05)]">
+                <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[#2f6a57]">Agent context</span>
+                <h4 className="mt-2 text-[0.82rem] font-semibold text-[var(--ink)]">What the AI will receive</h4>
+                <ul className="mt-3 grid gap-2 text-[0.64rem] text-[var(--muted-ink)]">
+                  <li className="flex items-center gap-2"><span className="inline-flex h-4 w-4 items-center justify-center rounded-sm border border-black">✓</span> Official source records</li>
+                  <li className="flex items-center gap-2"><span className="inline-flex h-4 w-4 items-center justify-center rounded-sm border border-black">✓</span> Application checklist</li>
+                  <li className="flex items-center gap-2"><span className="inline-flex h-4 w-4 items-center justify-center rounded-sm border border-black" /> Profile complete</li>
+                  <li className="flex items-center gap-2"><span className="inline-flex h-4 w-4 items-center justify-center rounded-sm border border-black" /> Uploaded documents</li>
+                </ul>
+              </div>
+
+              <div className="rounded-[0.95rem] border border-black bg-white p-4 shadow-[0_2px_0_rgba(0,0,0,0.05)]">
+                <strong className="text-[0.72rem] font-semibold text-[var(--ink)]">Hosted assistant response</strong>
+                <div className="mt-3 grid gap-3">
+                  <div className="rounded-[0.85rem] border border-black bg-[var(--paper-soft)] p-3">
+                    <strong className="block text-[0.64rem] font-semibold">Best current matches</strong>
+                    <p className="mt-2 text-[0.64rem] leading-5 text-[var(--muted-ink)]">
+                      No ranked matches are available yet from the current profile. Local draft only. Hosted AI response is not available in the current backend state.
+                    </p>
+                  </div>
+                  <div className="rounded-[0.85rem] border border-black bg-[var(--paper-soft)] p-3">
+                    <strong className="block text-[0.64rem] font-semibold">Next steps</strong>
+                    <ul className="mt-2 grid gap-1 text-[0.62rem] leading-5 text-[var(--muted-ink)]">
+                      <li>Complete the core profile fields and rerun matching.</li>
+                      <li>Save one grant to start the application workflow.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div
-            className="grid gap-3 rounded-[1rem] border border-black bg-[var(--paper-soft)] p-3 transition-all duration-400"
-            style={{ opacity: stageTwo, transform: `translateY(${12 - stageTwo * 12}px)` }}
+            className="grid gap-2 rounded-[0.95rem] border border-black bg-white p-3 shadow-[0_2px_0_rgba(0,0,0,0.05)] transition-all duration-500"
+            style={{ opacity: stageThree, transform: `translateY(${10 - stageThree * 10}px)` }}
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <div>
-                <strong className="block text-[0.72rem] font-semibold text-[var(--ink)]">Assistant chat</strong>
-                <span className="block text-[0.64rem] text-[var(--muted-ink)]">The site can package farm context and answer inside the workflow.</span>
-              </div>
+              <strong className="text-[0.72rem] font-semibold text-[var(--ink)]">Embedded assistant chat</strong>
               <div className="flex flex-wrap gap-2">
-                <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
-                  Copy context
-                </span>
-                <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                <button
+                  className={`rounded-[0.7rem] border border-black px-3 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)] transition ${
+                    activeAction === "response" ? "bg-[#173f35] text-white" : "bg-white text-[var(--muted-ink)]"
+                  }`}
+                  onClick={() => setActiveAction("response")}
+                  type="button"
+                >
                   Open source links
-                </span>
+                </button>
+                <button className="rounded-[0.7rem] border border-black bg-white px-3 py-1 text-[0.58rem] font-semibold text-[var(--muted-ink)] shadow-[0_2px_0_rgba(0,0,0,0.08)]" type="button">
+                  Save to tracker
+                </button>
               </div>
             </div>
 
-            <div className="grid gap-2 rounded-[0.9rem] border border-black bg-white p-3 shadow-[inset_0_1px_0_rgba(0,0,0,0.04)]">
+            <div className="grid gap-2 rounded-[0.9rem] border border-black bg-[#fcfaf4] p-3 shadow-[inset_0_1px_0_rgba(0,0,0,0.04)]">
               <div className="flex justify-end">
                 <div className="max-w-[80%] rounded-[1rem] rounded-br-sm border border-black bg-[#f4f1ea] px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
                   <p className="text-[0.66rem] leading-4 text-[var(--ink)]">
@@ -701,7 +841,7 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
                 className="flex justify-start transition-all duration-500"
                 style={{ opacity: stageThree, transform: `translateY(${10 - stageThree * 10}px)` }}
               >
-                <div className="max-w-[88%] rounded-[1rem] rounded-bl-sm border border-black bg-[#fffdf6] px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
+                <div className="max-w-[88%] rounded-[1rem] rounded-bl-sm border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
                   <div className="flex items-center justify-between gap-3">
                     <strong className="text-[0.66rem] font-semibold text-[var(--ink)]">Assistant</strong>
                     <span className="rounded-full border border-black bg-white px-2 py-0.5 text-[0.54rem] font-semibold text-[var(--muted-ink)]">
@@ -729,45 +869,30 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
                 </div>
               </div>
 
-              <div
-                className="grid gap-2 transition-all duration-500"
-                style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
-              >
+              <div className="grid gap-2 transition-all duration-500" style={{ opacity: stageThree }}>
                 <div className="flex flex-wrap gap-2">
-                  <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                  <button className="rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]" type="button">
                     Why this match
-                  </span>
-                  <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                  </button>
+                  <button className="rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]" type="button">
                     Required documents
-                  </span>
-                  <span className="cursor-default rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]">
+                  </button>
+                  <button className="rounded-full border border-black bg-white px-2.5 py-1 text-[0.58rem] font-semibold shadow-[0_2px_0_rgba(0,0,0,0.08)]" type="button">
                     Continue to source
-                  </span>
+                  </button>
                 </div>
 
-                <div className="flex items-center gap-2 rounded-full border border-black bg-white px-3 py-2 shadow-[0_3px_0_rgba(0,0,0,0.08)]">
+                <button
+                  className="flex items-center gap-2 rounded-full border border-black bg-white px-3 py-2 text-left shadow-[0_3px_0_rgba(0,0,0,0.08)] transition hover:bg-[var(--paper-soft)]"
+                  type="button"
+                >
                   <span className="text-[0.66rem] text-[var(--muted-ink)]">
                     Ask about deadlines, documents, or eligibility gaps...
                   </span>
                   <span className="ml-auto inline-flex h-7 w-7 items-center justify-center rounded-full border border-black bg-black text-[0.68rem] text-white">
                     →
                   </span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="grid gap-2 text-[0.62rem] leading-4 text-[var(--muted-ink)] transition-all duration-500 sm:grid-cols-3"
-              style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
-            >
-              <div className="rounded-[0.85rem] border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
-                Profile complete and ready to reuse
-              </div>
-              <div className="rounded-[0.85rem] border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
-                Match explanations stay visible in the reply
-              </div>
-              <div className="rounded-[0.85rem] border border-black bg-white px-3 py-2 shadow-[0_2px_0_rgba(0,0,0,0.06)]">
-                Official sources remain one click away
+                </button>
               </div>
             </div>
           </div>
