@@ -733,10 +733,6 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
                   <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-[#d4a373]" />
                   <span>Prep before applying: deadline, route, and attachments still need confirmation against the source page.</span>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-[#ccd5ae]" />
-                  <span>Source-backed review stays visible while the farmer prepares the application materials.</span>
-                </div>
               </div>
             </div>
 
@@ -769,17 +765,17 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
               <div className="grid gap-2 sm:grid-cols-3">
                 <ActionPill
                   active={queryMode === "deadlines"}
-                  label="Why this match"
+                  label="Why fit"
                   onClick={() => setQueryMode("deadlines")}
                 />
                 <ActionPill
                   active={queryMode === "documents"}
-                  label="Required documents"
+                  label="Documents"
                   onClick={() => setQueryMode("documents")}
                 />
                 <ActionPill
                   active={queryMode === "eligibility"}
-                  label="Ask about gaps"
+                  label="Gaps"
                   onClick={() => setQueryMode("eligibility")}
                 />
               </div>
@@ -793,34 +789,19 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
                 </button>
               </div>
 
-              <div className="flex items-center gap-2 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2.5">
-                <span className="text-[0.66rem] text-[var(--muted-ink)]">
-                  {queryMode === "deadlines" && "Ask about deadlines, review timing, or source updates…"}
-                  {queryMode === "documents" && "Ask about deadlines, documents, or eligibility gaps…"}
-                  {queryMode === "eligibility" && "Ask about missing facts before applying…"}
+              <div className="flex items-center gap-2 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
+                <span className="text-[0.62rem] text-[var(--muted-ink)]">
+                  {queryMode === "deadlines" && "Ask about deadlines or source updates…"}
+                  {queryMode === "documents" && "Ask about documents or gaps…"}
+                  {queryMode === "eligibility" && "Ask about missing facts…"}
                 </span>
                 <button
-                  className="ml-auto rounded-[0.45rem] border border-[#173f35] bg-[#173f35] px-3 py-1.5 text-[0.64rem] font-semibold text-white transition hover:bg-[#204b3f]"
+                  className="ml-auto rounded-[0.45rem] border border-[#173f35] bg-[#173f35] px-2.5 py-1.5 text-[0.62rem] font-semibold text-white transition hover:bg-[#204b3f]"
                   type="button"
                 >
                   Ask
                 </button>
               </div>
-            </div>
-          </div>
-
-          <div
-            className="grid gap-2 text-[0.62rem] leading-4 text-[var(--muted-ink)] transition-all duration-500 sm:grid-cols-3"
-            style={{ opacity: stageThree, transform: `translateY(${8 - stageThree * 8}px)` }}
-          >
-            <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
-              Source link visible
-            </div>
-            <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
-              Review timing shown
-            </div>
-            <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
-              Prep before applying
             </div>
           </div>
         </div>
@@ -847,7 +828,7 @@ function StatusRow({ tone, text }: { tone: "ok" | "warn"; text: string }) {
 function ActionPill({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
   return (
     <button
-      className={`rounded-[0.45rem] border px-2.5 py-1.5 text-[0.64rem] font-semibold transition ${
+      className={`min-h-0 rounded-[0.45rem] border px-2 py-1.5 text-[0.56rem] font-semibold leading-4 transition ${
         active
           ? "border-[#173f35] bg-[#173f35] text-white"
           : "border-[rgba(23,63,53,0.14)] bg-white text-[var(--muted-ink)] hover:bg-[var(--paper-soft)]"
