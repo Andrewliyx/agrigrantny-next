@@ -447,27 +447,13 @@ function Welcome({
             </div>
           </div>
             <aside
-              className="self-start border border-black bg-[var(--cream)] p-6 transition-all duration-500"
+              className="self-start border border-black bg-[var(--cream)] p-5 transition-all duration-500"
               style={{
                 opacity: Math.max(0, Math.min(1, (exampleProgress - 0.18) * 1.35)),
                 transform: `translateY(${24 - Math.max(0, Math.min(1, (exampleProgress - 0.18) * 1.35)) * 24}px)`,
               }}
             >
-              <div className="border-l-[3px] border-black pl-4">
-                <span className="text-[0.76rem] font-semibold text-[var(--clay)]">What a result should make clear</span>
-                <ul className="mt-4 grid gap-4 text-[0.84rem] leading-5 text-[var(--muted-ink)]">
-                  <li>Why the program may fit the farm profile</li>
-                  <li>What information still needs checking</li>
-                  <li>Which documents may be needed next</li>
-                  <li>Where to continue on the official source page</li>
-                </ul>
-              </div>
-              <div className="mt-6 border-t border-black pt-5">
-                <AgentWorkbenchDemo progress={exampleProgress} />
-                <p className="mt-3 text-[0.78rem] leading-5 text-[var(--muted-ink)]">
-                  A future assistant could help compare source-backed options, flag eligibility gaps, and organize next documents before a farmer leaves for the official application.
-                </p>
-              </div>
+              <AgentWorkbenchDemo progress={exampleProgress} />
             </aside>
           </div>
           <div
@@ -765,12 +751,12 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
               <div className="grid gap-2 sm:grid-cols-3">
                 <ActionPill
                   active={queryMode === "deadlines"}
-                  label="Why fit"
+                  label="Why"
                   onClick={() => setQueryMode("deadlines")}
                 />
                 <ActionPill
                   active={queryMode === "documents"}
-                  label="Documents"
+                  label="Docs"
                   onClick={() => setQueryMode("documents")}
                 />
                 <ActionPill
@@ -781,11 +767,11 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                <button className="rounded-[0.45rem] border border-[#173f35] bg-[#173f35] px-2.5 py-1.5 text-[0.64rem] font-semibold text-white transition hover:bg-[#204b3f]" type="button">
+                <button className="rounded-[0.45rem] border border-[#173f35] bg-[#173f35] px-2 py-1.5 text-[0.58rem] font-semibold text-white transition hover:bg-[#204b3f]" type="button">
                   Open source
                 </button>
-                <button className="rounded-[0.45rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1.5 text-[0.64rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
-                  Save to tracker
+                <button className="rounded-[0.45rem] border border-[rgba(23,63,53,0.14)] bg-white px-2 py-1.5 text-[0.58rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
+                  Save tracker
                 </button>
               </div>
 
@@ -828,7 +814,7 @@ function StatusRow({ tone, text }: { tone: "ok" | "warn"; text: string }) {
 function ActionPill({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
   return (
     <button
-      className={`min-h-0 rounded-[0.45rem] border px-2 py-1.5 text-[0.56rem] font-semibold leading-4 transition ${
+      className={`min-h-0 rounded-[0.45rem] border px-1.5 py-1.5 text-[0.48rem] font-semibold leading-4 transition ${
         active
           ? "border-[#173f35] bg-[#173f35] text-white"
           : "border-[rgba(23,63,53,0.14)] bg-white text-[var(--muted-ink)] hover:bg-[var(--paper-soft)]"
