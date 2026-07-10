@@ -421,20 +421,12 @@ function Welcome({
                   <li>Where to continue on the official source page</li>
                 </ul>
               </div>
-              <figure className="mt-6 border-t border-black pt-5">
-                <div className="relative aspect-[4/3] overflow-hidden border border-black">
-                  <Image
-                    alt="Farmer interacting with an AI grant assistant on a laptop during application preparation"
-                    className="object-cover"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 420px"
-                    src="/ai-agent-demo.png"
-                  />
-                </div>
-                <figcaption className="mt-3 text-[0.78rem] leading-5 text-[var(--muted-ink)]">
+              <div className="mt-6 border-t border-black pt-5">
+                <AgentWorkbenchDemo />
+                <p className="mt-3 text-[0.78rem] leading-5 text-[var(--muted-ink)]">
                   A future assistant could help compare source-backed options, flag eligibility gaps, and organize next documents before a farmer leaves for the official application.
-                </figcaption>
-              </figure>
+                </p>
+              </div>
             </aside>
           </div>
           <div className="grid grid-cols-3 gap-4 max-md:grid-cols-1">
@@ -577,6 +569,74 @@ function TrustMini({ title, text }: { title: string; text: string }) {
       <strong className="block text-sm font-semibold text-[var(--ink)]">{title}</strong>
       <p className="mt-2 text-sm leading-7 text-[var(--muted-ink)]">{text}</p>
     </article>
+  );
+}
+
+function AgentWorkbenchDemo() {
+  return (
+    <div className="border border-black bg-[var(--paper-soft)]">
+      <div className="flex items-center justify-between border-b border-black bg-[rgba(0,0,0,0.04)] px-3 py-2">
+        <div>
+          <strong className="block text-[0.78rem] font-semibold text-[var(--ink)]">Grant assistant</strong>
+          <span className="block text-[0.68rem] text-[var(--muted-ink)]">Interactive workbench preview</span>
+        </div>
+        <span className="border border-black px-2 py-1 font-mono text-[0.62rem] text-[var(--muted-ink)]">
+          LIVE TASK
+        </span>
+      </div>
+
+      <div className="grid grid-cols-[minmax(0,1.2fr)_150px] max-sm:grid-cols-1">
+        <div className="border-r border-black p-3 max-sm:border-r-0 max-sm:border-b">
+          <div className="grid gap-3">
+            <div className="max-w-[84%] border border-black bg-[rgba(204,213,174,0.34)] px-3 py-2 text-[0.74rem] leading-5 text-[var(--ink)]">
+              Help me understand which irrigation grants fit a Tompkins County vegetable farm.
+            </div>
+            <div className="max-w-[92%] border border-black bg-white px-3 py-2 text-[0.72rem] leading-5 text-[var(--muted-ink)]">
+              I found three source-backed programs. Two look plausible now. One needs a conservation-plan check before it is worth pursuing.
+            </div>
+            <div className="border border-black bg-[rgba(250,237,205,0.58)] p-3">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <strong className="block text-[0.74rem] font-semibold text-[var(--ink)]">NYS SWCD Water Quality Improvement Project</strong>
+                  <span className="block text-[0.68rem] text-[var(--muted-ink)]">Source link visible • Reviewed June 2026</span>
+                </div>
+                <span className="border border-black px-2 py-1 text-[0.62rem] font-semibold text-[var(--ink)]">MATCH</span>
+              </div>
+              <ul className="mt-3 grid gap-2 text-[0.7rem] leading-5 text-[var(--muted-ink)]">
+                <li>Water source details still needed</li>
+                <li>Conservation-plan status should be confirmed</li>
+                <li>Map of fields likely needed next</li>
+              </ul>
+            </div>
+            <div className="flex items-center justify-between border border-black bg-white px-3 py-2">
+              <span className="text-[0.68rem] text-[var(--muted-ink)]">Ask a follow-up about eligibility gaps or documents</span>
+              <span className="font-mono text-[0.72rem] text-[var(--ink)]">→</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-3">
+          <div className="grid gap-3">
+            <div className="border border-black bg-white p-2">
+              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Eligibility gap</strong>
+              <p className="mt-2 text-[0.66rem] leading-4 text-[var(--muted-ink)]">Water-use estimate and plan status need review.</p>
+            </div>
+            <div className="border border-black bg-white p-2">
+              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Next documents</strong>
+              <ul className="mt-2 grid gap-1 text-[0.64rem] leading-4 text-[var(--muted-ink)]">
+                <li>Field map</li>
+                <li>Irrigation scope</li>
+                <li>Budget notes</li>
+              </ul>
+            </div>
+            <div className="border border-black bg-[rgba(0,0,0,0.04)] p-2">
+              <strong className="block text-[0.68rem] font-semibold text-[var(--ink)]">Official source</strong>
+              <p className="mt-2 text-[0.64rem] leading-4 text-[var(--muted-ink)]">Continue on the agency page after prep is complete.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
