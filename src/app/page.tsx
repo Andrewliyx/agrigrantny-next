@@ -628,34 +628,37 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
 
   const tabContent = {
     brief: {
-      summary: "Strong preliminary fit.",
-      detail: "Profile, source link, and review date are present. Application route still needs confirmation.",
-      next: ["Open official source", "Save grant to tracker", "Confirm deadline"],
+      summary: "Likely worth reviewing.",
+      detail: "Preparation path ready. Start with project scope, acreage, and a basic budget estimate before opening the official source page.",
+      next: ["Draft project scope", "Confirm farm acreage", "Estimate basic budget"],
     },
     plan: {
       summary: "Preparation path ready.",
-      detail: "Start with scope, acreage, and budget notes before moving into the source application flow.",
-      next: ["Draft project scope", "Estimate budget", "Check attachments"],
+      detail: "The current match is usable, but the application path still depends on scope, budget, and source-specific attachments.",
+      next: ["Outline the project", "Check required attachments", "Confirm final deadline"],
     },
     questions: {
-      summary: "Needs a few factual checks.",
-      detail: "The assistant should narrow remaining uncertainty without producing a long questionnaire.",
+      summary: "A few focused checks remain.",
+      detail: "Use short follow-up questions to close the remaining source-backed gaps before the farmer continues.",
       next: ["Ask about acreage", "Ask about project timing", "Ask about existing documents"],
     },
   } as const;
 
   return (
-    <div className="overflow-hidden rounded-[0.75rem] border border-[rgba(23,63,53,0.18)] bg-[#fffdf6] text-[var(--ink)] shadow-[0_10px_28px_rgba(39,56,43,0.08)]">
-      <div className="border-b border-[rgba(23,63,53,0.14)] bg-[linear-gradient(180deg,rgba(233,237,201,0.78),rgba(255,253,246,0.98))] px-4 py-3">
+    <div className="overflow-hidden rounded-[0.6rem] border border-[rgba(23,63,53,0.14)] bg-[#fffdf6] text-[var(--ink)]">
+      <div className="border-b border-[rgba(23,63,53,0.12)] bg-[rgba(233,237,201,0.38)] px-4 py-3">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <strong className="block text-[0.94rem] font-semibold text-[var(--ink)]">Source-aware assistant</strong>
-            <span className="block text-[0.68rem] text-[var(--muted-ink)]">
-              Uses the farm profile, matched grant record, and official-source notes to prepare next steps.
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-2.5 w-2.5 rounded-full bg-[#d4a373]" />
+              <strong className="block text-[0.96rem] font-semibold text-[var(--ink)]">Source-aware assistant</strong>
+            </div>
+            <span className="mt-1 block text-[0.72rem] text-[var(--muted-ink)]">
+              Uses profile, match record, and official source links
             </span>
           </div>
-          <span className="rounded-full border border-[rgba(23,63,53,0.18)] bg-white px-2.5 py-1 text-[0.58rem] font-semibold text-[var(--muted-ink)]">
-            Local draft · official source required
+          <span className="rounded-[0.45rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1 text-[0.62rem] font-semibold text-[var(--muted-ink)]">
+            Draft only · confirm source
           </span>
         </div>
 
@@ -664,7 +667,7 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
           style={{ opacity: stageOne, transform: `translateY(${10 - stageOne * 10}px)` }}
         >
           <button
-            className={`rounded-[0.55rem] border px-2.5 py-1 text-[0.62rem] font-semibold transition ${
+            className={`rounded-[0.45rem] border px-2.5 py-1 text-[0.64rem] font-semibold transition ${
               activeTab === "brief"
                 ? "border-[#173f35] bg-[#173f35] text-white"
                 : "border-[rgba(23,63,53,0.14)] bg-white text-[var(--muted-ink)]"
@@ -675,7 +678,7 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
             Match brief
           </button>
           <button
-            className={`rounded-[0.55rem] border px-2.5 py-1 text-[0.62rem] font-semibold transition ${
+            className={`rounded-[0.45rem] border px-2.5 py-1 text-[0.64rem] font-semibold transition ${
               activeTab === "plan"
                 ? "border-[#173f35] bg-[#173f35] text-white"
                 : "border-[rgba(23,63,53,0.14)] bg-white text-[var(--muted-ink)]"
@@ -686,7 +689,7 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
             Readiness plan
           </button>
           <button
-            className={`rounded-[0.55rem] border px-2.5 py-1 text-[0.62rem] font-semibold transition ${
+            className={`rounded-[0.45rem] border px-2.5 py-1 text-[0.64rem] font-semibold transition ${
               activeTab === "questions"
                 ? "border-[#173f35] bg-[#173f35] text-white"
                 : "border-[rgba(23,63,53,0.14)] bg-white text-[var(--muted-ink)]"
@@ -704,21 +707,19 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
           className="grid gap-3 transition-all duration-400"
           style={{ opacity: stageOne, transform: `translateY(${14 - stageOne * 14}px)` }}
         >
-          <div className="rounded-[0.7rem] border border-[rgba(23,63,53,0.14)] bg-white p-3">
-            <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Selected match</span>
-            <strong className="mt-2 block text-[0.9rem] font-semibold text-[var(--ink)]">NYS Soil and Water grant screening</strong>
-            <p className="mt-1 text-[0.66rem] leading-4 text-[var(--muted-ink)]">
-              Tompkins County · mixed vegetables · water + soil priority
-            </p>
+          <div className="grid gap-2 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white p-3 md:grid-cols-3 md:gap-3">
+            <MetaBlock label="Selected match" value="NYS Soil and Water grant screening" />
+            <MetaBlock label="Farm profile" value="Tompkins · mixed vegetables · water + soil" />
+            <MetaBlock label="Confidence" value="Likely worth reviewing" />
           </div>
 
-          <div className="grid gap-3 lg:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)]">
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
             <div
-              className="grid gap-3 rounded-[0.7rem] border border-[rgba(23,63,53,0.14)] bg-white p-3 transition-all duration-400"
+              className="grid gap-3 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white p-3 transition-all duration-400"
               style={{ opacity: stageTwo, transform: `translateY(${12 - stageTwo * 12}px)` }}
             >
               <div>
-                <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Checks completed</span>
+                <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Source checks</span>
                 <div className="mt-3 grid gap-2">
                   <StatusRow tone="ok" text="Profile fields parsed" />
                   <StatusRow tone="ok" text="Official source linked" />
@@ -727,20 +728,15 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
                 </div>
               </div>
 
-              <div className="rounded-[0.65rem] border border-[rgba(23,63,53,0.14)] bg-[rgba(250,237,205,0.22)] px-3 py-3">
-                <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Context packet</span>
-                <div className="mt-2 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-[#173f35] px-3 py-2 font-mono text-[0.62rem] leading-5 text-[#f7f7f1]">
-                  {`{ county, farm_type, priorities, source_notes }`}
+              <div className="grid gap-2 text-[0.64rem] text-[var(--muted-ink)]">
+                <div className="flex items-start gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-[#d4a373]" />
+                  <span>Prep before applying: deadline, route, and attachments still need confirmation against the source page.</span>
                 </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                <button className="rounded-[0.55rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1 text-[0.6rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
-                  Copy context
-                </button>
-                <button className="rounded-[0.55rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1 text-[0.6rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
-                  Source notes
-                </button>
+                <div className="flex items-start gap-2">
+                  <span className="mt-1 inline-flex h-1.5 w-1.5 rounded-full bg-[#ccd5ae]" />
+                  <span>Source-backed review stays visible while the farmer prepares the application materials.</span>
+                </div>
               </div>
             </div>
 
@@ -748,17 +744,19 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
               className="grid gap-3 transition-all duration-500"
               style={{ opacity: stageThree, transform: `translateY(${12 - stageThree * 12}px)` }}
             >
-              <div className="rounded-[0.7rem] border border-[rgba(23,63,53,0.14)] bg-white p-3">
-                <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Assistant response</span>
-                <strong className="mt-2 block text-[0.84rem] font-semibold text-[var(--ink)]">{tabContent[activeTab].summary}</strong>
-                <p className="mt-2 text-[0.68rem] leading-5 text-[var(--muted-ink)]">{tabContent[activeTab].detail}</p>
+              <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white p-3">
+                <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Next step</span>
+                <div className="mt-3 border-l-[3px] border-[#d4a373] pl-3">
+                  <strong className="block text-[0.98rem] font-semibold text-[var(--ink)]">{tabContent[activeTab].summary}</strong>
+                  <p className="mt-2 text-[0.8rem] leading-6 text-[var(--muted-ink)]">{tabContent[activeTab].detail}</p>
+                </div>
 
                 <div className="mt-4">
-                  <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Next steps</span>
-                  <ol className="mt-2 grid gap-2 text-[0.66rem] leading-5 text-[var(--ink)]">
+                  <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">Next steps</span>
+                  <ol className="mt-2 grid gap-2 text-[0.78rem] leading-5 text-[var(--ink)]">
                     {tabContent[activeTab].next.map((item, index) => (
                       <li className="flex items-start gap-2" key={item}>
-                        <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-[rgba(23,63,53,0.14)] bg-[rgba(233,237,201,0.6)] text-[0.58rem] font-semibold text-[var(--ink)]">
+                        <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-[0.4rem] border border-[rgba(23,63,53,0.12)] bg-[rgba(233,237,201,0.65)] text-[0.62rem] font-semibold text-[var(--ink)]">
                           {index + 1}
                         </span>
                         <span>{item}</span>
@@ -771,44 +769,41 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
               <div className="grid gap-2 sm:grid-cols-3">
                 <ActionPill
                   active={queryMode === "deadlines"}
-                  label="Ask about deadlines"
+                  label="Why this match"
                   onClick={() => setQueryMode("deadlines")}
                 />
                 <ActionPill
                   active={queryMode === "documents"}
-                  label="Ask about documents"
+                  label="Required documents"
                   onClick={() => setQueryMode("documents")}
                 />
                 <ActionPill
                   active={queryMode === "eligibility"}
-                  label="Ask about eligibility"
+                  label="Ask about gaps"
                   onClick={() => setQueryMode("eligibility")}
                 />
               </div>
 
-              <div className="flex items-center gap-2 rounded-[0.7rem] border border-[rgba(23,63,53,0.14)] bg-white px-3 py-2.5">
-                <span className="text-[0.66rem] text-[var(--muted-ink)]">
-                  {queryMode === "deadlines" && "Ask about deadlines, review timing, or source updates..."}
-                  {queryMode === "documents" && "Ask what documents should I prepare first..."}
-                  {queryMode === "eligibility" && "Ask about eligibility gaps, acreage, or project scope..."}
-                </span>
-                <button
-                  className="ml-auto rounded-[0.55rem] border border-[#173f35] bg-[#173f35] px-3 py-1.5 text-[0.62rem] font-semibold text-white transition hover:bg-[#204b3f]"
-                  type="button"
-                >
-                  Ask
+              <div className="flex flex-wrap gap-2">
+                <button className="rounded-[0.45rem] border border-[#173f35] bg-[#173f35] px-2.5 py-1.5 text-[0.64rem] font-semibold text-white transition hover:bg-[#204b3f]" type="button">
+                  Open source
+                </button>
+                <button className="rounded-[0.45rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1.5 text-[0.64rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
+                  Save to tracker
                 </button>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                <button className="rounded-[0.55rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1 text-[0.6rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
-                  Open official source
-                </button>
-                <button className="rounded-[0.55rem] border border-[rgba(23,63,53,0.14)] bg-white px-2.5 py-1 text-[0.6rem] font-semibold text-[var(--muted-ink)] transition hover:bg-[var(--paper-soft)]" type="button">
-                  Save to tracker
-                </button>
-                <button className="rounded-[0.55rem] border border-[rgba(212,163,115,0.25)] bg-[rgba(212,163,115,0.12)] px-2.5 py-1 text-[0.6rem] font-semibold text-[#8d6036] transition hover:bg-[rgba(212,163,115,0.18)]" type="button">
-                  Review attachments
+              <div className="flex items-center gap-2 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2.5">
+                <span className="text-[0.66rem] text-[var(--muted-ink)]">
+                  {queryMode === "deadlines" && "Ask about deadlines, review timing, or source updates…"}
+                  {queryMode === "documents" && "Ask about deadlines, documents, or eligibility gaps…"}
+                  {queryMode === "eligibility" && "Ask about missing facts before applying…"}
+                </span>
+                <button
+                  className="ml-auto rounded-[0.45rem] border border-[#173f35] bg-[#173f35] px-3 py-1.5 text-[0.64rem] font-semibold text-white transition hover:bg-[#204b3f]"
+                  type="button"
+                >
+                  Ask
                 </button>
               </div>
             </div>
@@ -818,14 +813,14 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
             className="grid gap-2 text-[0.62rem] leading-4 text-[var(--muted-ink)] transition-all duration-500 sm:grid-cols-3"
             style={{ opacity: stageThree, transform: `translateY(${8 - stageThree * 8}px)` }}
           >
-            <div className="rounded-[0.65rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
+            <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
               Source link visible
             </div>
-            <div className="rounded-[0.65rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
+            <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
               Review timing shown
             </div>
-            <div className="rounded-[0.65rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
-              Preparation first
+            <div className="rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-white px-3 py-2">
+              Prep before applying
             </div>
           </div>
         </div>
@@ -836,7 +831,7 @@ function AgentWorkbenchDemo({ progress }: { progress: number }) {
 
 function StatusRow({ tone, text }: { tone: "ok" | "warn"; text: string }) {
   return (
-    <div className="flex items-center gap-2 rounded-[0.55rem] border border-[rgba(23,63,53,0.12)] bg-[rgba(250,237,205,0.12)] px-2.5 py-2">
+    <div className="flex items-center gap-2 rounded-[0.45rem] border border-[rgba(23,63,53,0.1)] bg-[rgba(250,237,205,0.12)] px-2.5 py-2">
       <span
         className={`inline-flex h-4 w-4 items-center justify-center rounded-full text-[0.58rem] font-bold ${
           tone === "ok" ? "bg-[#173f35] text-white" : "bg-[#d4a373] text-white"
@@ -844,7 +839,7 @@ function StatusRow({ tone, text }: { tone: "ok" | "warn"; text: string }) {
       >
         {tone === "ok" ? "✓" : "!"}
       </span>
-      <span className="text-[0.64rem] text-[var(--ink)]">{text}</span>
+      <span className="text-[0.68rem] text-[var(--ink)]">{text}</span>
     </div>
   );
 }
@@ -852,7 +847,7 @@ function StatusRow({ tone, text }: { tone: "ok" | "warn"; text: string }) {
 function ActionPill({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
   return (
     <button
-      className={`rounded-[0.55rem] border px-2.5 py-1.5 text-[0.6rem] font-semibold transition ${
+      className={`rounded-[0.45rem] border px-2.5 py-1.5 text-[0.64rem] font-semibold transition ${
         active
           ? "border-[#173f35] bg-[#173f35] text-white"
           : "border-[rgba(23,63,53,0.14)] bg-white text-[var(--muted-ink)] hover:bg-[var(--paper-soft)]"
@@ -862,6 +857,15 @@ function ActionPill({ active, label, onClick }: { active: boolean; label: string
     >
       {label}
     </button>
+  );
+}
+
+function MetaBlock({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-l border-[rgba(23,63,53,0.12)] pl-3 first:border-l-0 first:pl-0">
+      <span className="block text-[0.58rem] font-semibold uppercase tracking-[0.08em] text-[var(--muted-ink)]">{label}</span>
+      <p className="mt-1 text-[0.72rem] leading-5 text-[var(--ink)]">{value}</p>
+    </div>
   );
 }
 
