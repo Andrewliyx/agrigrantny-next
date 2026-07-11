@@ -1,14 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { Lemon } from "next/font/google";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { siteContent } from "@/content/siteContent";
-
-const lemonTitle = Lemon({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 type View = "dashboard" | "profile" | "grants" | "applications" | "assistant";
 
@@ -329,7 +323,10 @@ function Welcome({
             <span className="inline-flex border border-[var(--line)] bg-[var(--paper-soft)] px-3 py-2 text-[0.66rem] font-semibold text-[var(--evergreen)]">
               {siteContent.hero.eyebrow}
             </span>
-            <h2 className={`${lemonTitle.className} mt-5 max-w-[640px] text-[clamp(1.95rem,3.7vw,3.35rem)] leading-[0.95] tracking-[-0.03em] text-[var(--evergreen)]`}>
+            <h2
+              className="mt-5 max-w-[640px] text-[clamp(1.95rem,3.7vw,3.35rem)] leading-[0.95] tracking-[-0.03em] text-[var(--evergreen)]"
+              style={{ fontFamily: '"Idiqlat", var(--font-body), Arial, sans-serif' }}
+            >
               {siteContent.hero.title}
             </h2>
             <p className="mt-5 max-w-[38rem] text-[0.88rem] leading-6 text-[var(--muted-ink)]">{siteContent.hero.body}</p>
